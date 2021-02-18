@@ -1,0 +1,74 @@
+{
+   "xcodebuild_arguments":[
+      "-workspace",
+      "Example/GiniPayBankSDK.xcworkspace",
+      "-scheme",
+      "Example Swift"
+   ],
+   "author":"Gini GmbH",
+   "author_url":"https://gini.net",
+   "module":"GiniPayBankSDK",
+   "readme":"Documentation/Sections/Documentation.md",
+   "theme": "Documentation/jazzy-theme/",
+   "output":"Documentation/Api",
+   "github_url":"https://github.com/gini/gini-pay-bank-sdk-ios.git",
+   "hide_documentation_coverage":"true",
+
+   "documentation":"Documentation/source/*.md",
+   "abstract":"Documentation/Sections/*.md",
+
+   "custom_categories":[
+      {
+         "name":"Documentation",
+         "children":[
+           "Installation",
+           "Integration",
+           "Changelog",
+           "License"
+         ]
+      },
+      {
+         "name":"Guides",
+         "children":[
+           "Customization guide",
+           "Open with guide",
+           "Import PDFs and images guide",
+           "QR Code scanning guide",
+           "Event tracking guide"
+         ]
+      },
+      {
+         "name":"Migration guides",
+         "children":[
+           "Updating from GiniVision"
+         ]
+      },
+      {
+         "name":"Classes",
+         "children":[]
+      },
+      {
+         "name":"Enums",
+         "children":[]
+      },
+      {
+         "name":"Extensions",
+         "children":[
+            "Array",
+            "Collection"
+         ]
+      },
+      {
+         "name":"Protocols",
+         "children":[]
+      },
+      {
+	       "name":"Structs",
+	       "children":[]
+      },
+      {
+         "name":"Typealiases",
+         "children":[]
+      }
+   ]
+}
