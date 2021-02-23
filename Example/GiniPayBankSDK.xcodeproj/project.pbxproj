@@ -10,17 +10,34 @@
 		62922B1E4E9A435CC6EC77FD /* Pods_Example_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3567CA1F2F129B2B8F2558 /* Pods_Example_Tests.framework */; };
 		9BE1C9B12A7CFAF31347CD0D /* Pods_Example_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B137B72CCBD460302E6215 /* Pods_Example_Swift.framework */; };
 		D2EDC4D548D4E94A1CC161E6 /* Pods_GiniPayBankSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F066584D00094C14375A44 /* Pods_GiniPayBankSDKTests.framework */; };
+		F441DC0625E51F7300AAB09A /* PartialDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F441DC0525E51F7300AAB09A /* PartialDocument.swift */; };
+		F441DC3225E5282A00AAB09A /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = F441DC3125E5282A00AAB09A /* Credentials.plist */; };
+		F441DCA525E55D5800AAB09A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F441DCA725E55D5800AAB09A /* Main.storyboard */; };
+		F441DCB625E568C400AAB09A /* LaunchScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = F441DCB225E568C400AAB09A /* LaunchScreen.strings */; };
+		F441DCB725E568C400AAB09A /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = F441DCB425E568C400AAB09A /* Main.strings */; };
+		F441DCBD25E5694600AAB09A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F441DCBC25E5694600AAB09A /* Settings.bundle */; };
+		F441DCC325E56BF800AAB09A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F441DCC525E56BF800AAB09A /* LaunchScreen.xib */; };
 		F490C7CA25DE72E400D8CA6F /* GiniPayBankSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F490C7C025DE72E400D8CA6F /* GiniPayBankSDK.framework */; };
 		F490C7CF25DE72E400D8CA6F /* GiniPayBankSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F490C7CE25DE72E400D8CA6F /* GiniPayBankSDKTests.swift */; };
-		F490C7D125DE72E400D8CA6F /* GiniPayBankSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = F490C7C325DE72E400D8CA6F /* GiniPayBankSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F490C7E525DE873900D8CA6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F490C7E425DE873900D8CA6F /* AppDelegate.swift */; };
-		F490C7E725DE873900D8CA6F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F490C7E625DE873900D8CA6F /* SceneDelegate.swift */; };
-		F490C7E925DE873900D8CA6F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F490C7E825DE873900D8CA6F /* ViewController.swift */; };
-		F490C7EC25DE873900D8CA6F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F490C7EA25DE873900D8CA6F /* Main.storyboard */; };
-		F490C7EE25DE873B00D8CA6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F490C7ED25DE873B00D8CA6F /* Assets.xcassets */; };
-		F490C7F125DE873B00D8CA6F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F490C7EF25DE873B00D8CA6F /* LaunchScreen.storyboard */; };
+		F490C7E925DE873900D8CA6F /* NoResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F490C7E825DE873900D8CA6F /* NoResultViewController.swift */; };
 		F490C80025DE87A900D8CA6F /* Example_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F490C7FF25DE87A900D8CA6F /* Example_Tests.swift */; };
 		F490C80225DE87A900D8CA6F /* GiniPayBankSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F490C7C025DE72E400D8CA6F /* GiniPayBankSDK.framework */; };
+		F4AD00B625DED1A000C34E15 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD00B525DED1A000C34E15 /* AppCoordinator.swift */; };
+		F4AD00BC25DED33300C34E15 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD00BB25DED33300C34E15 /* Coordinator.swift */; };
+		F4AD00C225DED43200C34E15 /* SelectAPIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD00C125DED43200C34E15 /* SelectAPIViewController.swift */; };
+		F4AD00CC25DFDB4E00C34E15 /* CredentialsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD00CB25DFDB4E00C34E15 /* CredentialsManager.swift */; };
+		F4AD00D625DFDC8100C34E15 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD00D525DFDC8100C34E15 /* SettingsViewController.swift */; };
+		F4AD00DC25DFDCE400C34E15 /* ResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD00DB25DFDCE400C34E15 /* ResultTableViewController.swift */; };
+		F4AD00E625DFDDED00C34E15 /* ScreenAPICoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD00E525DFDDED00C34E15 /* ScreenAPICoordinator.swift */; };
+		F4AD00EC25DFDE2000C34E15 /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD00EB25DFDE2000C34E15 /* RootNavigationController.swift */; };
+		F4AD00FB25DFDF4500C34E15 /* ComponentAPIDocumentServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD00F125DFDF4400C34E15 /* ComponentAPIDocumentServiceProtocol.swift */; };
+		F4AD00FD25DFDF4500C34E15 /* ComponentAPIDocumentsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD00F325DFDF4400C34E15 /* ComponentAPIDocumentsService.swift */; };
+		F4AD00FE25DFDF4500C34E15 /* ComponentAPIOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD00F425DFDF4400C34E15 /* ComponentAPIOnboardingViewController.swift */; };
+		F4AD00FF25DFDF4500C34E15 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD00F525DFDF4400C34E15 /* UIViewController.swift */; };
+		F4AD010025DFDF4500C34E15 /* ComponentAPICoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD00F625DFDF4400C34E15 /* ComponentAPICoordinator.swift */; };
+		F4AD010125DFDF4500C34E15 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4AD00F725DFDF4400C34E15 /* Images.xcassets */; };
+		F4AD010425DFDF4500C34E15 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F4AD00FA25DFDF4400C34E15 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,23 +81,41 @@
 		A5AA89FD331F3300E1A74E7C /* Pods-Example Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example Swift.release.xcconfig"; path = "Target Support Files/Pods-Example Swift/Pods-Example Swift.release.xcconfig"; sourceTree = "<group>"; };
 		B7B137B72CCBD460302E6215 /* Pods_Example_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9ECD8E61B334C1787E5C2F2 /* Pods-GiniPayBankSDKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiniPayBankSDKTests.release.xcconfig"; path = "Target Support Files/Pods-GiniPayBankSDKTests/Pods-GiniPayBankSDKTests.release.xcconfig"; sourceTree = "<group>"; };
+		F441DC0525E51F7300AAB09A /* PartialDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PartialDocument.swift; path = "Example Swift/PartialDocument.swift"; sourceTree = SOURCE_ROOT; };
+		F441DC3125E5282A00AAB09A /* Credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Credentials.plist; sourceTree = "<group>"; };
+		F441DCA625E55D5800AAB09A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F441DCB325E568C400AAB09A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		F441DCB525E568C400AAB09A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		F441DCBC25E5694600AAB09A /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		F441DCC225E56BC700AAB09A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		F441DCC425E56BF800AAB09A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		F441DCCA25E56C0100AAB09A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		F441DD1225E5706F00AAB09A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F490C7C025DE72E400D8CA6F /* GiniPayBankSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GiniPayBankSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F490C7C325DE72E400D8CA6F /* GiniPayBankSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GiniPayBankSDK.h; sourceTree = "<group>"; };
-		F490C7C425DE72E400D8CA6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F490C7C925DE72E400D8CA6F /* GiniPayBankSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiniPayBankSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F490C7CE25DE72E400D8CA6F /* GiniPayBankSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiniPayBankSDKTests.swift; sourceTree = "<group>"; };
 		F490C7D025DE72E400D8CA6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F490C7E225DE873900D8CA6F /* Example Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F490C7E425DE873900D8CA6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F490C7E625DE873900D8CA6F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F490C7E825DE873900D8CA6F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F490C7EB25DE873900D8CA6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F490C7ED25DE873B00D8CA6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F490C7F025DE873B00D8CA6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		F490C7F225DE873B00D8CA6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F490C7E825DE873900D8CA6F /* NoResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResultViewController.swift; sourceTree = "<group>"; };
 		F490C7FD25DE87A900D8CA6F /* Example_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Example_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F490C7FF25DE87A900D8CA6F /* Example_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Example_Tests.swift; sourceTree = "<group>"; };
 		F490C80125DE87A900D8CA6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4AD00B525DED1A000C34E15 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		F4AD00BB25DED33300C34E15 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		F4AD00C125DED43200C34E15 /* SelectAPIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAPIViewController.swift; sourceTree = "<group>"; };
+		F4AD00CB25DFDB4E00C34E15 /* CredentialsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsManager.swift; sourceTree = "<group>"; };
+		F4AD00D525DFDC8100C34E15 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		F4AD00DB25DFDCE400C34E15 /* ResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewController.swift; sourceTree = "<group>"; };
+		F4AD00E525DFDDED00C34E15 /* ScreenAPICoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenAPICoordinator.swift; sourceTree = "<group>"; };
+		F4AD00EB25DFDE2000C34E15 /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
+		F4AD00F125DFDF4400C34E15 /* ComponentAPIDocumentServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentAPIDocumentServiceProtocol.swift; sourceTree = "<group>"; };
+		F4AD00F325DFDF4400C34E15 /* ComponentAPIDocumentsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentAPIDocumentsService.swift; sourceTree = "<group>"; };
+		F4AD00F425DFDF4400C34E15 /* ComponentAPIOnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentAPIOnboardingViewController.swift; sourceTree = "<group>"; };
+		F4AD00F525DFDF4400C34E15 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		F4AD00F625DFDF4400C34E15 /* ComponentAPICoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentAPICoordinator.swift; sourceTree = "<group>"; };
+		F4AD00F725DFDF4400C34E15 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F4AD00FA25DFDF4400C34E15 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,10 +168,47 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		F441DC0025E51F4B00AAB09A /* ComponentAPI */ = {
+			isa = PBXGroup;
+			children = (
+				F4AD00F625DFDF4400C34E15 /* ComponentAPICoordinator.swift */,
+				F4AD00F125DFDF4400C34E15 /* ComponentAPIDocumentServiceProtocol.swift */,
+				F4AD00F325DFDF4400C34E15 /* ComponentAPIDocumentsService.swift */,
+				F4AD00F425DFDF4400C34E15 /* ComponentAPIOnboardingViewController.swift */,
+				F441DC0525E51F7300AAB09A /* PartialDocument.swift */,
+			);
+			path = ComponentAPI;
+			sourceTree = "<group>";
+		};
+		F441DC3725E5283300AAB09A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F4AD00F725DFDF4400C34E15 /* Images.xcassets */,
+				F441DC3125E5282A00AAB09A /* Credentials.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F441DC3825E5286400AAB09A /* Screen API */ = {
+			isa = PBXGroup;
+			children = (
+				F4AD00E525DFDDED00C34E15 /* ScreenAPICoordinator.swift */,
+				F4AD00EB25DFDE2000C34E15 /* RootNavigationController.swift */,
+			);
+			path = "Screen API";
+			sourceTree = "<group>";
+		};
+		F441DC9325E53A6F00AAB09A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F4AD00F525DFDF4400C34E15 /* UIViewController.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		F490C7B625DE72E400D8CA6F = {
 			isa = PBXGroup;
 			children = (
-				F490C7C225DE72E400D8CA6F /* GiniPayBankSDK */,
 				F490C7CD25DE72E400D8CA6F /* GiniPayBankSDKTests */,
 				F490C7E325DE873900D8CA6F /* Example Swift */,
 				F490C7FE25DE87A900D8CA6F /* Example_Tests */,
@@ -157,15 +229,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F490C7C225DE72E400D8CA6F /* GiniPayBankSDK */ = {
-			isa = PBXGroup;
-			children = (
-				F490C7C325DE72E400D8CA6F /* GiniPayBankSDK.h */,
-				F490C7C425DE72E400D8CA6F /* Info.plist */,
-			);
-			path = GiniPayBankSDK;
-			sourceTree = "<group>";
-		};
 		F490C7CD25DE72E400D8CA6F /* GiniPayBankSDKTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,13 +241,25 @@
 		F490C7E325DE873900D8CA6F /* Example Swift */ = {
 			isa = PBXGroup;
 			children = (
+				F441DC0025E51F4B00AAB09A /* ComponentAPI */,
+				F441DC9325E53A6F00AAB09A /* Extensions */,
 				F490C7E425DE873900D8CA6F /* AppDelegate.swift */,
-				F490C7E625DE873900D8CA6F /* SceneDelegate.swift */,
-				F490C7E825DE873900D8CA6F /* ViewController.swift */,
-				F490C7EA25DE873900D8CA6F /* Main.storyboard */,
-				F490C7ED25DE873B00D8CA6F /* Assets.xcassets */,
-				F490C7EF25DE873B00D8CA6F /* LaunchScreen.storyboard */,
-				F490C7F225DE873B00D8CA6F /* Info.plist */,
+				F441DCA725E55D5800AAB09A /* Main.storyboard */,
+				F4AD00B525DED1A000C34E15 /* AppCoordinator.swift */,
+				F441DCC525E56BF800AAB09A /* LaunchScreen.xib */,
+				F4AD00D525DFDC8100C34E15 /* SettingsViewController.swift */,
+				F4AD00CB25DFDB4E00C34E15 /* CredentialsManager.swift */,
+				F4AD00C125DED43200C34E15 /* SelectAPIViewController.swift */,
+				F4AD00BB25DED33300C34E15 /* Coordinator.swift */,
+				F490C7E825DE873900D8CA6F /* NoResultViewController.swift */,
+				F4AD00DB25DFDCE400C34E15 /* ResultTableViewController.swift */,
+				F441DC3825E5286400AAB09A /* Screen API */,
+				F441DC3725E5283300AAB09A /* Supporting Files */,
+				F441DCBC25E5694600AAB09A /* Settings.bundle */,
+				F4AD00FA25DFDF4400C34E15 /* Localizable.strings */,
+				F441DCB425E568C400AAB09A /* Main.strings */,
+				F441DCB225E568C400AAB09A /* LaunchScreen.strings */,
+				F441DD1225E5706F00AAB09A /* Info.plist */,
 			);
 			path = "Example Swift";
 			sourceTree = "<group>";
@@ -215,7 +290,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F490C7D125DE72E400D8CA6F /* GiniPayBankSDK.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +405,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = F490C7B625DE72E400D8CA6F;
 			productRefGroup = F490C7C125DE72E400D8CA6F /* Products */;
@@ -364,9 +439,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F490C7F125DE873B00D8CA6F /* LaunchScreen.storyboard in Resources */,
-				F490C7EE25DE873B00D8CA6F /* Assets.xcassets in Resources */,
-				F490C7EC25DE873900D8CA6F /* Main.storyboard in Resources */,
+				F441DCBD25E5694600AAB09A /* Settings.bundle in Resources */,
+				F4AD010125DFDF4500C34E15 /* Images.xcassets in Resources */,
+				F441DCB625E568C400AAB09A /* LaunchScreen.strings in Resources */,
+				F441DCC325E56BF800AAB09A /* LaunchScreen.xib in Resources */,
+				F441DCA525E55D5800AAB09A /* Main.storyboard in Resources */,
+				F441DCB725E568C400AAB09A /* Main.strings in Resources */,
+				F441DC3225E5282A00AAB09A /* Credentials.plist in Resources */,
+				F4AD010425DFDF4500C34E15 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,9 +565,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F490C7E925DE873900D8CA6F /* ViewController.swift in Sources */,
+				F4AD00FD25DFDF4500C34E15 /* ComponentAPIDocumentsService.swift in Sources */,
+				F4AD00B625DED1A000C34E15 /* AppCoordinator.swift in Sources */,
+				F4AD00E625DFDDED00C34E15 /* ScreenAPICoordinator.swift in Sources */,
+				F490C7E925DE873900D8CA6F /* NoResultViewController.swift in Sources */,
+				F4AD00FB25DFDF4500C34E15 /* ComponentAPIDocumentServiceProtocol.swift in Sources */,
+				F4AD00EC25DFDE2000C34E15 /* RootNavigationController.swift in Sources */,
+				F4AD00BC25DED33300C34E15 /* Coordinator.swift in Sources */,
 				F490C7E525DE873900D8CA6F /* AppDelegate.swift in Sources */,
-				F490C7E725DE873900D8CA6F /* SceneDelegate.swift in Sources */,
+				F4AD010025DFDF4500C34E15 /* ComponentAPICoordinator.swift in Sources */,
+				F4AD00DC25DFDCE400C34E15 /* ResultTableViewController.swift in Sources */,
+				F4AD00C225DED43200C34E15 /* SelectAPIViewController.swift in Sources */,
+				F4AD00CC25DFDB4E00C34E15 /* CredentialsManager.swift in Sources */,
+				F441DC0625E51F7300AAB09A /* PartialDocument.swift in Sources */,
+				F4AD00FE25DFDF4500C34E15 /* ComponentAPIOnboardingViewController.swift in Sources */,
+				F4AD00D625DFDC8100C34E15 /* SettingsViewController.swift in Sources */,
+				F4AD00FF25DFDF4500C34E15 /* UIViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,20 +618,38 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		F490C7EA25DE873900D8CA6F /* Main.storyboard */ = {
+		F441DCA725E55D5800AAB09A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F490C7EB25DE873900D8CA6F /* Base */,
+				F441DCA625E55D5800AAB09A /* Base */,
+				F441DCC225E56BC700AAB09A /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		F490C7EF25DE873B00D8CA6F /* LaunchScreen.storyboard */ = {
+		F441DCB225E568C400AAB09A /* LaunchScreen.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F490C7F025DE873B00D8CA6F /* Base */,
+				F441DCB325E568C400AAB09A /* de */,
 			);
-			name = LaunchScreen.storyboard;
+			name = LaunchScreen.strings;
+			sourceTree = "<group>";
+		};
+		F441DCB425E568C400AAB09A /* Main.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F441DCB525E568C400AAB09A /* de */,
+			);
+			name = Main.strings;
+			sourceTree = "<group>";
+		};
+		F441DCC525E56BF800AAB09A /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F441DCC425E56BF800AAB09A /* Base */,
+				F441DCCA25E56C0100AAB09A /* de */,
+			);
+			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -548,6 +659,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -612,6 +724,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

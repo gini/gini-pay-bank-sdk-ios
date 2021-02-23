@@ -4,10 +4,9 @@ Pod::Spec.new do |s|
   s.summary          = 'Computer Vision Library for scanning documents.'
 
   s.description      = <<-DESC
-Gini provides an information extraction system for analyzing documents (e. g. invoices or
-contracts), specifically information such as the document sender or the amount to pay in an invoice.
+Gini Pay provides an information extraction system for analyzing business invoices and transfers them to the iOS banking app, where the payment process will be completed.
 
-The Gini Pay Bank SDK for iOS provides functionality to capture documents with mobile phones.
+The Gini Pay Bank SDK for iOS provides functionality to capture documents with mobile phones, accurate line item extraction enables the user to uncheck the items they don't want to pay and automatically calculates the new amountToPay.
                        DESC
 
   s.homepage         = 'https://www.gini.net/en/developer/'
@@ -27,15 +26,21 @@ The Gini Pay Bank SDK for iOS provides functionality to capture documents with m
   end
 
   s.subspec 'Networking' do |networking|
-    networking.source_files = 'GiniPayBank/Classes/Networking/*.swift', 'GiniPayBank/Classes/Networking/Extensions/*.swift'
-    networking.dependency "GiniCapture/Core"
+    networking.source_files = 'GiniPayBank/Classes/Networking/**/*','GiniCapture/Classes/Networking/*.swift', 'GiniCapture/Classes/Networking/Extensions/*.swift'
+    networking.dependency "GiniCapture/Networking"
     networking.dependency 'GiniPayApiLib/DocumentsAPI', '>= 1.0.2'
   end
 
   s.subspec 'Networking+Pinning' do |pinning|
-    pinning.source_files = 'GiniPayBank/Classes/Networking/Pinning/*'
+    pinning.source_files = 'GiniPayBank/Classes/Networking/**/*','GiniCapture/Classes/Networking/*.swift', 'GiniCapture/Classes/Networking/Extensions/*.swift'
     pinning.dependency "GiniCapture/Networking"
     pinning.dependency 'GiniPayApiLib/Pinning', '>= 1.0.2'
+  end
+
+  s.subspec 'Payment' do |payment|
+    payment.source_files = 'GiniPayBank/Classes/Payment/**/*.swift'
+    payment.dependency "GiniCapture/Networking"
+    payment.dependency 'GiniPayApiLib/Pinning', '>= 1.0.2'
   end
 
   s.test_spec 'Tests' do |test_spec|
