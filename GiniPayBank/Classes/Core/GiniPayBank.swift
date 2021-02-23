@@ -16,6 +16,7 @@ import GiniCapture
 //
 // - note: Screen API only.
 // */
+public protocol GiniPayBankAnalysisDelegate : AnalysisDelegate {}
 
 @objc public protocol GiniPayBankCaptureNetworkDelegate: GiniCaptureNetworkDelegate {}
 public protocol GiniPayBankAnalysisScreenTrackingDelegate: AnalysisScreenTrackingDelegate {}
