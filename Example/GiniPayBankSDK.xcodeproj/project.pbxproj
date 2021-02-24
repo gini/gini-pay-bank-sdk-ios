@@ -15,7 +15,6 @@
 		F407A41A25E5805E00BC5F36 /* SettingsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407A41625E5805E00BC5F36 /* SettingsViewControllerTests.swift */; };
 		F407A41B25E5805E00BC5F36 /* DocumentServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407A41725E5805E00BC5F36 /* DocumentServiceMock.swift */; };
 		F441DC0625E51F7300AAB09A /* PartialDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F441DC0525E51F7300AAB09A /* PartialDocument.swift */; };
-		F441DC3225E5282A00AAB09A /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = F441DC3125E5282A00AAB09A /* Credentials.plist */; };
 		F441DCA525E55D5800AAB09A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F441DCA725E55D5800AAB09A /* Main.storyboard */; };
 		F441DCB625E568C400AAB09A /* LaunchScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = F441DCB225E568C400AAB09A /* LaunchScreen.strings */; };
 		F441DCB725E568C400AAB09A /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = F441DCB425E568C400AAB09A /* Main.strings */; };
@@ -85,7 +84,6 @@
 		F407A41725E5805E00BC5F36 /* DocumentServiceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentServiceMock.swift; sourceTree = "<group>"; };
 		F407A42425E580F000BC5F36 /* testPDF.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = testPDF.pdf; sourceTree = "<group>"; };
 		F441DC0525E51F7300AAB09A /* PartialDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PartialDocument.swift; path = "Example Swift/PartialDocument.swift"; sourceTree = SOURCE_ROOT; };
-		F441DC3125E5282A00AAB09A /* Credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Credentials.plist; sourceTree = "<group>"; };
 		F441DCA625E55D5800AAB09A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F441DCB325E568C400AAB09A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		F441DCB525E568C400AAB09A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
@@ -186,7 +184,6 @@
 			isa = PBXGroup;
 			children = (
 				F4AD00F725DFDF4400C34E15 /* Images.xcassets */,
-				F441DC3125E5282A00AAB09A /* Credentials.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -452,7 +449,6 @@
 				F441DCC325E56BF800AAB09A /* LaunchScreen.xib in Resources */,
 				F441DCA525E55D5800AAB09A /* Main.storyboard in Resources */,
 				F441DCB725E568C400AAB09A /* Main.strings in Resources */,
-				F441DC3225E5282A00AAB09A /* Credentials.plist in Resources */,
 				F4AD010425DFDF4500C34E15 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
