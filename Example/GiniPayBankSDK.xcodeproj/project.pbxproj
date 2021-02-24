@@ -10,6 +10,11 @@
 		62922B1E4E9A435CC6EC77FD /* Pods_Example_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3567CA1F2F129B2B8F2558 /* Pods_Example_Tests.framework */; };
 		9BE1C9B12A7CFAF31347CD0D /* Pods_Example_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B137B72CCBD460302E6215 /* Pods_Example_Swift.framework */; };
 		D2EDC4D548D4E94A1CC161E6 /* Pods_GiniPayBankSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F066584D00094C14375A44 /* Pods_GiniPayBankSDKTests.framework */; };
+		F407A41825E5805E00BC5F36 /* ScreenAPICoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407A41425E5805E00BC5F36 /* ScreenAPICoordinatorTests.swift */; };
+		F407A41925E5805E00BC5F36 /* ComponentAPICoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407A41525E5805E00BC5F36 /* ComponentAPICoordinatorTests.swift */; };
+		F407A41A25E5805E00BC5F36 /* SettingsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407A41625E5805E00BC5F36 /* SettingsViewControllerTests.swift */; };
+		F407A41B25E5805E00BC5F36 /* DocumentServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407A41725E5805E00BC5F36 /* DocumentServiceMock.swift */; };
+		F407A42525E580F000BC5F36 /* testPDF.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F407A42425E580F000BC5F36 /* testPDF.pdf */; };
 		F441DC0625E51F7300AAB09A /* PartialDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F441DC0525E51F7300AAB09A /* PartialDocument.swift */; };
 		F441DC3225E5282A00AAB09A /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = F441DC3125E5282A00AAB09A /* Credentials.plist */; };
 		F441DCA525E55D5800AAB09A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F441DCA725E55D5800AAB09A /* Main.storyboard */; };
@@ -22,7 +27,6 @@
 		F490C7E525DE873900D8CA6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F490C7E425DE873900D8CA6F /* AppDelegate.swift */; };
 		F490C7E925DE873900D8CA6F /* NoResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F490C7E825DE873900D8CA6F /* NoResultViewController.swift */; };
 		F490C80025DE87A900D8CA6F /* Example_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F490C7FF25DE87A900D8CA6F /* Example_Tests.swift */; };
-		F490C80225DE87A900D8CA6F /* GiniPayBankSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F490C7C025DE72E400D8CA6F /* GiniPayBankSDK.framework */; };
 		F4AD00B625DED1A000C34E15 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD00B525DED1A000C34E15 /* AppCoordinator.swift */; };
 		F4AD00BC25DED33300C34E15 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD00BB25DED33300C34E15 /* Coordinator.swift */; };
 		F4AD00C225DED43200C34E15 /* SelectAPIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD00C125DED43200C34E15 /* SelectAPIViewController.swift */; };
@@ -42,13 +46,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		F490C7CB25DE72E400D8CA6F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F490C7B725DE72E400D8CA6F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F490C7BF25DE72E400D8CA6F;
-			remoteInfo = GiniPayBankSDK;
-		};
-		F490C80325DE87A900D8CA6F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F490C7B725DE72E400D8CA6F /* Project object */;
 			proxyType = 1;
@@ -81,6 +78,11 @@
 		A5AA89FD331F3300E1A74E7C /* Pods-Example Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example Swift.release.xcconfig"; path = "Target Support Files/Pods-Example Swift/Pods-Example Swift.release.xcconfig"; sourceTree = "<group>"; };
 		B7B137B72CCBD460302E6215 /* Pods_Example_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9ECD8E61B334C1787E5C2F2 /* Pods-GiniPayBankSDKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiniPayBankSDKTests.release.xcconfig"; path = "Target Support Files/Pods-GiniPayBankSDKTests/Pods-GiniPayBankSDKTests.release.xcconfig"; sourceTree = "<group>"; };
+		F407A41425E5805E00BC5F36 /* ScreenAPICoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenAPICoordinatorTests.swift; sourceTree = "<group>"; };
+		F407A41525E5805E00BC5F36 /* ComponentAPICoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentAPICoordinatorTests.swift; sourceTree = "<group>"; };
+		F407A41625E5805E00BC5F36 /* SettingsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerTests.swift; sourceTree = "<group>"; };
+		F407A41725E5805E00BC5F36 /* DocumentServiceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentServiceMock.swift; sourceTree = "<group>"; };
+		F407A42425E580F000BC5F36 /* testPDF.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = testPDF.pdf; sourceTree = "<group>"; };
 		F441DC0525E51F7300AAB09A /* PartialDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PartialDocument.swift; path = "Example Swift/PartialDocument.swift"; sourceTree = SOURCE_ROOT; };
 		F441DC3125E5282A00AAB09A /* Credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Credentials.plist; sourceTree = "<group>"; };
 		F441DCA625E55D5800AAB09A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -147,7 +149,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F490C80225DE87A900D8CA6F /* GiniPayBankSDK.framework in Frameworks */,
 				62922B1E4E9A435CC6EC77FD /* Pods_Example_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,6 +268,11 @@
 		F490C7FE25DE87A900D8CA6F /* Example_Tests */ = {
 			isa = PBXGroup;
 			children = (
+				F407A41525E5805E00BC5F36 /* ComponentAPICoordinatorTests.swift */,
+				F407A41725E5805E00BC5F36 /* DocumentServiceMock.swift */,
+				F407A41425E5805E00BC5F36 /* ScreenAPICoordinatorTests.swift */,
+				F407A41625E5805E00BC5F36 /* SettingsViewControllerTests.swift */,
+				F407A42425E580F000BC5F36 /* testPDF.pdf */,
 				F490C7FF25DE87A900D8CA6F /* Example_Tests.swift */,
 				F490C80125DE87A900D8CA6F /* Info.plist */,
 			);
@@ -365,7 +371,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				F490C80425DE87A900D8CA6F /* PBXTargetDependency */,
 				F490C80D25DE87AF00D8CA6F /* PBXTargetDependency */,
 			);
 			name = Example_Tests;
@@ -454,6 +459,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F407A42525E580F000BC5F36 /* testPDF.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,7 +594,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F407A41B25E5805E00BC5F36 /* DocumentServiceMock.swift in Sources */,
+				F407A41925E5805E00BC5F36 /* ComponentAPICoordinatorTests.swift in Sources */,
+				F407A41A25E5805E00BC5F36 /* SettingsViewControllerTests.swift in Sources */,
 				F490C80025DE87A900D8CA6F /* Example_Tests.swift in Sources */,
+				F407A41825E5805E00BC5F36 /* ScreenAPICoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,11 +609,6 @@
 			isa = PBXTargetDependency;
 			target = F490C7BF25DE72E400D8CA6F /* GiniPayBankSDK */;
 			targetProxy = F490C7CB25DE72E400D8CA6F /* PBXContainerItemProxy */;
-		};
-		F490C80425DE87A900D8CA6F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F490C7BF25DE72E400D8CA6F /* GiniPayBankSDK */;
-			targetProxy = F490C80325DE87A900D8CA6F /* PBXContainerItemProxy */;
 		};
 		F490C80D25DE87AF00D8CA6F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -788,7 +793,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = GiniPayBankSDK/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Example Swift/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -812,7 +817,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = GiniPayBankSDK/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Example Swift/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
