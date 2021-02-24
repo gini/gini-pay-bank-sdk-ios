@@ -11,7 +11,7 @@ import GiniCapture
 extension GiniPayBank {
     /**
      Returns a view controller which will handle the analysis process.
-     It's the easiest way to get started with the Gini Capture SDK as it comes pre-configured and handles
+     It's the easiest way to get started with the Gini Pay Bank SDK as it comes pre-configured and handles
      all screens and transitions out of the box, including the networking.
      
      - parameter client: `GiniClient` with the information needed to enable document analysis
