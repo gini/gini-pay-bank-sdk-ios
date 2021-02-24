@@ -24,7 +24,6 @@
 		F490C7CF25DE72E400D8CA6F /* GiniPayBankSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F490C7CE25DE72E400D8CA6F /* GiniPayBankSDKTests.swift */; };
 		F490C7E525DE873900D8CA6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F490C7E425DE873900D8CA6F /* AppDelegate.swift */; };
 		F490C7E925DE873900D8CA6F /* NoResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F490C7E825DE873900D8CA6F /* NoResultViewController.swift */; };
-		F490C80025DE87A900D8CA6F /* Example_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F490C7FF25DE87A900D8CA6F /* Example_Tests.swift */; };
 		F4AD00B625DED1A000C34E15 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD00B525DED1A000C34E15 /* AppCoordinator.swift */; };
 		F4AD00BC25DED33300C34E15 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD00BB25DED33300C34E15 /* Coordinator.swift */; };
 		F4AD00C225DED43200C34E15 /* SelectAPIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD00C125DED43200C34E15 /* SelectAPIViewController.swift */; };
@@ -100,7 +99,6 @@
 		F490C7E425DE873900D8CA6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F490C7E825DE873900D8CA6F /* NoResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResultViewController.swift; sourceTree = "<group>"; };
 		F490C7FD25DE87A900D8CA6F /* Example_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Example_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F490C7FF25DE87A900D8CA6F /* Example_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Example_Tests.swift; sourceTree = "<group>"; };
 		F490C80125DE87A900D8CA6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4AD00B525DED1A000C34E15 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		F4AD00BB25DED33300C34E15 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -271,7 +269,6 @@
 				F407A41425E5805E00BC5F36 /* ScreenAPICoordinatorTests.swift */,
 				F407A41625E5805E00BC5F36 /* SettingsViewControllerTests.swift */,
 				F407A42425E580F000BC5F36 /* testPDF.pdf */,
-				F490C7FF25DE87A900D8CA6F /* Example_Tests.swift */,
 				F490C80125DE87A900D8CA6F /* Info.plist */,
 			);
 			path = Example_Tests;
@@ -595,7 +592,6 @@
 				F407A41B25E5805E00BC5F36 /* DocumentServiceMock.swift in Sources */,
 				F407A41925E5805E00BC5F36 /* ComponentAPICoordinatorTests.swift in Sources */,
 				F407A41A25E5805E00BC5F36 /* SettingsViewControllerTests.swift in Sources */,
-				F490C80025DE87A900D8CA6F /* Example_Tests.swift in Sources */,
 				F407A41825E5805E00BC5F36 /* ScreenAPICoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
