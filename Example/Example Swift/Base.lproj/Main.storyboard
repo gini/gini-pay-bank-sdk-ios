@@ -130,9 +130,9 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Fog-oi-12k"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                <fontDescription key="fontDescription" name=".SFNS-Regular" family=".AppleSystemUIFont" pointSize="9"/>
                                 <state key="normal" title="GiniCaptureVersion">
-                                    <color key="titleColor" systemColor="labelColor"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="launchSettings:" destination="Ggv-ZP-h5h" eventType="touchUpInside" id="Tfb-tc-51t"/>
@@ -156,7 +156,7 @@
                                 </variation>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.97003465889999996" green="0.0" blue="0.35686057809999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="AaL-kG-aBp" firstAttribute="top" secondItem="08c-kU-hUA" secondAttribute="top" constant="100" id="0Da-gP-FEA"/>
                             <constraint firstItem="ZlJ-hw-K1e" firstAttribute="top" secondItem="MbF-2O-gGH" secondAttribute="bottom" constant="50" id="0FA-tj-CBP"/>

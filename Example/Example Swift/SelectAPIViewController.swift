@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import GiniCapture
+import GiniPayBank
 
 protocol SelectAPIViewControllerDelegate: class {
     func selectAPI(viewController: SelectAPIViewController, didSelectApi api: GiniPayBankApiType)
@@ -38,7 +39,7 @@ final class SelectAPIViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
                 
-        let metaTitle = "Gini Capture SDK: (\(GiniCapture.versionString)) / Client id: \(self.clientId ?? "")"
+        let metaTitle = "Gini Pay Bank SDK: (\(GiniPayBank.versionString)) / Gini Capture SDK: (\(GiniCapture.versionString)) / Client id: \(self.clientId ?? "")"
         metaInformationButton.setTitle(metaTitle, for: .normal)
     }
     
