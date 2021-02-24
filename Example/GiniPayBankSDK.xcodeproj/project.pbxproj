@@ -14,7 +14,6 @@
 		F407A41925E5805E00BC5F36 /* ComponentAPICoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407A41525E5805E00BC5F36 /* ComponentAPICoordinatorTests.swift */; };
 		F407A41A25E5805E00BC5F36 /* SettingsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407A41625E5805E00BC5F36 /* SettingsViewControllerTests.swift */; };
 		F407A41B25E5805E00BC5F36 /* DocumentServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F407A41725E5805E00BC5F36 /* DocumentServiceMock.swift */; };
-		F407A42525E580F000BC5F36 /* testPDF.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F407A42425E580F000BC5F36 /* testPDF.pdf */; };
 		F441DC0625E51F7300AAB09A /* PartialDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F441DC0525E51F7300AAB09A /* PartialDocument.swift */; };
 		F441DC3225E5282A00AAB09A /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = F441DC3125E5282A00AAB09A /* Credentials.plist */; };
 		F441DCA525E55D5800AAB09A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F441DCA725E55D5800AAB09A /* Main.storyboard */; };
@@ -42,6 +41,8 @@
 		F4AD010025DFDF4500C34E15 /* ComponentAPICoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD00F625DFDF4400C34E15 /* ComponentAPICoordinator.swift */; };
 		F4AD010125DFDF4500C34E15 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4AD00F725DFDF4400C34E15 /* Images.xcassets */; };
 		F4AD010425DFDF4500C34E15 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F4AD00FA25DFDF4400C34E15 /* Localizable.strings */; };
+		F4B78A6025E6AB4B00CBE2E4 /* testPDF.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F407A42425E580F000BC5F36 /* testPDF.pdf */; };
+		F4B78A7225E6AB9500CBE2E4 /* testPDF.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F407A42425E580F000BC5F36 /* testPDF.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -444,6 +445,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4B78A7225E6AB9500CBE2E4 /* testPDF.pdf in Resources */,
 				F441DCBD25E5694600AAB09A /* Settings.bundle in Resources */,
 				F4AD010125DFDF4500C34E15 /* Images.xcassets in Resources */,
 				F441DCB625E568C400AAB09A /* LaunchScreen.strings in Resources */,
@@ -459,7 +461,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F407A42525E580F000BC5F36 /* testPDF.pdf in Resources */,
+				F4B78A6025E6AB4B00CBE2E4 /* testPDF.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
