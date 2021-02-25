@@ -43,6 +43,12 @@ The Gini Pay Bank SDK for iOS provides functionality to capture documents with m
     payment.dependency 'GiniPayApiLib/Pinning', '>= 1.0.2'
   end
 
+  s.subspec 'ReturnAssistant' do |payment|
+    payment.source_files = 'GiniPayBank/Classes/ReturnAssistant/**/*.swift'
+    payment.dependency "GiniCapture/Networking"
+    payment.dependency 'GiniPayApiLib/Pinning', '>= 1.0.2'
+  end
+
   s.test_spec 'Tests' do |test_spec|
     test_spec.source_files = 'GiniPayBank/Tests/*.swift'
     test_spec.resources = 'GiniPayBank/Tests/Assets/*'

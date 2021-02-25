@@ -8,6 +8,7 @@
 import Foundation
 import GiniPayApiLib
 import GiniCapture
+
 extension GiniPayBank {
     /**
      Returns a view controller which will handle the analysis process.
@@ -43,4 +44,87 @@ extension GiniPayBank {
         try lib.removeStoredCredentials()
     }
     
+}
+
+extension GiniNetworkingScreenAPICoordinator: DigitalInvoiceViewControllerDelegate{
+    public func didFinish(viewController: DigitalInvoiceViewController, invoice: DigitalInvoice) {
+    }
+    
+    
+    
+    public func showDigitalInvoiceScreen(digitalInvoice: DigitalInvoice, analysisDelegate: AnalysisDelegate) {
+    
+        let digitalInvoiceViewController = DigitalInvoiceViewController()
+        digitalInvoiceViewController.returnAssistantConfiguration = ReturnAssistantConfiguration.shared
+        digitalInvoiceViewController.invoice = digitalInvoice
+        digitalInvoiceViewController.delegate = self
+        digitalInvoiceViewController.analysisDelegate = analysisDelegate
+        
+        screenAPINavigationController.pushViewController(digitalInvoiceViewController, animated: true)
+    }
+    
+    fileprivate func startAnalysis(networkDelegate: GiniCaptureNetworkDelegate) {
+        self.documentService.startAnalysis { result in
+            
+            switch result {
+            case .success(let extractionResult):
+                
+                DispatchQueue.main.async {
+                    
+                    if ReturnAssistantConfiguration.shared.returnAssistantEnabled {
+                        
+                        do {
+                            let digitalInvoice = try DigitalInvoice(extractionResult: extractionResult)
+                            self.showDigitalInvoiceScreen(digitalInvoice: digitalInvoice, analysisDelegate: networkDelegate)
+                        } catch {
+                            self.deliver(result: extractionResult, analysisDelegate: networkDelegate)
+                        }
+                        
+                    } else {
+                        extractionResult.lineItems = nil
+                        self.deliver(result: extractionResult, analysisDelegate: networkDelegate)
+                    }
+                }
+                
+            case .failure(let error):
+                
+                guard error != .requestCancelled else { return }
+                
+                networkDelegate.displayError(withMessage: .localized(resource: AnalysisStrings.analysisErrorMessage),
+                                             andAction: {
+                                                self.startAnalysis(networkDelegate: networkDelegate)
+                })
+            }
+        }
+    }
+    
+    fileprivate func upload(document: GiniCaptureDocument,
+                            didComplete: @escaping (GiniCaptureDocument) -> Void,
+                            didFail: @escaping (GiniCaptureDocument, Error) -> Void) {
+        documentService.upload(document: document) { result in
+            switch result {
+            case .success:
+                didComplete(document)
+            case .failure(let error):
+                didFail(document, error)
+            }
+        }
+    }
+
+    fileprivate func uploadAndStartAnalysis(document: GiniCaptureDocument,
+                                            networkDelegate: GiniCaptureNetworkDelegate,
+                                            uploadDidFail: @escaping () -> Void) {
+        self.upload(document: document, didComplete: { _ in
+            self.startAnalysis(networkDelegate: networkDelegate)
+        }, didFail: { _, error in
+            let error = error as? GiniCaptureError ?? AnalysisError.documentCreation
+
+            guard let analysisError = error as? AnalysisError, case analysisError = AnalysisError.cancelled else {
+                networkDelegate.displayError(withMessage: error.message, andAction: {
+                    uploadDidFail()
+                })
+                return
+            }
+        })
+    }
 }

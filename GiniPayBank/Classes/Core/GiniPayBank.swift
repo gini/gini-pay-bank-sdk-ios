@@ -17,6 +17,8 @@ import GiniCapture
 // - note: Screen API only.
 // */
 public protocol GiniPayBankAnalysisDelegate : AnalysisDelegate {}
+
+//public protocol GiniPayBankNetworkingScreenAPICoordinator: GiniNetworkingScreenAPICoordinator{}
 /**
  Convenience class to interact with the Gini Pay Bank SDK.
  
