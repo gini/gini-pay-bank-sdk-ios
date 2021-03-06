@@ -6,7 +6,9 @@ use_frameworks!
 
 def project_pods
     pod 'GiniPayBank', :path => '../', :testspecs => ['Tests']
-    pod 'GiniPayBank/Networking', :path => '../'
+    pod 'GiniPayBank/Networking+Pinning', :path => '../'
+    pod 'GiniPayBank/Payment', :path => '../'
+
 end
 
 target 'Example Swift' do

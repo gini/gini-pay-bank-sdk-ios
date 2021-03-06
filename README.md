@@ -21,7 +21,7 @@ Further documentation with installation, integration or customization guides can
 
 ## Example
 
-We are providing example apps for Swift. This app demonstrates how to integrate the Gini Pay Bank SDK with the Screen API and Component API. To run the example project, clone the repo and run `pod install` from the Example directory first.
+We are providing example app for Swift. This app demonstrates how to integrate the Gini Pay Bank SDK with the Screen API and Component API. To run the example project, clone the repo and run `pod install` from the Example directory first.
 To inject your API credentials into the Example app, just add to the Example directory the `Credentials.plist` file with the following format:
 
 <img border=1 src=credentials_plist_format.png/>
