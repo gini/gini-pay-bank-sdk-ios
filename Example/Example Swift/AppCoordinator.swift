@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import GiniCapture
 import GiniPayApiLib
+import GiniPayBank
 
 final class AppCoordinator: Coordinator {
         
@@ -52,6 +53,11 @@ final class AppCoordinator: Coordinator {
     private var documentMetadata: Document.Metadata?
     private let documentMetadataBranchId = "GVLExampleIOS"
     private let documentMetadataAppFlowKey = "AppFlow"
+    
+    var returnAssistantConfiguration: ReturnAssistantConfiguration = {
+        let configuration = ReturnAssistantConfiguration()
+        return configuration
+    }()
 
     init(window: UIWindow) {
         self.window = window
@@ -101,13 +107,13 @@ final class AppCoordinator: Coordinator {
     fileprivate func showScreenAPI(with pages: [GiniCapturePage]? = nil) {
         documentMetadata = Document.Metadata(branchId: documentMetadataBranchId,
                                              additionalHeaders: [documentMetadataAppFlowKey: "ScreenAPI"])
-        let screenAPICoordinator = ScreenAPICoordinator(configuration: giniConfiguration,
+        let screenAPICoordinator = ScreenAPICoordinator(configuration: giniConfiguration, returnAssistantConfig: returnAssistantConfiguration,
                                                         importedDocuments: pages?.map { $0.document },
                                                         client: client,
                                                         documentMetadata: documentMetadata)
         screenAPICoordinator.delegate = self
         screenAPICoordinator.start()
-        add(childCoordinator: screenAPICoordinator)
+        add(childCoordinator: screenAPICoordinator as Coordinator)
         
         rootViewController.present(screenAPICoordinator.rootViewController, animated: true, completion: nil)
     }
@@ -208,7 +214,7 @@ extension AppCoordinator: SettingsViewControllerDelegate {
 extension AppCoordinator: ScreenAPICoordinatorDelegate {
     func screenAPI(coordinator: ScreenAPICoordinator, didFinish: ()) {
         coordinator.rootViewController.dismiss(animated: true, completion: nil)
-        self.remove(childCoordinator: coordinator)
+        self.remove(childCoordinator: coordinator as Coordinator)
     }
 }
 

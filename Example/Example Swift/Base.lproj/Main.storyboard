@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -76,44 +77,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZlJ-hw-K1e">
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZlJ-hw-K1e" customClass="GiniButton" customModule="Example_Swift" customModuleProvider="target">
                                 <rect key="frame" x="91" y="375.5" width="232" height="40"/>
-                                <color key="backgroundColor" red="0.0" green="0.61960784310000006" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="quaternarySystemFillColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="gUM-tK-93r"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <state key="normal" title="Screen API">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.97003465889999996" green="0.0" blue="0.35686057809999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="7"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="launchScreenAPI:" destination="Ggv-ZP-h5h" eventType="touchUpInside" id="qq6-dF-m7w"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1gj-uu-hKJ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1gj-uu-hKJ" customClass="GiniButton" customModule="Example_Swift" customModuleProvider="target">
                                 <rect key="frame" x="91" y="431.5" width="232" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="quaternarySystemFillColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Dj5-fa-dc2"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <state key="normal" title="Component API">
-                                    <color key="titleColor" red="0.0" green="0.61960784310000006" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.97003465889999996" green="0.0" blue="0.35686057809999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
-                                        <color key="value" red="0.0" green="0.61960784310000006" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="7"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -132,7 +133,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name=".SFNS-Regular" family=".AppleSystemUIFont" pointSize="9"/>
                                 <state key="normal" title="GiniCaptureVersion">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" systemColor="labelColor"/>
                                 </state>
                                 <connections>
                                     <action selector="launchSettings:" destination="Ggv-ZP-h5h" eventType="touchUpInside" id="Tfb-tc-51t"/>
@@ -156,7 +157,7 @@
                                 </variation>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.97003465889999996" green="0.0" blue="0.35686057809999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" name="AccentColor"/>
                         <constraints>
                             <constraint firstItem="AaL-kG-aBp" firstAttribute="top" secondItem="08c-kU-hUA" secondAttribute="top" constant="100" id="0Da-gP-FEA"/>
                             <constraint firstItem="ZlJ-hw-K1e" firstAttribute="top" secondItem="MbF-2O-gGH" secondAttribute="bottom" constant="50" id="0FA-tj-CBP"/>
@@ -232,11 +233,12 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open with" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVO-kR-liJ">
                                                     <rect key="frame" x="16" y="21" width="293" height="21"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yit-Ul-7WY">
                                                     <rect key="frame" x="317" y="16" width="51" height="31"/>
+                                                    <color key="onTintColor" red="0.97003465889999996" green="0.0" blue="0.35686057809999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="thumbTintColor" name="AccentColor"/>
                                                     <connections>
                                                         <action selector="openWithSwitch:" destination="jLX-Py-40o" eventType="valueChanged" id="Izp-34-DoH"/>
                                                     </connections>
@@ -244,17 +246,17 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Multipage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xSF-P6-GTs">
                                                     <rect key="frame" x="16" y="68" width="293" height="115"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flash toggle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Swa-DX-mwh">
                                                     <rect key="frame" x="16" y="162" width="99.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kKD-zg-kit">
                                                     <rect key="frame" x="317" y="110" width="51" height="31"/>
+                                                    <color key="onTintColor" red="0.97003465889999996" green="0.0" blue="0.35686057809999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="thumbTintColor" name="AccentColor"/>
                                                     <connections>
                                                         <action selector="multipageSwitch:" destination="jLX-Py-40o" eventType="valueChanged" id="cys-V0-HNA"/>
                                                     </connections>
@@ -262,11 +264,12 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QR Code Scanning" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ja3-sk-DVs">
                                                     <rect key="frame" x="16" y="68" width="293" height="21"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iBn-2O-R5s">
                                                     <rect key="frame" x="317" y="63" width="51" height="31"/>
+                                                    <color key="onTintColor" red="0.97003465889999996" green="0.0" blue="0.35686057809999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="thumbTintColor" name="AccentColor"/>
                                                     <connections>
                                                         <action selector="qrCodeScanningSwitch:" destination="jLX-Py-40o" eventType="valueChanged" id="Yjt-RY-c4e"/>
                                                     </connections>
@@ -286,7 +289,6 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="File import:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRx-ac-e4V">
                                                     <rect key="frame" x="16" y="199" width="293" height="21"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nr0-nM-ziR">
@@ -300,12 +302,14 @@
                                                 </button>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fe9-Mu-ich">
                                                     <rect key="frame" x="317" y="157" width="51" height="31"/>
+                                                    <color key="onTintColor" red="0.97003465889999996" green="0.0" blue="0.35686057809999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="thumbTintColor" name="AccentColor"/>
                                                     <connections>
                                                         <action selector="flashToggleSwitch:" destination="jLX-Py-40o" eventType="valueChanged" id="GAb-uQ-8nE"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" name="AccentColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="nr0-nM-ziR" secondAttribute="bottom" id="04j-bz-ZBg"/>
                                                 <constraint firstItem="cVO-kR-liJ" firstAttribute="leading" secondItem="9Jl-Kr-1sd" secondAttribute="leading" constant="16" id="1bV-8f-LqT"/>
@@ -328,6 +332,7 @@
                                                 <constraint firstItem="cVO-kR-liJ" firstAttribute="centerY" secondItem="yit-Ul-7WY" secondAttribute="centerY" id="b9X-0b-WAp"/>
                                                 <constraint firstItem="kKD-zg-kit" firstAttribute="leading" secondItem="xSF-P6-GTs" secondAttribute="trailing" constant="8" id="cYP-Ay-t3b"/>
                                                 <constraint firstItem="3hb-V8-sDY" firstAttribute="leading" secondItem="9Jl-Kr-1sd" secondAttribute="leading" constant="16" id="fEo-NE-O16"/>
+                                                <constraint firstItem="Fe9-Mu-ich" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Swa-DX-mwh" secondAttribute="trailing" constant="8" symbolic="YES" id="mHK-Q5-7LG"/>
                                                 <constraint firstItem="Ja3-sk-DVs" firstAttribute="centerY" secondItem="iBn-2O-R5s" secondAttribute="centerY" id="oz7-eK-7mF"/>
                                                 <constraint firstAttribute="trailing" secondItem="iBn-2O-R5s" secondAttribute="trailing" constant="16" id="rXc-yw-U0I"/>
                                                 <constraint firstItem="nr0-nM-ziR" firstAttribute="top" secondItem="3hb-V8-sDY" secondAttribute="bottom" constant="16" id="tcw-ms-zcj"/>
@@ -347,6 +352,7 @@
                                             </connections>
                                         </button>
                                     </subviews>
+                                    <color key="backgroundColor" name="AccentColor"/>
                                     <constraints>
                                         <constraint firstItem="9Jl-Kr-1sd" firstAttribute="leading" secondItem="eer-tI-Ukv" secondAttribute="leading" constant="16" id="DSt-uz-z4Y"/>
                                         <constraint firstAttribute="trailing" secondItem="42r-Zq-01h" secondAttribute="trailing" constant="16" id="k9S-dK-djb"/>
@@ -357,10 +363,11 @@
                                         <constraint firstItem="9Jl-Kr-1sd" firstAttribute="centerX" secondItem="eer-tI-Ukv" secondAttribute="centerX" id="yjd-sF-SkR"/>
                                     </constraints>
                                 </view>
+                                <color key="backgroundColor" name="AccentColor"/>
                                 <blurEffect style="extraLight"/>
                             </visualEffectView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" name="AccentColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="R6a-XM-gNJ" secondAttribute="trailing" id="62T-o5-2AI"/>
                             <constraint firstItem="R6a-XM-gNJ" firstAttribute="leading" secondItem="MEj-9J-Hjf" secondAttribute="leading" id="dKI-JQ-twI"/>
@@ -378,7 +385,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="872-Tn-FBD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2423.1999999999998" y="447.52623688155927"/>
+            <point key="canvasLocation" x="2423.1884057971015" y="447.32142857142856"/>
         </scene>
         <!--Result Table View Controller-->
         <scene sceneID="dA0-59-wBc">
@@ -530,6 +537,14 @@
             <point key="canvasLocation" x="5351" y="-255"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="1gj-uu-hKJ">
+            <size key="intrinsicContentSize" width="132" height="34"/>
+        </designable>
+        <designable name="ZlJ-hw-K1e">
+            <size key="intrinsicContentSize" width="92" height="34"/>
+        </designable>
+    </designables>
     <resources>
         <image name="gini_logo" width="708" height="246"/>
         <image name="reviewRotateButton" width="24" height="24"/>
@@ -605,11 +620,17 @@ dA55DoQOjQ6gDqQOrw64Dr0OxQ7IDs0O3A7gDucO7w78DwEPAw8FDwoPEg8VDxoPIgAAAAAAAAIBAAAA
 AAAAAEIAAAAAAAAAAAAAAAAAAA8lA
 </mutableData>
         </image>
+        <namedColor name="AccentColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="quaternarySystemFillColor">
+            <color red="0.45490196078431372" green="0.45490196078431372" blue="0.50196078431372548" alpha="0.080000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>

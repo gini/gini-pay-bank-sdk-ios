@@ -9,7 +9,12 @@ import Foundation
 import GiniCapture
 class DigitalInvoiceAddonCell: UITableViewCell {
     
-    let returnAssistantConfiguration = ReturnAssistantConfiguration.shared
+    var returnAssistantConfiguration : ReturnAssistantConfiguration? {
+        didSet {
+           updateAddonPriceLabel()
+           updateAddonNameLabel()
+        }
+    }
     
     private var addonNameLabel = UILabel()
     
@@ -29,32 +34,13 @@ class DigitalInvoiceAddonCell: UITableViewCell {
     
     var addonName: String = "" {
         didSet {
-            let attributedString =
-                NSMutableAttributedString(string: "\(addonName):",
-                                          attributes: [NSAttributedString.Key.font: returnAssistantConfiguration.digitalInvoiceAddonLabelFont])
-            
-            addonNameLabel.attributedText = attributedString
+            updateAddonNameLabel()
         }
     }
     
     var addonPrice: Price? {
         didSet {
-            
-            guard let addonPrice = addonPrice else { return }
-            
-            guard let addonPriceString = addonPrice.string else { return }
-            
-            let attributedString =
-                NSMutableAttributedString(string: addonPriceString,
-                                          attributes: [NSAttributedString.Key.foregroundColor: returnAssistantConfiguration.digitalInvoiceAddonPriceColor,
-                                                       NSAttributedString.Key.font: returnAssistantConfiguration.digitalInvoiceAddonPriceMainUnitFont])
-            
-            attributedString.setAttributes([NSAttributedString.Key.foregroundColor: returnAssistantConfiguration.digitalInvoiceAddonPriceColor,
-                                            NSAttributedString.Key.baselineOffset: 5,
-                                            NSAttributedString.Key.font: returnAssistantConfiguration.digitalInvoiceAddonPriceFractionalUnitFont],
-                                           range: NSRange(location: addonPriceString.count - 3, length: 3))
-            
-            addonPriceLabel.attributedText = attributedString
+            updateAddonPriceLabel()
         }
     }
     
@@ -74,5 +60,31 @@ class DigitalInvoiceAddonCell: UITableViewCell {
         
         Constraints.active(item: addonNameLabel, attr: .trailing, relatedBy: .equal, to: contentView, attr: .trailing, constant: -100)
         Constraints.active(item: addonNameLabel, attr: .firstBaseline, relatedBy: .equal, to: addonPriceLabel, attr: .firstBaseline)
+    }
+    
+    private func updateAddonPriceLabel() {
+        let config = returnAssistantConfiguration ?? ReturnAssistantConfiguration.shared
+        guard let addonPrice = addonPrice else { return }
+        guard let addonPriceString = addonPrice.string else { return }
+
+        let attributedString =
+            NSMutableAttributedString(string: addonPriceString,
+                                      attributes: [NSAttributedString.Key.foregroundColor: config.digitalInvoiceAddonPriceColor,
+                                                   NSAttributedString.Key.font: config.digitalInvoiceAddonPriceMainUnitFont])
+        attributedString.setAttributes([NSAttributedString.Key.foregroundColor: config.digitalInvoiceAddonPriceColor,
+                                        NSAttributedString.Key.baselineOffset: 5,
+                                        NSAttributedString.Key.font: config.digitalInvoiceAddonPriceFractionalUnitFont],
+                                       range: NSRange(location: addonPriceString.count - 3, length: 3))
+        
+        addonPriceLabel.attributedText = attributedString
+    }
+    
+    private func updateAddonNameLabel() {
+        let config = returnAssistantConfiguration ?? ReturnAssistantConfiguration.shared
+        let attributedString =
+            NSMutableAttributedString(string: "\(addonName):",
+                                      attributes: [NSAttributedString.Key.font: config.digitalInvoiceAddonLabelFont])
+        
+        addonNameLabel.attributedText = attributedString
     }
 }

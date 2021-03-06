@@ -18,11 +18,11 @@ struct DigitalInvoiceItemsCellViewModel {
     
     init(invoice: DigitalInvoice) {
         
-        itemsLabelText = String.localizedStringWithFormat(DigitalInvoiceStrings.items.localizedFormat,
+        itemsLabelText = String.localizedStringWithFormat(DigitalInvoiceStrings.items.localizedGiniPayFormat,
                                                           invoice.numSelected,
                                                           invoice.numTotal)
         
-        itemsLabelAccessibilityLabelText = String.localizedStringWithFormat(DigitalInvoiceStrings.itemsAccessibilityLabel.localizedFormat,
+        itemsLabelAccessibilityLabelText = String.localizedStringWithFormat(DigitalInvoiceStrings.itemsAccessibilityLabel.localizedGiniPayFormat,
                                                                             invoice.numSelected,
                                                                             invoice.numTotal)
     }
@@ -31,7 +31,11 @@ struct DigitalInvoiceItemsCellViewModel {
 class DigitalInvoiceItemsCell: UITableViewCell {
     
     weak var delegate: DigitalInvoiceItemsCellDelegate?
-    var returnAssistantConfiguration: ReturnAssistantConfiguration?
+    var returnAssistantConfiguration: ReturnAssistantConfiguration? {
+        didSet {
+            setup()
+        }
+    }
     
     private var itemsLabel: UILabel?
     private let whatIsThisButton = UIButton(type: .system)
@@ -78,7 +82,7 @@ class DigitalInvoiceItemsCell: UITableViewCell {
         itemsLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
         whatIsThisButton.translatesAutoresizingMaskIntoConstraints = false
-        whatIsThisButton.setTitle(.localized(resource: DigitalInvoiceStrings.whatIsThisButtonTitle), for: .normal)
+        whatIsThisButton.setTitle(.ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisButtonTitle), for: .normal)
         whatIsThisButton.titleLabel?.font = returnAssistantConfiguration?.digitalInvoiceItemsSectionHeaderTextFont ??
         ReturnAssistantConfiguration.shared.digitalInvoiceItemsSectionHeaderTextFont
         

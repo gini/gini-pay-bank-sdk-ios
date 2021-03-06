@@ -14,7 +14,7 @@ import Foundation
      
      - returns: Image if found with name.
      */
-    func UIImageNamedPreferred(named name: String) -> UIImage? {
+    func prefferedImage(named name: String) -> UIImage? {
         if let clientImage = UIImage(named: name) {
             return clientImage
         }

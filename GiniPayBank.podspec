@@ -38,13 +38,13 @@ The Gini Pay Bank SDK for iOS provides functionality to capture documents with m
   end
 
   s.subspec 'Payment' do |payment|
-    payment.source_files = 'GiniPayBank/Classes/Payment/**/*.swift'
+    payment.source_files = 'GiniPayBank/Classes/Payment/**/*'
     payment.dependency "GiniCapture/Networking"
     payment.dependency 'GiniPayApiLib/Pinning', '>= 1.0.2'
   end
 
   s.subspec 'ReturnAssistant' do |payment|
-    payment.source_files = 'GiniPayBank/Classes/ReturnAssistant/**/*.swift'
+    payment.source_files = 'GiniPayBank/Classes/ReturnAssistant/**/*'
     payment.dependency "GiniCapture/Networking"
     payment.dependency 'GiniPayApiLib/Pinning', '>= 1.0.2'
   end

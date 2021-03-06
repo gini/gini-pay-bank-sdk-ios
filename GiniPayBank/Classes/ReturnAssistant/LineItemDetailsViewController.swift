@@ -27,7 +27,11 @@ class LineItemDetailsViewController: UIViewController {
     
     var lineItemIndex: Int?
     
-    var returnAssistantConfiguration = ReturnAssistantConfiguration.shared
+    var returnAssistantConfiguration : ReturnAssistantConfiguration? {
+        didSet {
+            update()
+        }
+    }
     
     weak var delegate: LineItemDetailsViewControllerDelegate?
     
@@ -50,8 +54,9 @@ class LineItemDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let configuration = returnAssistantConfiguration ?? ReturnAssistantConfiguration.shared
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: .localized(resource: DigitalInvoiceStrings.lineItemSaveButtonTitle),
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: .ginipayLocalized(resource: DigitalInvoiceStrings.lineItemSaveButtonTitle),
                                                             style: .plain,
                                                             target: self,
                                                             action: #selector(saveButtonTapped))
@@ -80,13 +85,13 @@ class LineItemDetailsViewController: UIViewController {
         
         checkboxContainerStackView.axis = .horizontal
         
-        checkboxButton.tintColor = returnAssistantConfiguration.lineItemTintColor
+        checkboxButton.tintColor = returnAssistantConfiguration?.lineItemTintColor
         checkboxButton.checkedState = .checked
         checkboxButton.addTarget(self, action: #selector(checkboxButtonTapped), for: .touchUpInside)
         checkboxContainerStackView.addArrangedSubview(checkboxButton)
         
-        checkboxButtonTextLabel.font = returnAssistantConfiguration.lineItemDetailsDescriptionLabelFont
-        checkboxButtonTextLabel.textColor = returnAssistantConfiguration.lineItemDetailsDescriptionLabelColor
+        checkboxButtonTextLabel.font = returnAssistantConfiguration?.lineItemDetailsDescriptionLabelFont
+        checkboxButtonTextLabel.textColor = returnAssistantConfiguration?.lineItemDetailsDescriptionLabelColor
         checkboxContainerStackView.addArrangedSubview(checkboxButtonTextLabel)
         
         // This is outside of the main stackView in order to deal with the checkbox button being larger
@@ -136,35 +141,35 @@ class LineItemDetailsViewController: UIViewController {
                                               constant: -margin).isActive = true
         }
         
-        itemNameTextField.titleFont = returnAssistantConfiguration.lineItemDetailsDescriptionLabelFont
-        itemNameTextField.titleTextColor = returnAssistantConfiguration.lineItemDetailsDescriptionLabelColor
-        itemNameTextField.title = .localized(resource: DigitalInvoiceStrings.lineItemNameTextFieldTitle)
-        itemNameTextField.textFont = returnAssistantConfiguration.lineItemDetailsContentLabelFont
-        itemNameTextField.textColor = returnAssistantConfiguration.lineItemDetailsContentLabelColor
+        itemNameTextField.titleFont = configuration.lineItemDetailsDescriptionLabelFont
+        itemNameTextField.titleTextColor = configuration.lineItemDetailsDescriptionLabelColor
+        itemNameTextField.title = .ginipayLocalized(resource: DigitalInvoiceStrings.lineItemNameTextFieldTitle)
+        itemNameTextField.textFont = configuration.lineItemDetailsContentLabelFont
+        itemNameTextField.textColor = configuration.lineItemDetailsContentLabelColor
         itemNameTextField.prefixText = nil
         
         stackView.addArrangedSubview(itemNameTextField)
         
-        quantityTextField.titleFont = returnAssistantConfiguration.lineItemDetailsDescriptionLabelFont
-        quantityTextField.titleTextColor = returnAssistantConfiguration.lineItemDetailsDescriptionLabelColor
-        quantityTextField.title = .localized(resource: DigitalInvoiceStrings.lineItemQuantityTextFieldTitle)
-        quantityTextField.textFont = returnAssistantConfiguration.lineItemDetailsContentLabelFont
-        quantityTextField.textColor = returnAssistantConfiguration.lineItemDetailsContentLabelColor
+        quantityTextField.titleFont = configuration.lineItemDetailsDescriptionLabelFont
+        quantityTextField.titleTextColor = configuration.lineItemDetailsDescriptionLabelColor
+        quantityTextField.title = .ginipayLocalized(resource: DigitalInvoiceStrings.lineItemQuantityTextFieldTitle)
+        quantityTextField.textFont = configuration.lineItemDetailsContentLabelFont
+        quantityTextField.textColor = configuration.lineItemDetailsContentLabelColor
         quantityTextField.prefixText = nil
         quantityTextField.keyboardType = .numberPad
         quantityTextField.delegate = self
         quantityAndItemPriceContainer.addSubview(quantityTextField)
         
-        multiplicationLabel.font = returnAssistantConfiguration.lineItemDetailsContentLabelFont
-        multiplicationLabel.textColor = returnAssistantConfiguration.lineItemDetailsContentLabelColor
+        multiplicationLabel.font = configuration.lineItemDetailsContentLabelFont
+        multiplicationLabel.textColor = configuration.lineItemDetailsContentLabelColor
         multiplicationLabel.text = "X"
         quantityAndItemPriceContainer.addSubview(multiplicationLabel)
         
-        itemPriceTextField.titleFont = returnAssistantConfiguration.lineItemDetailsDescriptionLabelFont
-        itemPriceTextField.titleTextColor = returnAssistantConfiguration.lineItemDetailsDescriptionLabelColor
-        itemPriceTextField.title = .localized(resource: DigitalInvoiceStrings.lineItemPriceTextFieldTitle)
-        itemPriceTextField.textFont = returnAssistantConfiguration.lineItemDetailsContentLabelFont
-        itemPriceTextField.textColor = returnAssistantConfiguration.lineItemDetailsContentLabelColor
+        itemPriceTextField.titleFont = configuration.lineItemDetailsDescriptionLabelFont
+        itemPriceTextField.titleTextColor = configuration.lineItemDetailsDescriptionLabelColor
+        itemPriceTextField.title = .ginipayLocalized(resource: DigitalInvoiceStrings.lineItemPriceTextFieldTitle)
+        itemPriceTextField.textFont = configuration.lineItemDetailsContentLabelFont
+        itemPriceTextField.textColor = configuration.lineItemDetailsContentLabelColor
         
         itemPriceTextField.keyboardType = .decimalPad
         itemPriceTextField.delegate = self
@@ -184,7 +189,7 @@ class LineItemDetailsViewController: UIViewController {
                                                       constant: -margin).isActive = true
         multiplicationLabel.setContentHuggingPriority(.required, for: .horizontal)
         multiplicationLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
-        multiplicationLabel.accessibilityLabel = .localized(resource: DigitalInvoiceStrings.lineItemMultiplicationAccessibilityLabel)
+        multiplicationLabel.accessibilityLabel = .ginipayLocalized(resource: DigitalInvoiceStrings.lineItemMultiplicationAccessibilityLabel)
         
         itemPriceTextField.topAnchor.constraint(equalTo: quantityAndItemPriceContainer.topAnchor).isActive = true
         itemPriceTextField.trailingAnchor.constraint(equalTo: quantityAndItemPriceContainer.trailingAnchor)
@@ -202,9 +207,9 @@ class LineItemDetailsViewController: UIViewController {
         totalPriceStackView.addArrangedSubview(dummyView)
         
         totalPriceTitleLabel.setContentHuggingPriority(.required, for: .horizontal)
-        totalPriceTitleLabel.font = returnAssistantConfiguration.lineItemDetailsDescriptionLabelFont
-        totalPriceTitleLabel.textColor = returnAssistantConfiguration.lineItemDetailsDescriptionLabelColor
-        totalPriceTitleLabel.text = .localized(resource: DigitalInvoiceStrings.lineItemTotalPriceTitle)
+        totalPriceTitleLabel.font = configuration.lineItemDetailsDescriptionLabelFont
+        totalPriceTitleLabel.textColor = configuration.lineItemDetailsDescriptionLabelColor
+        totalPriceTitleLabel.text = .ginipayLocalized(resource: DigitalInvoiceStrings.lineItemTotalPriceTitle)
         totalPriceTitleLabel.font = UIFont.systemFont(ofSize: 12)
         
         totalPriceStackView.addArrangedSubview(totalPriceTitleLabel)
@@ -227,7 +232,7 @@ class LineItemDetailsViewController: UIViewController {
                                  totalPriceLabel]
         
         update()
-        view.backgroundColor = UIColor.from(giniColor: returnAssistantConfiguration.lineItemDetailsBackgroundColor)
+        view.backgroundColor = UIColor.from(giniColor: configuration.lineItemDetailsBackgroundColor)
     }
     
     @objc func saveButtonTapped() {
@@ -281,7 +286,7 @@ extension LineItemDetailsViewController {
         
         guard let lineItem = lineItem else { return }
         
-        checkboxButtonTextLabel.text = String.localizedStringWithFormat(DigitalInvoiceStrings.lineItemCheckmarkLabel.localizedFormat,
+        checkboxButtonTextLabel.text = String.localizedStringWithFormat(DigitalInvoiceStrings.lineItemCheckmarkLabel.localizedGiniPayFormat,
                                                                         lineItem.quantity)
         
         itemNameTextField.text = lineItem.name
@@ -297,15 +302,15 @@ extension LineItemDetailsViewController {
         }
         
         if let totalPriceString = lineItem.totalPrice.string {
-            
+            let configuration  = returnAssistantConfiguration ?? ReturnAssistantConfiguration.shared
             let attributedString =
                 NSMutableAttributedString(string: totalPriceString,
-                                          attributes: [NSAttributedString.Key.foregroundColor: returnAssistantConfiguration.lineItemDetailsContentLabelColor,
-                                                       NSAttributedString.Key.font: returnAssistantConfiguration.lineItemDetailsTotalPriceMainUnitFont])
+                                          attributes: [NSAttributedString.Key.foregroundColor: configuration.lineItemDetailsContentLabelColor,
+                                                       NSAttributedString.Key.font: configuration.lineItemDetailsTotalPriceMainUnitFont])
             
-            attributedString.setAttributes([NSAttributedString.Key.foregroundColor: returnAssistantConfiguration.lineItemDetailsContentLabelColor,
+            attributedString.setAttributes([NSAttributedString.Key.foregroundColor: configuration.lineItemDetailsContentLabelColor,
                                             NSAttributedString.Key.baselineOffset: 5,
-                                            NSAttributedString.Key.font: returnAssistantConfiguration.lineItemDetailsTotalPriceFractionalUnitFont],
+                                            NSAttributedString.Key.font: configuration.lineItemDetailsTotalPriceFractionalUnitFont],
                                            range: NSRange(location: totalPriceString.count - 3, length: 3))
             
             totalPriceLabel.attributedText = attributedString

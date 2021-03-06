@@ -15,7 +15,7 @@ protocol ScreenAPICoordinatorDelegate: class {
     func screenAPI(coordinator: ScreenAPICoordinator, didFinish:())
 }
 
-class TrackingDelegate: GiniCaptureTrackingDelegate{
+class TrackingDelegate: GiniCaptureTrackingDelegate {
     
     
     func onAnalysisScreenEvent(event: Event<AnalysisScreenEventType>) {
@@ -35,25 +35,25 @@ class TrackingDelegate: GiniCaptureTrackingDelegate{
     }
 }
 
-final class ScreenAPICoordinator: NSObject, Coordinator {
-    
+final class ScreenAPICoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
+    weak var resultsDelegate: GiniCaptureResultsDelegate?
     weak var delegate: ScreenAPICoordinatorDelegate?
     var childCoordinators: [Coordinator] = []
     var rootViewController: UIViewController {
         return screenAPIViewController
     }
     var screenAPIViewController: UINavigationController!
-    
-    private let trackingDelegate = TrackingDelegate()
-    
+    var trackingDelegate = TrackingDelegate()
     let client: Client
     let documentMetadata: Document.Metadata?
     weak var analysisDelegate: GiniPayBankAnalysisDelegate?
     var visionDocuments: [GiniCaptureDocument]?
     var visionConfiguration: GiniConfiguration
+    var returnAssistantConfiguration: ReturnAssistantConfiguration
     var sendFeedbackBlock: (([String: Extraction]) -> Void)?
     
     init(configuration: GiniConfiguration,
+         returnAssistantConfig: ReturnAssistantConfiguration,
          importedDocuments documents: [GiniCaptureDocument]?,
          client: Client,
          documentMetadata: Document.Metadata?) {
@@ -61,11 +61,12 @@ final class ScreenAPICoordinator: NSObject, Coordinator {
         self.visionDocuments = documents
         self.client = client
         self.documentMetadata = documentMetadata
+        self.returnAssistantConfiguration = returnAssistantConfig
         super.init()
     }
     
     func start() {
-        let viewController = GiniPayBank.viewController(withClient: client, importedDocuments: visionDocuments, configuration: visionConfiguration, resultsDelegate: self, documentMetadata: documentMetadata, api: .default, userApi: .default, trackingDelegate: trackingDelegate)
+        let viewController = GiniPayBank.viewController(withClient: client, importedDocuments: visionDocuments, configuration: visionConfiguration, returnAssistantConfiguration: returnAssistantConfiguration, resultsDelegate: self, documentMetadata: documentMetadata, api: .default, userApi: .default, trackingDelegate: trackingDelegate)
 
         screenAPIViewController = RootNavigationController(rootViewController: viewController)
         screenAPIViewController.navigationBar.barTintColor = visionConfiguration.navigationBarTintColor
@@ -85,35 +86,6 @@ final class ScreenAPICoordinator: NSObject, Coordinator {
             self?.screenAPIViewController.pushViewController(customResultsScreen, animated: true)
         }
     }
-    
-}
-
-// MARK: - UINavigationControllerDelegate
-
-extension ScreenAPICoordinator: UINavigationControllerDelegate {
-    func navigationController(_ navigationController: UINavigationController,
-                              animationControllerFor operation: UINavigationController.Operation,
-                              from fromVC: UIViewController,
-                              to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        // Since the NoResultViewController and ResultTableViewController are in the navigation stack,
-        // when it is necessary to go back, it dismiss the ScreenAPI so the Analysis screen is not shown again
-        
-        if fromVC is NoResultViewController {
-            self.delegate?.screenAPI(coordinator: self, didFinish: ())
-        }
-        
-        if let fromVC = fromVC as? ResultTableViewController {
-            self.sendFeedbackBlock?(fromVC.result.reduce([:]) {
-                guard let name = $1.name else { return $0 }
-                var result = $0
-                result[name] = $1
-                return result
-            })
-            self.delegate?.screenAPI(coordinator: self, didFinish: ())
-        }
-        
-        return nil
-    }
 }
 
 // MARK: - NoResultsScreenDelegate
@@ -130,6 +102,7 @@ extension ScreenAPICoordinator: GiniCaptureResultsDelegate {
     
     func giniCaptureAnalysisDidFinishWith(result: AnalysisResult,
                                          sendFeedbackBlock: @escaping ([String: Extraction]) -> Void) {
+        
         showResultsScreen(results: result.extractions.map { $0.value })
         self.sendFeedbackBlock = sendFeedbackBlock
     }

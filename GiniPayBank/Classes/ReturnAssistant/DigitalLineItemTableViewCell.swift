@@ -11,7 +11,7 @@ import GiniCapture
 struct DigitalLineItemViewModel {
     
     var lineItem: DigitalInvoice.LineItem
-    let returnAssistantConfiguration = ReturnAssistantConfiguration.shared
+    let returnAssistantConfiguration : ReturnAssistantConfiguration
 
     let index: Int
     
@@ -23,11 +23,11 @@ struct DigitalLineItemViewModel {
         
         switch lineItem.selectedState {
         case .selected:
-            return String.localizedStringWithFormat(DigitalInvoiceStrings.lineItemQuantity.localizedFormat,
+            return String.localizedStringWithFormat(DigitalInvoiceStrings.lineItemQuantity.localizedGiniPayFormat,
                                                     lineItem.quantity)
         case .deselected(let reason):
             return reason?.labelInLocalLanguageOrGerman ??
-                String.localizedStringWithFormat(DigitalInvoiceStrings.lineItemQuantity.localizedFormat,
+                String.localizedStringWithFormat(DigitalInvoiceStrings.lineItemQuantity.localizedGiniPayFormat,
                                                  lineItem.quantity)
         }
     }
@@ -157,7 +157,7 @@ class DigitalLineItemTableViewCell: UITableViewCell {
                 
                 priceLabel.attributedText = attributedString
                 
-                let format = DigitalInvoiceStrings.totalAccessibilityLabel.localizedFormat
+                let format = DigitalInvoiceStrings.totalAccessibilityLabel.localizedGiniPayFormat
                 priceLabel.accessibilityLabel = String.localizedStringWithFormat(format, priceString)
             }
             
@@ -167,7 +167,7 @@ class DigitalLineItemTableViewCell: UITableViewCell {
             editButton.titleLabel?.font = viewModel?.editButtonTitleFont
             editButton.tintColor = viewModel?.editButtonTintColor ?? .black
             
-            editButton.setTitle(.localized(resource: DigitalInvoiceStrings.lineItemEditButtonTitle), for: .normal)
+            editButton.setTitle(.ginipayLocalized(resource: DigitalInvoiceStrings.lineItemEditButtonTitle), for: .normal)
             
             nameLabel.textColor = viewModel?.primaryTextColor
 
@@ -209,6 +209,8 @@ class DigitalLineItemTableViewCell: UITableViewCell {
     
     private func setup() {
         backgroundColor = UIColor.from(giniColor: viewModel?.returnAssistantConfiguration.digitalInvoiceBackgroundColor ?? ReturnAssistantConfiguration.shared.digitalInvoiceBackgroundColor)
+        selectionStyle = .none
+
         shadowCastView.layer.cornerRadius = 7
         shadowCastView.layer.shadowRadius = 5
         shadowCastView.layer.shadowOpacity = 0.15
@@ -216,7 +218,7 @@ class DigitalLineItemTableViewCell: UITableViewCell {
         
         shadowCastView.layer.borderWidth = 0.5
         
-        selectionStyle = .none
+        shadowCastView.layer.backgroundColor = UIColor.from(giniColor: viewModel?.returnAssistantConfiguration.digitalInvoiceLineItemsBackgroundColor ?? ReturnAssistantConfiguration.shared.digitalInvoiceLineItemsBackgroundColor).cgColor
     }
     
     @IBAction func checkButtonTapped(_ sender: Any) {
@@ -231,15 +233,5 @@ class DigitalLineItemTableViewCell: UITableViewCell {
         if let viewModel = viewModel {
             delegate?.editTapped(cell: self, viewModel: viewModel)
         }
-    }
-    
-    private func _updateColors() {
-        shadowCastView.layer.backgroundColor = UIColor.from(giniColor: viewModel?.returnAssistantConfiguration.digitalInvoiceLineItemsBackgroundColor ?? ReturnAssistantConfiguration.shared.digitalInvoiceLineItemsBackgroundColor).cgColor
-    }
-
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        self._updateColors()
-        self.setNeedsDisplay()
     }
 }

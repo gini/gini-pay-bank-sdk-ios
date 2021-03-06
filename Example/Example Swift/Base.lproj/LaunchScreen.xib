@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,19 +16,17 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Example" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bJ-3J-UXM">
                     <rect key="frame" x="166.5" y="301.5" width="81" height="24"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                    <color key="textColor" white="0.16608697203196346" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gini_logo" translatesAutoresizingMaskIntoConstraints="NO" id="X7M-EP-lcv">
                     <rect key="frame" x="62" y="100" width="290" height="185.5"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="375" id="Zok-BS-ASj"/>
                         <constraint firstAttribute="width" secondItem="X7M-EP-lcv" secondAttribute="height" multiplier="25:16" id="aMk-9k-dMq"/>
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" name="AccentColor"/>
             <constraints>
                 <constraint firstItem="0bJ-3J-UXM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="1eC-vZ-ZZQ"/>
                 <constraint firstItem="X7M-EP-lcv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="2aG-aA-uk4"/>
@@ -63,8 +61,8 @@
     </objects>
     <resources>
         <image name="gini_logo" width="708" height="246"/>
-        <systemColor name="systemBackgroundColor">
+        <namedColor name="AccentColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        </namedColor>
     </resources>
 </document>

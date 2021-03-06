@@ -344,13 +344,6 @@ public final class ReturnAssistantConfiguration: NSObject {
     @objc public var digitalInvoiceOnboardingDoneButtonTextColor = GiniColor(lightModeColor: .white, darkModeColor: .black)
     
     /**
-     Indicates whether the Return Assistant feature is enabled or not. In case of `true`,
-     the user will be presented with a digital representation of their invoice where they
-     can see individual line items and are able to amend them or choose to not to pay for them.
-     */
-    @objc public var returnAssistantEnabled = false
-    
-    /**
      Sets the font used in the Return Assistant screens by default.
      */
     

@@ -37,8 +37,6 @@ public class DigitalInvoiceViewController: UIViewController {
     public var invoice: DigitalInvoice? {
         didSet {
             tableView.reloadData()
-            payButton.setTitle(payButtonTitle(), for: .normal)
-            payButton.accessibilityLabel = payButtonAccessibilityLabel()
         }
     }
     
@@ -54,13 +52,12 @@ public class DigitalInvoiceViewController: UIViewController {
      */
     public var returnAssistantConfiguration = ReturnAssistantConfiguration.shared
     
-    private let payButton = UIButton(type: .system)
     private let tableView = UITableView()
     
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        title = .localized(resource: DigitalInvoiceStrings.screenTitle)
+        title = .ginipayLocalized(resource: DigitalInvoiceStrings.screenTitle)
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -97,39 +94,7 @@ public class DigitalInvoiceViewController: UIViewController {
         
         tableView.separatorStyle = .none
         
-        payButton.translatesAutoresizingMaskIntoConstraints = false
-
-        view.addSubview(payButton)
-        let payButtonHeight: CGFloat = 48
-        let margin: CGFloat = 16
-        payButton.heightAnchor.constraint(equalToConstant: payButtonHeight).isActive = true
-        payButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: margin).isActive = true
-        payButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -margin).isActive = true
-        
-        if #available(iOS 11.0, *) {
-            payButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                                              constant: -margin).isActive = true
-        } else {
-            payButton.bottomAnchor.constraint(equalTo: view.bottomAnchor,
-                                              constant: -margin).isActive = true
-        }
-        
-        payButton.layer.cornerRadius = 7
-        payButton.backgroundColor = returnAssistantConfiguration.payButtonBackgroundColor
-        payButton.setTitleColor(returnAssistantConfiguration.payButtonTitleTextColor, for: .normal)
-        payButton.titleLabel?.font = returnAssistantConfiguration.payButtonTitleFont
-        
-        payButton.setTitle(payButtonTitle(), for: .normal)
-        payButton.accessibilityLabel = payButtonAccessibilityLabel()
-        
-        payButton.layer.shadowColor = UIColor.black.cgColor
-        payButton.layer.shadowRadius = 4
-        payButton.layer.shadowOffset = CGSize(width: 0, height: 3)
-        payButton.layer.shadowOpacity = 0.15
-        
-        payButton.addTarget(self, action: #selector(payButtonTapped), for: .touchUpInside)
-        
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: payButtonHeight + margin * 2, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.backgroundColor = UIColor.from(giniColor: returnAssistantConfiguration.digitalInvoiceBackgroundColor)
     }
     
@@ -147,10 +112,10 @@ public class DigitalInvoiceViewController: UIViewController {
     private func payButtonTitle() -> String {
         
         guard let invoice = invoice else {
-            return .localized(resource: DigitalInvoiceStrings.noInvoicePayButtonTitle)
+            return .ginipayLocalized(resource: DigitalInvoiceStrings.noInvoicePayButtonTitle)
         }
         
-        return String.localizedStringWithFormat(DigitalInvoiceStrings.payButtonTitle.localizedFormat,
+        return String.localizedStringWithFormat(DigitalInvoiceStrings.payButtonTitle.localizedGiniPayFormat,
                                                 invoice.numSelected,
                                                 invoice.numTotal)
     }
@@ -158,16 +123,16 @@ public class DigitalInvoiceViewController: UIViewController {
     private func payButtonAccessibilityLabel() -> String {
         
         guard let invoice = invoice else {
-            return .localized(resource: DigitalInvoiceStrings.noInvoicePayButtonTitle)
+            return .ginipayLocalized(resource: DigitalInvoiceStrings.noInvoicePayButtonTitle)
         }
         
-        return String.localizedStringWithFormat(DigitalInvoiceStrings.payButtonTitleAccessibilityLabel.localizedFormat,
+        return String.localizedStringWithFormat(DigitalInvoiceStrings.payButtonTitleAccessibilityLabel.localizedGiniPayFormat,
                                                 invoice.numSelected,
                                                 invoice.numTotal)
     }
     
     fileprivate var onboardingWillBeShown: Bool {
-        let key = "ginivision.defaults.digitalInvoiceOnboardingShowed"
+        let key = "ginipaybank.defaults.digitalInvoiceOnboardingShowed"
         return UserDefaults.standard.object(forKey: key) == nil ? true : false
     }
     
@@ -251,7 +216,7 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
             let cell = tableView.dequeueReusableCell(withIdentifier: "DigitalLineItemTableViewCell",
                                                      for: indexPath) as! DigitalLineItemTableViewCell
             
-            cell.viewModel = DigitalLineItemViewModel(lineItem: invoice!.lineItems[indexPath.row], index: indexPath.row)
+            cell.viewModel = DigitalLineItemViewModel(lineItem: invoice!.lineItems[indexPath.row], returnAssistantConfiguration: returnAssistantConfiguration, index: indexPath.row)
             
             cell.delegate = self
             
@@ -261,7 +226,7 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "DigitalInvoiceAddonCell",
                                                      for: indexPath) as! DigitalInvoiceAddonCell
-                        
+            cell.returnAssistantConfiguration = returnAssistantConfiguration
             if let invoice = invoice {
                 let addon = invoice.addons[indexPath.row]
                 cell.addonName = addon.name
@@ -274,6 +239,7 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "DigitalInvoiceTotalPriceCell",
                                                      for: indexPath) as! DigitalInvoiceTotalPriceCell
+            cell.returnAssistantConfiguration = returnAssistantConfiguration
             
             cell.totalPrice = invoice?.total
             
@@ -285,7 +251,10 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
                                                      for: indexPath) as! DigitalInvoiceFooterCell
             
             cell.returnAssistantConfiguration = returnAssistantConfiguration
-            
+            cell.payButton.setTitle(payButtonTitle(), for: .normal)
+            cell.payButton.accessibilityLabel = payButtonAccessibilityLabel()
+            cell.payButton.addTarget(self, action: #selector(payButtonTapped), for: .touchUpInside)
+
             return cell
             
         default: fatalError()
@@ -350,23 +319,23 @@ extension DigitalInvoiceViewController: DigitalInvoiceItemsCellDelegate {
     
     func whatIsThisTapped(source: UIButton) {
         
-        let actionSheet = UIAlertController(title: .localized(resource: DigitalInvoiceStrings.whatIsThisActionSheetTitle),
-                                            message: .localized(resource: DigitalInvoiceStrings.whatIsThisActionSheetMessage),
+        let actionSheet = UIAlertController(title: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetTitle),
+                                            message: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetMessage),
                                             preferredStyle: .actionSheet)
         
-        actionSheet.addAction(UIAlertAction(title: .localized(resource: DigitalInvoiceStrings.whatIsThisActionSheetActionHelpful),
+        actionSheet.addAction(UIAlertAction(title: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetActionHelpful),
                                             style: .default,
                                             handler: { _ in
                                                 // TODO:
         }))
         
-        actionSheet.addAction(UIAlertAction(title: .localized(resource: DigitalInvoiceStrings.whatIsThisActionSheetActionNotHelpful),
+        actionSheet.addAction(UIAlertAction(title: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetActionNotHelpful),
                                             style: .destructive,
                                             handler: { _ in
                                                 // TODO:
         }))
         
-        actionSheet.addAction(UIAlertAction(title: .localized(resource: DigitalInvoiceStrings.whatIsThisActionSheetActionCancel),
+        actionSheet.addAction(UIAlertAction(title: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetActionCancel),
                                             style: .cancel,
                                             handler: nil))
         

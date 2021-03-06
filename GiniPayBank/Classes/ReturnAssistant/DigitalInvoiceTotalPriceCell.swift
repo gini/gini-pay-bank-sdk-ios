@@ -8,7 +8,12 @@
 import Foundation
 class DigitalInvoiceTotalPriceCell: UITableViewCell {
     
-    var returnAssistantConfiguration = ReturnAssistantConfiguration.shared
+    var returnAssistantConfiguration: ReturnAssistantConfiguration? {
+        didSet {
+            setup()
+            updateTotalPriceLabel()
+        }
+    }
     
     private var totalPriceLabel = UILabel()
     
@@ -26,26 +31,7 @@ class DigitalInvoiceTotalPriceCell: UITableViewCell {
     
     var totalPrice: Price? {
         didSet {
-            
-            guard let totalPrice = totalPrice else { return }
-            
-            guard let totalPriceString = totalPrice.string else { return }
-            
-            let attributedString =
-                NSMutableAttributedString(string: totalPriceString,
-                                          attributes: [NSAttributedString.Key.foregroundColor: returnAssistantConfiguration.digitalInvoiceTotalPriceColor,
-                                                       NSAttributedString.Key.font: returnAssistantConfiguration.digitalInvoiceTotalPriceMainUnitFont])
-            
-            attributedString.setAttributes([NSAttributedString.Key.foregroundColor: returnAssistantConfiguration.digitalInvoiceTotalPriceColor,
-                                            NSAttributedString.Key.baselineOffset: 9,
-                                            NSAttributedString.Key.font: returnAssistantConfiguration.digitalInvoiceTotalPriceFractionalUnitFont],
-                                           range: NSRange(location: totalPriceString.count - 3, length: 3))
-            
-            totalPriceLabel.attributedText = attributedString
-            
-            let format = DigitalInvoiceStrings.totalAccessibilityLabel.localizedFormat
-            totalPriceLabel.accessibilityLabel = String.localizedStringWithFormat(format,
-                                                                                  totalPriceString)
+            updateTotalPriceLabel()
         }
     }
     
@@ -59,6 +45,28 @@ class DigitalInvoiceTotalPriceCell: UITableViewCell {
         totalPriceLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
         totalPriceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
         totalPriceLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-        backgroundColor = UIColor.from(giniColor: returnAssistantConfiguration.digitalInvoiceBackgroundColor)
+        backgroundColor = UIColor.from(giniColor: returnAssistantConfiguration?.digitalInvoiceBackgroundColor ?? ReturnAssistantConfiguration.shared.digitalInvoiceBackgroundColor)
+    }
+    
+    private func updateTotalPriceLabel() {
+        guard let totalPrice = totalPrice else { return }
+        
+        guard let totalPriceString = totalPrice.string else { return }
+        
+        let attributedString =
+            NSMutableAttributedString(string: totalPriceString,
+                                      attributes: [NSAttributedString.Key.foregroundColor: returnAssistantConfiguration?.digitalInvoiceTotalPriceColor ?? ReturnAssistantConfiguration.shared.digitalInvoiceTotalPriceColor,
+                                                   NSAttributedString.Key.font: returnAssistantConfiguration?.digitalInvoiceTotalPriceMainUnitFont ?? ReturnAssistantConfiguration.shared.digitalInvoiceTotalPriceMainUnitFont])
+        
+        attributedString.setAttributes([NSAttributedString.Key.foregroundColor: returnAssistantConfiguration?.digitalInvoiceTotalPriceColor ?? ReturnAssistantConfiguration.shared.digitalInvoiceTotalPriceColor,
+                                        NSAttributedString.Key.baselineOffset: 9,
+                                        NSAttributedString.Key.font: returnAssistantConfiguration?.digitalInvoiceTotalPriceFractionalUnitFont ?? ReturnAssistantConfiguration.shared.digitalInvoiceTotalPriceFractionalUnitFont],
+                                       range: NSRange(location: totalPriceString.count - 3, length: 3))
+        
+        totalPriceLabel.attributedText = attributedString
+        
+        let format = DigitalInvoiceStrings.totalAccessibilityLabel.localizedGiniPayFormat
+        totalPriceLabel.accessibilityLabel = String.localizedStringWithFormat(format,
+                                                                              totalPriceString)
     }
 }

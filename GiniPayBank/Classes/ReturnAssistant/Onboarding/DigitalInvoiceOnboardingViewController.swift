@@ -18,28 +18,28 @@ import GiniCapture
     @IBOutlet var doneButton: UIButton!
 
     fileprivate var topImage: UIImage {
-        return UIImageNamedPreferred(named: "digital_invoice_onboarding_icon") ?? UIImage()
+        return prefferedImage(named: "digital_invoice_onboarding_icon") ?? UIImage()
     }
 
     fileprivate var badgeImage: UIImage {
-        return UIImageNamedPreferred(named: "digital_invoice_onboarding_new_badge") ?? UIImage()
+        return prefferedImage(named: "digital_invoice_onboarding_new_badge") ?? UIImage()
     }
 
     fileprivate var helpItemImage: UIImage {
-        return UIImageNamedPreferred(named: "digital_invoice_onboarding_item_help") ?? UIImage()
+        return prefferedImage(named: "digital_invoice_onboarding_item_help") ?? UIImage()
     }
 
     fileprivate var firstLabelText: String {
         return
-            NSLocalizedStringPreferredFormat("ginivision.digitalinvoice.onboarding.text1", comment: "title for the first label on the digital invoice onboarding screen")
+            NSLocalizedStringPreferredGiniPayFormat("ginipaybank.digitalinvoice.onboarding.text1", comment: "title for the first label on the digital invoice onboarding screen")
     }
 
     fileprivate var secondLabelText: String {
-        return NSLocalizedStringPreferredFormat("ginivision.digitalinvoice.onboarding.text2", comment: "title for the second label on the digital invoice onboarding screen")
+        return NSLocalizedStringPreferredGiniPayFormat("ginipaybank.digitalinvoice.onboarding.text2", comment: "title for the second label on the digital invoice onboarding screen")
     }
 
     fileprivate var doneButtonTitle: String {
-        return NSLocalizedStringPreferredFormat("ginivision.digitalinvoice.onboarding.donebutton", comment: "title for the done button on the digital invoice onboarding screen")
+        return NSLocalizedStringPreferredGiniPayFormat("ginipaybank.digitalinvoice.onboarding.donebutton", comment: "title for the done button on the digital invoice onboarding screen")
     }
 
     override public func viewDidLoad() {
@@ -48,7 +48,7 @@ import GiniCapture
     }
 
     fileprivate func configureUI() {
-        title = .localized(resource: DigitalInvoiceStrings.screenTitle)
+        title = .ginipayLocalized(resource: DigitalInvoiceStrings.screenTitle)
         view.backgroundColor = UIColor.from(giniColor: returnAssistantConfiguration.digitalInvoiceOnboardingBackgroundColor)
 
         topImageView.image = topImage
@@ -65,7 +65,7 @@ import GiniCapture
         secondLabel.font = returnAssistantConfiguration.digitalInvoiceOnboardingTextFont
         secondLabel.textColor = UIColor.from(giniColor: returnAssistantConfiguration.digitalInvoiceOnboardingTextColor)
 
-        doneButton.layer.cornerRadius = 4.0
+        doneButton.layer.cornerRadius = 7.0
         doneButton.backgroundColor = UIColor.from(giniColor: returnAssistantConfiguration.digitalInvoiceOnboardingDoneButtonBackgroundColor)
         doneButton.tintColor = UIColor.from(giniColor: returnAssistantConfiguration.digitalInvoiceOnboardingDoneButtonTextColor)
         doneButton.setTitle(doneButtonTitle, for: .normal)
@@ -75,7 +75,7 @@ import GiniCapture
  
     @objc func doneAction(_ sender: UIButton!) {
         dismiss(animated: true) {
-            UserDefaults.standard.set(true, forKey: "ginivision.defaults.digitalInvoiceOnboardingShowed")
+            UserDefaults.standard.set(true, forKey: "ginipaybank.defaults.digitalInvoiceOnboardingShowed")
         }
     }
 }

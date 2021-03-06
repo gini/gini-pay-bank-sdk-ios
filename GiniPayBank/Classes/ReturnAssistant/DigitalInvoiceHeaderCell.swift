@@ -25,7 +25,7 @@ class DigitalInvoiceHeaderCell: UITableViewCell {
     
     var returnAssistantConfiguration: ReturnAssistantConfiguration? {
         didSet {
-            secondaryMessageLabel?.textColor = ReturnAssistantConfiguration.shared.digitalInvoiceSecondaryMessageTextColor
+            setup()
         }
     }
     
@@ -43,7 +43,7 @@ class DigitalInvoiceHeaderCell: UITableViewCell {
         
         let messageLabel = UILabel()
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
-        let messageAttributedString = NSMutableAttributedString(string: .localized(resource: DigitalInvoiceStrings.headerMessagePrimary))
+        let messageAttributedString = NSMutableAttributedString(string: String.ginipayLocalized(resource: DigitalInvoiceStrings.headerMessagePrimary))
         
         messageAttributedString.addAttribute(NSAttributedString.Key.paragraphStyle,
                                              value: paragraphStyle,
@@ -59,7 +59,7 @@ class DigitalInvoiceHeaderCell: UITableViewCell {
         messageSpacerView.heightAnchor.constraint(equalToConstant: 15).isActive = true
         messageSpacerView.backgroundColor = .clear
         let secondaryMessageAttributedString =
-            NSMutableAttributedString(string: .localized(resource: DigitalInvoiceStrings.headerMessageSecondary))
+            NSMutableAttributedString(string: .ginipayLocalized(resource: DigitalInvoiceStrings.headerMessageSecondary))
 
         secondaryMessageAttributedString.addAttribute(NSAttributedString.Key.paragraphStyle,
                                       value: paragraphStyle,
