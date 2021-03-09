@@ -9,6 +9,7 @@
 import XCTest
 @testable import Example_Swift
 @testable import GiniCapture
+@testable import GiniPayBank
 
 final class ComponentAPICoordinatorTests: XCTestCase {
     
@@ -19,6 +20,7 @@ final class ComponentAPICoordinatorTests: XCTestCase {
     func testInitialization() {
         componentAPICoordinator = ComponentAPICoordinator(pages: [],
                                                           configuration: GiniConfiguration(),
+                                                          returnAssistantConfiguration: ReturnAssistantConfiguration(),
                                                           documentService: documentService)
         componentAPICoordinator?.start()
         
@@ -30,6 +32,7 @@ final class ComponentAPICoordinatorTests: XCTestCase {
     func testInitializationWhenNoDocument() {
         componentAPICoordinator = ComponentAPICoordinator(pages: [],
                                                           configuration: GiniConfiguration(),
+                                                          returnAssistantConfiguration: ReturnAssistantConfiguration(),
                                                           documentService: documentService)
         componentAPICoordinator?.start()
         
@@ -49,6 +52,7 @@ final class ComponentAPICoordinatorTests: XCTestCase {
         
         componentAPICoordinator = ComponentAPICoordinator(pages: [GiniCapturePage(document: document)],
                                                           configuration: GiniConfiguration(),
+                                                          returnAssistantConfiguration: ReturnAssistantConfiguration(),
                                                           documentService: documentService)
         componentAPICoordinator?.start()
         
@@ -69,6 +73,7 @@ final class ComponentAPICoordinatorTests: XCTestCase {
         
         componentAPICoordinator = ComponentAPICoordinator(pages: [GiniCapturePage(document: pdfDocument)],
                                                           configuration: GiniConfiguration(),
+                                                          returnAssistantConfiguration: ReturnAssistantConfiguration(),
                                                           documentService: documentService)
         componentAPICoordinator?.start()
         
