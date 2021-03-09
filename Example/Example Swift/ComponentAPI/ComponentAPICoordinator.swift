@@ -9,33 +9,40 @@
 import Foundation
 import GiniCapture
 import GiniPayApiLib
+import GiniPayBank
 
 protocol ComponentAPICoordinatorDelegate: class {
-    func componentAPI(coordinator: ComponentAPICoordinator, didFinish:())
+    func componentAPI(coordinator: ComponentAPICoordinator, didFinish: ())
 }
 
-//swiftlint:disable file_length
-final class ComponentAPICoordinator: NSObject, Coordinator {
+// swiftlint:disable file_length
+final class ComponentAPICoordinator: NSObject, Coordinator, DigitalInvoiceViewControllerDelegate {
     
+    // Action handler for "Pay" button
+    func didFinish(viewController: DigitalInvoiceViewController, invoice: DigitalInvoice) {
+        showResultsTableScreen(withExtractions: invoice.extractionResult.extractions)
+    }
+
     weak var delegate: ComponentAPICoordinatorDelegate?
     var childCoordinators: [Coordinator] = []
     var rootViewController: UIViewController {
-        return self.componentAPITabBarController
+        return componentAPITabBarController
     }
-    
+
     fileprivate var documentService: ComponentAPIDocumentServiceProtocol?
     fileprivate var pages: [GiniCapturePage]
     // When there was an error uploading a document or analyzing it and the analysis screen
     // had not been initialized yet, both the error message and action has to be saved to show in the analysis screen.
     fileprivate var analysisErrorAndAction: (message: String, action: () -> Void)?
-    
-    fileprivate let giniColor = UIColor(red: 0, green: (157/255), blue: (220/255), alpha: 1)
+
+    fileprivate let giniColor = Colors.Gini.blue
     fileprivate let giniConfiguration: GiniConfiguration
-    
+    fileprivate let returnAssistantConfiguration: ReturnAssistantConfiguration
+
     fileprivate lazy var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
     fileprivate lazy var componentAPIOnboardingViewController: ComponentAPIOnboardingViewController =
         (self.storyboard.instantiateViewController(withIdentifier: "componentAPIOnboardingViewController")
-            as? ComponentAPIOnboardingViewController)!
+                as? ComponentAPIOnboardingViewController)!
     fileprivate lazy var navigationController: UINavigationController = {
         let navBarViewController = UINavigationController()
         navBarViewController.navigationBar.barTintColor = self.giniColor
@@ -79,9 +86,11 @@ final class ComponentAPICoordinator: NSObject, Coordinator {
     
     init(pages: [GiniCapturePage],
          configuration: GiniConfiguration,
+         returnAssistantConfiguration: ReturnAssistantConfiguration,
          documentService: ComponentAPIDocumentServiceProtocol) {
         self.pages = pages
         self.giniConfiguration = configuration
+        self.returnAssistantConfiguration = returnAssistantConfiguration
         self.documentService = documentService
         super.init()
         
@@ -89,9 +98,9 @@ final class ComponentAPICoordinator: NSObject, Coordinator {
     }
     
     func start() {
-        self.setupTabBar()
-        self.navigationController.delegate = self
-        
+        setupTabBar()
+        navigationController.delegate = self
+
         if pages.isEmpty {
             showCameraScreen()
         } else {
@@ -101,8 +110,8 @@ final class ComponentAPICoordinator: NSObject, Coordinator {
                 } else {
                     showReviewScreen()
                 }
-                
-                pages.forEach { process(captured: $0)}
+
+                pages.forEach { process(captured: $0) }
             } else {
                 showAnalysisScreen()
             }
@@ -127,7 +136,7 @@ extension ComponentAPICoordinator {
             documentPickerCoordinator.delegate = self
             
             if giniConfiguration.fileImportSupportedTypes == .pdf_and_images,
-                documentPickerCoordinator.isGalleryPermissionGranted {
+               documentPickerCoordinator.isGalleryPermissionGranted {
                 documentPickerCoordinator.startCaching()
             }
             
@@ -171,9 +180,9 @@ extension ComponentAPICoordinator {
             // However, in single mode, the analysis can be triggered right after capturing the image.
             // That is why the document upload should be done here and start the analysis afterwards
             if giniConfiguration.multipageEnabled {
-                self.startAnalysis()
+                startAnalysis()
             } else {
-                self.uploadAndStartAnalysis(for: page)
+                uploadAndStartAnalysis(for: page)
             }
         }
         
@@ -186,8 +195,8 @@ extension ComponentAPICoordinator {
         resultsScreen = storyboard.instantiateViewController(withIdentifier: "resultScreen")
             as? ResultTableViewController
         resultsScreen?.result = extractions
-        
-        if navigationController.viewControllers.first is AnalysisViewController {
+
+        if navigationController.viewControllers.first is AnalysisViewController || navigationController.viewControllers.first is DigitalInvoiceViewController {
             resultsScreen!.navigationItem
                 .rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("close",
                                                                                comment: "close button text"),
@@ -215,15 +224,32 @@ extension ComponentAPICoordinator {
         }
         
         push(viewController: vc, removing: [reviewScreen, analysisScreen])
-        
     }
-    
+
+    fileprivate func showDigitalInvoiceScreen(digitalInvoice: DigitalInvoice, withReturnAssistantConfiguration configuration: ReturnAssistantConfiguration) {
+        let digitalInvoiceViewController = DigitalInvoiceViewController()
+        digitalInvoiceViewController.returnAssistantConfiguration = returnAssistantConfiguration
+        digitalInvoiceViewController.invoice = digitalInvoice
+        digitalInvoiceViewController.delegate = self
+
+        if navigationController.viewControllers.first is AnalysisViewController {
+            digitalInvoiceViewController.navigationItem
+                .rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("close",
+                                                                               comment: "close button text"),
+                                                      style: .plain,
+                                                      target: self,
+                                                      action: #selector(closeComponentAPIFromResults))
+        }
+
+        push(viewController: digitalInvoiceViewController, removing: [reviewScreen, analysisScreen])
+    }
+
     fileprivate func showNextScreenAfterPicking() {
         if let documentsType = pages.type {
             switch documentsType {
-            case .image:                
+            case .image:
                 if giniConfiguration.multipageEnabled {
-                    refreshMultipageReview(with: self.pages)
+                    refreshMultipageReview(with: pages)
                     showMultipageReviewScreen()
                 } else {
                     showReviewScreen()
@@ -248,7 +274,7 @@ extension ComponentAPICoordinator {
     fileprivate func push<T: UIViewController>(viewController: UIViewController, removing viewControllers: [T?]) {
         var navigationStack = navigationController.viewControllers
         let viewControllersToDelete = navigationStack.filter {
-            return viewControllers
+            viewControllers
                 .lazy
                 .compactMap { $0 }
                 .contains($0)
@@ -259,11 +285,11 @@ extension ComponentAPICoordinator {
                 navigationStack.remove(at: index)
             }
         }
-        
+
         navigationStack.append(viewController)
         navigationController.setViewControllers(navigationStack, animated: true)
     }
-    
+
     fileprivate func refreshMultipageReview(with pages: [GiniCapturePage]) {
         multipageReviewScreen.navigationItem
             .rightBarButtonItem?
@@ -277,8 +303,8 @@ extension ComponentAPICoordinator {
 extension ComponentAPICoordinator {
     fileprivate func upload(page: GiniCapturePage,
                             didComplete: @escaping () -> Void,
-                            didFail: @escaping ( Error) -> Void) {
-        self.documentService?.upload(document: page.document) { result in
+                            didFail: @escaping (Error) -> Void) {
+        documentService?.upload(document: page.document) { result in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self, let index = self.pages
                     .index(of: page.document) else { return }
@@ -286,16 +312,16 @@ extension ComponentAPICoordinator {
                 case .success:
                     self.pages[index].isUploaded = true
                     didComplete()
-                case .failure(let error):
+                case let .failure(error):
                     self.pages[index].error = error
                     didFail(error)
                 }
             }
         }
     }
-    
+
     fileprivate func uploadAndStartAnalysis(for page: GiniCapturePage) {
-        self.upload(page: page, didComplete: {
+        upload(page: page, didComplete: {
             self.startAnalysis()
         }, didFail: { error in
             guard let error = error as? GiniCaptureError else { return }
@@ -304,7 +330,7 @@ extension ComponentAPICoordinator {
             }
         })
     }
-    
+
     private func process(captured page: GiniCapturePage) {
         if !page.document.isReviewable {
             uploadAndStartAnalysis(for: page)
@@ -317,24 +343,19 @@ extension ComponentAPICoordinator {
             }
             upload(page: page,
                    didComplete: refreshMultipageScreen,
-                   didFail: { _ in refreshMultipageScreen()})
+                   didFail: { _ in refreshMultipageScreen() })
         }
-        
     }
     
     fileprivate func startAnalysis() {
         documentService?.startAnalysis(completion: { result in
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                switch result {
-                case .success(let extractions):
-                    self.handleAnalysis(with: extractions)
-                case .failure(let error):
-                    guard error != .requestCancelled else { return }
-
-                    self.showErrorInAnalysisScreen(with: AnalysisError.unknown.message) {
-                        self.startAnalysis()
-                    }
+            switch result {
+            case let .success(extractionResult):
+                self.handleAnalysis(with: extractionResult)
+            case let .failure(error):
+                guard error != .requestCancelled else { return }
+                self.showErrorInAnalysisScreen(with: AnalysisError.unknown.message) {
+                    self.startAnalysis()
                 }
             }
         })
@@ -347,13 +368,13 @@ extension ComponentAPICoordinator {
     private func showErrorInAnalysisScreen(with message: String,
                                            action: @escaping () -> Void) {
         if analysisScreen != nil {
-            self.analysisScreen?.showError(with: message) { [weak self] in
+            analysisScreen?.showError(with: message) { [weak self] in
                 guard let self = self else { return }
                 self.analysisErrorAndAction = nil
                 action()
             }
         } else {
-            self.analysisErrorAndAction = (message, action)
+            analysisErrorAndAction = (message, action)
         }
 
     }
@@ -372,13 +393,13 @@ extension ComponentAPICoordinator {
                                          image: UIImage(named: "tabBarIconNewDocument"),
                                          tag: 0)
         let helpTabBarItem = UITabBarItem(title: helpTabTitle, image: UIImage(named: "tabBarIconHelp"), tag: 1)
-        
-        self.navigationController.tabBarItem = navTabBarItem
-        self.componentAPIOnboardingViewController.tabBarItem = helpTabBarItem
-        
-        self.componentAPITabBarController.setViewControllers([navigationController,
-                                                              componentAPIOnboardingViewController],
-                                                             animated: true)
+
+        navigationController.tabBarItem = navTabBarItem
+        componentAPIOnboardingViewController.tabBarItem = helpTabBarItem
+
+        componentAPITabBarController.setViewControllers([navigationController,
+                                                         componentAPIOnboardingViewController],
+                                                        animated: true)
     }
     
     fileprivate func addCloseButtonIfNeeded(onViewController viewController: UIViewController) {
@@ -427,8 +448,8 @@ extension ComponentAPICoordinator: UINavigationControllerDelegate {
         
         if toVC is CameraViewController &&
             (fromVC is ReviewViewController ||
-             fromVC is AnalysisViewController ||
-             fromVC is ImageAnalysisNoResultsViewController) {
+                fromVC is AnalysisViewController ||
+                fromVC is ImageAnalysisNoResultsViewController) {
             // When going directly from the analysis or from the single page review screen to the camera the pages
             // collection should be cleared, since the document processed in that cases is not going to be reused
             pages.removeAll()
@@ -456,7 +477,7 @@ extension ComponentAPICoordinator: CameraViewControllerDelegate {
     func camera(_ viewController: CameraViewController, didCapture document: GiniCaptureDocument) {
         validate([document]) { result in
             switch result {
-            case .success(let validatedPages):
+            case let .success(validatedPages):
                 guard let validatedPage = validatedPages.first else { return }
                 self.pages.append(contentsOf: validatedPages)
                 self.process(captured: validatedPage)
@@ -468,9 +489,9 @@ extension ComponentAPICoordinator: CameraViewControllerDelegate {
                 } else {
                     self.showNextScreenAfterPicking()
                 }
-            case .failure(let error):
+            case let .failure(error):
                 if let error = error as? FilePickerError,
-                    (error == .maxFilesPickedCountExceeded || error == .mixedDocumentsUnsupported) {
+                   error == .maxFilesPickedCountExceeded || error == .mixedDocumentsUnsupported {
                     viewController.showErrorDialog(for: error) {
                         self.showMultipageReviewScreen()
                     }
@@ -505,17 +526,16 @@ extension ComponentAPICoordinator: CameraViewControllerDelegate {
 // MARK: - DocumentPickerCoordinatorDelegate
 
 extension ComponentAPICoordinator: DocumentPickerCoordinatorDelegate {
-    
     func documentPicker(_ coordinator: DocumentPickerCoordinator, didPick documents: [GiniCaptureDocument]) {
-        self.validate(documents) { result in
+        validate(documents) { result in
             switch result {
-            case .success(let validatedPages):
+            case let .success(validatedPages):
                 coordinator.dismissCurrentPicker {
                     self.pages.append(contentsOf: validatedPages)
-                    self.pages.forEach { self.process(captured: $0)}
+                    self.pages.forEach { self.process(captured: $0) }
                     self.showNextScreenAfterPicking()
                 }
-            case .failure(let error):
+            case let .failure(error):
                 var positiveAction: (() -> Void)?
                 
                 if let error = error as? FilePickerError {
@@ -574,12 +594,12 @@ extension ComponentAPICoordinator: MultipageReviewViewControllerDelegate {
                          didTapRetryUploadFor page: GiniCapturePage) {
         if let index = pages.index(of: page.document) {
             pages[index].error = nil
-            
-            if self.giniConfiguration.multipageEnabled, self.pages.type == .image {
-                self.refreshMultipageReview(with: self.pages)
+
+            if giniConfiguration.multipageEnabled, pages.type == .image {
+                refreshMultipageReview(with: pages)
             }
-            
-            self.pages.forEach { self.process(captured: $0)}
+
+            pages.forEach { self.process(captured: $0) }
         }
     }
     
@@ -630,7 +650,7 @@ extension ComponentAPICoordinator {
     
     fileprivate func validate(_ documents: [GiniCaptureDocument],
                               completion: @escaping (Result<[GiniCapturePage], Error>) -> Void) {
-        guard !(documents + pages.map {$0.document}).containsDifferentTypes else {
+        guard !(documents + pages.map { $0.document }).containsDifferentTypes else {
             completion(.failure(FilePickerError.mixedDocumentsUnsupported))
             return
         }
@@ -639,12 +659,12 @@ extension ComponentAPICoordinator {
             completion(.failure(FilePickerError.maxFilesPickedCountExceeded))
             return
         }
-        
-        self.validate(importedDocuments: documents) { validatedDocuments in
+
+        validate(importedDocuments: documents) { validatedDocuments in
             let elementsWithError = validatedDocuments.filter { $0.error != nil }
             if let firstElement = elementsWithError.first,
-                let error = firstElement.error,
-                (!self.giniConfiguration.multipageEnabled || firstElement.document.type != .image) {
+               let error = firstElement.error,
+               !self.giniConfiguration.multipageEnabled || firstElement.document.type != .image {
                 completion(.failure(error))
             } else {
                 completion(.success(validatedDocuments))
@@ -678,13 +698,21 @@ extension ComponentAPICoordinator {
 // MARK: Handle analysis results
 
 extension ComponentAPICoordinator {
-    
-    fileprivate func handleAnalysis(with extractions: [Extraction]) {
-        let payFive = ["paymentReference", "iban", "bic", "paymentReference", "amountToPay"]
-        let hasPayFive = extractions.filter { $0.name != nil ? payFive.contains($0.name!) : false }.count > 0
-        
-        if hasPayFive {
-            showResultsTableScreen(withExtractions: extractions)
+    fileprivate func handleAnalysis(with extractionResult: ExtractionResult) {
+        if extractionResult.lineItems != nil {
+            DispatchQueue.main.async { [self] in
+                if GiniPayBank.shared.returnAssistantEnabled {
+                    do {
+                        let digitalInvoice = try DigitalInvoice(extractionResult: extractionResult)
+                        let config = self.returnAssistantConfiguration
+                        self.showDigitalInvoiceScreen(digitalInvoice: digitalInvoice, withReturnAssistantConfiguration: config)
+                    } catch {
+                        self.showResultsTableScreen(withExtractions: extractionResult.extractions)
+                    }
+                } else {
+                    self.showResultsTableScreen(withExtractions: extractionResult.extractions)
+                }
+            }
         } else {
             showNoResultsScreen()
         }

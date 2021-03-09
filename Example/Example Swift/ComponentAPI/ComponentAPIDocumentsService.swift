@@ -176,7 +176,7 @@ extension ComponentAPIDocumentsService {
             switch result {
             case .success(let extractionResult):
                 print("✅ Finished analysis process with no errors")
-                completion(.success(extractionResult.extractions))
+                completion(.success(extractionResult))
             case .failure(let error):
                 switch error {
                 case .requestCancelled:

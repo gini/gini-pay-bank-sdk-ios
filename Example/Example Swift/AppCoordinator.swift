@@ -121,6 +121,7 @@ final class AppCoordinator: Coordinator {
     fileprivate func showComponentAPI(with pages: [GiniCapturePage]? = nil) {
         let componentAPICoordinator = ComponentAPICoordinator(pages: pages ?? [],
                                                               configuration: giniConfiguration,
+                                                              returnAssistantConfiguration: returnAssistantConfiguration,
                                                               documentService: componentAPIDocumentService())
         componentAPICoordinator.delegate = self
         componentAPICoordinator.start()

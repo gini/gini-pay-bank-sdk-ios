@@ -346,7 +346,9 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="42r-Zq-01h">
                                             <rect key="frame" x="16" y="616.5" width="382" height="30"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <state key="normal" title="Close"/>
+                                            <state key="normal" title="Close">
+                                                <color key="titleColor" red="0.97003465889999996" green="0.0" blue="0.35686057809999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </state>
                                             <connections>
                                                 <action selector="closeButton:" destination="jLX-Py-40o" eventType="touchUpInside" id="gWp-Sb-HSG"/>
                                             </connections>
