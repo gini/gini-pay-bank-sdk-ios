@@ -13,7 +13,7 @@ The Gini Pay Bank SDK for iOS provides functionality to capture documents with m
   s.license          = { :type => 'Private', :file => 'LICENSE' }
   s.author           = { 'Gini GmbH' => 'hello@gini.net' }
   s.frameworks       = 'AVFoundation', 'CoreMotion', 'Photos'
-  s.source           = { :git => 'git@github.com:gini/gini-pay-bank-sdk-ios.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/gini/gini-pay-bank-sdk-ios.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/gini'
   s.swift_version    = '5.0'
   s.ios.deployment_target = '10.0'
