@@ -21,32 +21,11 @@ The Gini Pay Bank SDK for iOS provides functionality to capture documents with m
   s.default_subspec = 'Core'
 
   s.subspec 'Core' do |core|
-    core.source_files = 'GiniPayBank/Classes/Core/**/*'
+    core.source_files = 'GiniPayBank/Classes/**/*'
     core.resources = 'GiniPayBank/Assets/*'
-  end
-
-  s.subspec 'Networking' do |networking|
-    networking.source_files = 'GiniPayBank/Classes/Networking/**/*','GiniCapture/Classes/Networking/*.swift', 'GiniCapture/Classes/Networking/Extensions/*.swift'
-    networking.dependency "GiniCapture/Networking"
-    networking.dependency 'GiniPayApiLib/DocumentsAPI', '>= 1.0.2'
-  end
-
-  s.subspec 'Networking+Pinning' do |pinning|
-    pinning.source_files = 'GiniPayBank/Classes/Networking/**/*','GiniCapture/Classes/Networking/*.swift', 'GiniCapture/Classes/Networking/Extensions/*.swift'
-    pinning.dependency "GiniCapture/Networking"
-    pinning.dependency 'GiniPayApiLib/Pinning', '>= 1.0.2'
-  end
-
-  s.subspec 'Payment' do |payment|
-    payment.source_files = 'GiniPayBank/Classes/Payment/**/*'
-    payment.dependency "GiniCapture/Networking"
-    payment.dependency 'GiniPayApiLib/Pinning', '>= 1.0.2'
-  end
-
-  s.subspec 'ReturnAssistant' do |payment|
-    payment.source_files = 'GiniPayBank/Classes/ReturnAssistant/**/*'
-    payment.dependency "GiniCapture/Networking"
-    payment.dependency 'GiniPayApiLib/Pinning', '>= 1.0.2'
+    core.dependency "GiniCapture/Networking"
+    core.dependency 'GiniPayApiLib/DocumentsAPI', '>= 1.0.2'
+    core.dependency 'GiniPayApiLib/Pinning', '>= 1.0.2'
   end
 
   s.test_spec 'Tests' do |test_spec|
