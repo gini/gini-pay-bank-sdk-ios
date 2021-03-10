@@ -64,7 +64,7 @@ final class ComponentAPICoordinatorTests: XCTestCase {
                      "camera screen should be nil when a image is imported")
         
         XCTAssertEqual(componentAPICoordinator?.reviewScreen?.navigationItem.leftBarButtonItem?.title,
-                       "Schließen")
+                      "Close")
         
     }
     
@@ -85,7 +85,7 @@ final class ComponentAPICoordinatorTests: XCTestCase {
                      "camera screen should be nil when a pdfpdf is imported")
         
         XCTAssertEqual(componentAPICoordinator?.analysisScreen?.navigationItem.leftBarButtonItem?.title,
-                       "Schließen")
+                       "Close")
     }
     
     fileprivate func loadPDFDocument(withName name: String) -> GiniPDFDocument {
