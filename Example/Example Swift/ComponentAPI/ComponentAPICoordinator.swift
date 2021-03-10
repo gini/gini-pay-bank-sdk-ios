@@ -195,15 +195,12 @@ extension ComponentAPICoordinator {
         resultsScreen = storyboard.instantiateViewController(withIdentifier: "resultScreen")
             as? ResultTableViewController
         resultsScreen?.result = extractions
-
-        if navigationController.viewControllers.first is AnalysisViewController || navigationController.viewControllers.first is DigitalInvoiceViewController {
-            resultsScreen!.navigationItem
-                .rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("close",
-                                                                               comment: "close button text"),
-                                                      style: .plain,
-                                                      target: self,
-                                                      action: #selector(closeComponentAPIFromResults))
-        }
+        resultsScreen?.navigationItem
+            .rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("close",
+                                                                           comment: "close button text"),
+                                                  style: .plain,
+                                                  target: self,
+                                                  action: #selector(closeComponentAPIFromResults))
         
         push(viewController: resultsScreen!, removing: [reviewScreen, analysisScreen])
     }

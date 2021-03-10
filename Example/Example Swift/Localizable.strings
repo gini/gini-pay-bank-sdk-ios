@@ -21,7 +21,7 @@
 */
 
 "next" = "Weiter";
-"close" = "Schließen";
+"close" = "Close";
 "newDocument" = "New document";
 "help" = "Help";
 "analysisFailedErrorMessage" = "Dokumentanalyse fehlgeschlagen. Möchten Sie es erneut versuchen?";

@@ -81,12 +81,25 @@ final class ScreenAPICoordinator: NSObject, Coordinator, UINavigationControllerD
             .instantiateViewController(withIdentifier: "resultScreen") as? ResultTableViewController)!
         customResultsScreen.result = results
         
+        customResultsScreen.navigationItem
+            .rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("close",
+                                                                           comment: "close button text"),
+                                                  style: .plain,
+                                                  target: self,
+                                                  action: #selector(closeSreenAPI))
+        
         DispatchQueue.main.async { [weak self] in
             self?.screenAPIViewController.setNavigationBarHidden(false, animated: false)
+            
             self?.screenAPIViewController.pushViewController(customResultsScreen, animated: true)
         }
     }
+    
+    @objc private func closeSreenAPI() {
+        delegate?.screenAPI(coordinator: self, didFinish: ())
+    }
 }
+
 
 // MARK: - NoResultsScreenDelegate
 
