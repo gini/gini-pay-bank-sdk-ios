@@ -48,29 +48,26 @@ final class ScreenAPICoordinator: NSObject, Coordinator, UINavigationControllerD
     let documentMetadata: Document.Metadata?
     weak var analysisDelegate: GiniPayBankAnalysisDelegate?
     var visionDocuments: [GiniCaptureDocument]?
-    var visionConfiguration: GiniConfiguration
-    var returnAssistantConfiguration: ReturnAssistantConfiguration
+    var configuration: GiniPayBankConfiguration
     var sendFeedbackBlock: (([String: Extraction]) -> Void)?
     
-    init(configuration: GiniConfiguration,
-         returnAssistantConfig: ReturnAssistantConfiguration,
+    init(configuration: GiniPayBankConfiguration,
          importedDocuments documents: [GiniCaptureDocument]?,
          client: Client,
          documentMetadata: Document.Metadata?) {
-        self.visionConfiguration = configuration
+        self.configuration = configuration
         self.visionDocuments = documents
         self.client = client
         self.documentMetadata = documentMetadata
-        self.returnAssistantConfiguration = returnAssistantConfig
         super.init()
     }
     
     func start() {
-        let viewController = GiniPayBank.viewController(withClient: client, importedDocuments: visionDocuments, configuration: visionConfiguration, returnAssistantConfiguration: returnAssistantConfiguration, resultsDelegate: self, documentMetadata: documentMetadata, api: .default, userApi: .default, trackingDelegate: trackingDelegate)
+        let viewController = GiniPayBank.viewController(withClient: client, importedDocuments: visionDocuments, configuration: configuration, resultsDelegate: self, documentMetadata: documentMetadata, api: .default, userApi: .default, trackingDelegate: trackingDelegate)
 
         screenAPIViewController = RootNavigationController(rootViewController: viewController)
-        screenAPIViewController.navigationBar.barTintColor = visionConfiguration.navigationBarTintColor
-        screenAPIViewController.navigationBar.tintColor = visionConfiguration.navigationBarTitleColor
+        screenAPIViewController.navigationBar.barTintColor = configuration.navigationBarTintColor
+        screenAPIViewController.navigationBar.tintColor = configuration.navigationBarTitleColor
         screenAPIViewController.setNavigationBarHidden(true, animated: false)
         screenAPIViewController.delegate = self
         screenAPIViewController.interactivePopGestureRecognizer?.delegate = nil

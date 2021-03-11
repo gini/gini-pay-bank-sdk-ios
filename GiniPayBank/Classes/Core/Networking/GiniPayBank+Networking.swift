@@ -8,7 +8,6 @@
 import Foundation
 import GiniCapture
 import GiniPayApiLib
-
 extension GiniPayBank {
     /**
      Returns a view controller which will handle the analysis process.
@@ -29,8 +28,7 @@ extension GiniPayBank {
      */
     public class func viewController(withClient client: Client,
                                      importedDocuments: [GiniCaptureDocument]? = nil,
-                                     configuration: GiniConfiguration,
-                                     returnAssistantConfiguration: ReturnAssistantConfiguration,
+                                     configuration: GiniPayBankConfiguration,
                                      resultsDelegate: GiniCaptureResultsDelegate,
                                      documentMetadata: Document.Metadata? = nil,
                                      api: APIDomain = .default,
@@ -38,7 +36,7 @@ extension GiniPayBank {
                                      trackingDelegate: GiniCaptureTrackingDelegate? = nil) -> UIViewController {
         let screenCoordinator = GiniPayBankNetworkingScreenApiCoordinator(client: client,
                                                                           resultsDelegate: resultsDelegate,
-                                                                          giniConfiguration: configuration, returnAssistantConfig: returnAssistantConfiguration,
+                                                                          configuration: configuration,
                                                                           documentMetadata: documentMetadata,
                                                                           api: api,
                                                                           userApi: userApi,

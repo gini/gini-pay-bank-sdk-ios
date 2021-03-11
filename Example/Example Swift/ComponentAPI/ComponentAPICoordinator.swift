@@ -36,8 +36,7 @@ final class ComponentAPICoordinator: NSObject, Coordinator, DigitalInvoiceViewCo
     fileprivate var analysisErrorAndAction: (message: String, action: () -> Void)?
 
     fileprivate let giniColor = Colors.Gini.blue
-    fileprivate let giniConfiguration: GiniConfiguration
-    fileprivate let returnAssistantConfiguration: ReturnAssistantConfiguration
+    fileprivate let giniPayBankConfiguration: GiniPayBankConfiguration
 
     fileprivate lazy var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
     fileprivate lazy var componentAPIOnboardingViewController: ComponentAPIOnboardingViewController =
@@ -65,7 +64,7 @@ final class ComponentAPICoordinator: NSObject, Coordinator, DigitalInvoiceViewCo
     
     fileprivate(set) lazy var multipageReviewScreen: MultipageReviewViewController = {
         let multipageReviewScreen = MultipageReviewViewController(pages: pages,
-                                                                  giniConfiguration: giniConfiguration)
+                                                                  giniConfiguration: giniPayBankConfiguration.captureConfiguration())
         multipageReviewScreen.delegate = self
         addCloseButtonIfNeeded(onViewController: multipageReviewScreen)
         let weiterBarButton = UIBarButtonItem(title: NSLocalizedString("next", comment: "weiter button text"),
@@ -82,19 +81,17 @@ final class ComponentAPICoordinator: NSObject, Coordinator, DigitalInvoiceViewCo
     fileprivate(set) var resultsScreen: ResultTableViewController?
     fileprivate(set) var reviewScreen: ReviewViewController?
     fileprivate(set) lazy var documentPickerCoordinator =
-        DocumentPickerCoordinator(giniConfiguration: giniConfiguration)
+        DocumentPickerCoordinator(giniConfiguration: giniPayBankConfiguration.captureConfiguration())
     
     init(pages: [GiniCapturePage],
-         configuration: GiniConfiguration,
-         returnAssistantConfiguration: ReturnAssistantConfiguration,
+         configuration: GiniPayBankConfiguration,
          documentService: ComponentAPIDocumentServiceProtocol) {
         self.pages = pages
-        self.giniConfiguration = configuration
-        self.returnAssistantConfiguration = returnAssistantConfiguration
+        self.giniPayBankConfiguration = configuration
         self.documentService = documentService
         super.init()
         
-        GiniCapture.setConfiguration(configuration)
+        GiniCapture.setConfiguration(configuration.captureConfiguration())
     }
     
     func start() {
@@ -105,7 +102,7 @@ final class ComponentAPICoordinator: NSObject, Coordinator, DigitalInvoiceViewCo
             showCameraScreen()
         } else {
             if pages.type == .image {
-                if giniConfiguration.multipageEnabled {
+                if giniPayBankConfiguration.multipageEnabled {
                     showMultipageReviewScreen()
                 } else {
                     showReviewScreen()
@@ -123,7 +120,7 @@ final class ComponentAPICoordinator: NSObject, Coordinator, DigitalInvoiceViewCo
 
 extension ComponentAPICoordinator {
     fileprivate func showCameraScreen() {
-        cameraScreen = CameraViewController(giniConfiguration: giniConfiguration)
+        cameraScreen = CameraViewController(giniConfiguration: giniPayBankConfiguration.captureConfiguration())
         cameraScreen?.delegate = self
         cameraScreen?.navigationItem
             .leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("close",
@@ -132,10 +129,10 @@ extension ComponentAPICoordinator {
                                                  target: self,
                                                  action: #selector(closeComponentAPI))
         
-        if giniConfiguration.fileImportSupportedTypes != .none {
+        if giniPayBankConfiguration.fileImportSupportedTypes != .none {
             documentPickerCoordinator.delegate = self
             
-            if giniConfiguration.fileImportSupportedTypes == .pdf_and_images,
+            if giniPayBankConfiguration.fileImportSupportedTypes == .pdf_and_images,
                documentPickerCoordinator.isGalleryPermissionGranted {
                 documentPickerCoordinator.startCaching()
             }
@@ -153,7 +150,7 @@ extension ComponentAPICoordinator {
     
     fileprivate func showReviewScreen() {
         guard let document = pages.first?.document else { return }
-        reviewScreen = ReviewViewController(document: document, giniConfiguration: giniConfiguration)
+        reviewScreen = ReviewViewController(document: document, giniConfiguration: giniPayBankConfiguration.captureConfiguration())
         reviewScreen?.delegate = self
         addCloseButtonIfNeeded(onViewController: reviewScreen!)
         reviewScreen?.navigationItem
@@ -179,7 +176,7 @@ extension ComponentAPICoordinator {
             // In multipage mode the analysis can be triggered once the documents have been uploaded.
             // However, in single mode, the analysis can be triggered right after capturing the image.
             // That is why the document upload should be done here and start the analysis afterwards
-            if giniConfiguration.multipageEnabled {
+            if giniPayBankConfiguration.multipageEnabled {
                 startAnalysis()
             } else {
                 uploadAndStartAnalysis(for: page)
@@ -223,9 +220,9 @@ extension ComponentAPICoordinator {
         push(viewController: vc, removing: [reviewScreen, analysisScreen])
     }
 
-    fileprivate func showDigitalInvoiceScreen(digitalInvoice: DigitalInvoice, withReturnAssistantConfiguration configuration: ReturnAssistantConfiguration) {
+    fileprivate func showDigitalInvoiceScreen(digitalInvoice: DigitalInvoice) {
         let digitalInvoiceViewController = DigitalInvoiceViewController()
-        digitalInvoiceViewController.returnAssistantConfiguration = returnAssistantConfiguration
+        digitalInvoiceViewController.returnAssistantConfiguration = giniPayBankConfiguration.returnAssistantConfiguration()
         digitalInvoiceViewController.invoice = digitalInvoice
         digitalInvoiceViewController.delegate = self
 
@@ -245,7 +242,7 @@ extension ComponentAPICoordinator {
         if let documentsType = pages.type {
             switch documentsType {
             case .image:
-                if giniConfiguration.multipageEnabled {
+                if giniPayBankConfiguration.multipageEnabled {
                     refreshMultipageReview(with: pages)
                     showMultipageReviewScreen()
                 } else {
@@ -331,10 +328,10 @@ extension ComponentAPICoordinator {
     private func process(captured page: GiniCapturePage) {
         if !page.document.isReviewable {
             uploadAndStartAnalysis(for: page)
-        } else if giniConfiguration.multipageEnabled {
+        } else if giniPayBankConfiguration.multipageEnabled {
             let refreshMultipageScreen = {
                 // When multipage mode is used and documents are images, you have to refresh the multipage review screen
-                if self.giniConfiguration.multipageEnabled, self.pages.type == .image {
+                if self.giniPayBankConfiguration.multipageEnabled, self.pages.type == .image {
                     self.refreshMultipageReview(with: self.pages)
                 }
             }
@@ -541,7 +538,7 @@ extension ComponentAPICoordinator: DocumentPickerCoordinatorDelegate {
                         if !self.pages.isEmpty {
                             positiveAction = {
                                 coordinator.dismissCurrentPicker {
-                                    if self.giniConfiguration.multipageEnabled {
+                                    if self.giniPayBankConfiguration.multipageEnabled {
                                         self.showMultipageReviewScreen()
                                     } else {
                                         self.showReviewScreen()
@@ -592,7 +589,7 @@ extension ComponentAPICoordinator: MultipageReviewViewControllerDelegate {
         if let index = pages.index(of: page.document) {
             pages[index].error = nil
 
-            if giniConfiguration.multipageEnabled, pages.type == .image {
+            if giniPayBankConfiguration.multipageEnabled, pages.type == .image {
                 refreshMultipageReview(with: pages)
             }
 
@@ -603,7 +600,7 @@ extension ComponentAPICoordinator: MultipageReviewViewControllerDelegate {
     func multipageReview(_ controller: MultipageReviewViewController, didReorder pages: [GiniCapturePage]) {
         self.pages = pages
         
-        if giniConfiguration.multipageEnabled {
+        if giniPayBankConfiguration.multipageEnabled {
             documentService?.sortDocuments(withSameOrderAs: self.pages.map { $0.document })
         }
     }
@@ -661,7 +658,7 @@ extension ComponentAPICoordinator {
             let elementsWithError = validatedDocuments.filter { $0.error != nil }
             if let firstElement = elementsWithError.first,
                let error = firstElement.error,
-               !self.giniConfiguration.multipageEnabled || firstElement.document.type != .image {
+               !self.giniPayBankConfiguration.multipageEnabled || firstElement.document.type != .image {
                 completion(.failure(error))
             } else {
                 completion(.success(validatedDocuments))
@@ -677,7 +674,7 @@ extension ComponentAPICoordinator {
                 var documentError: Error?
                 do {
                     try GiniCaptureDocumentValidator.validate(document,
-                                                             withConfig: self.giniConfiguration)
+                                                              withConfig: self.giniPayBankConfiguration.captureConfiguration())
                 } catch let error {
                     documentError = error
                 }
@@ -701,8 +698,7 @@ extension ComponentAPICoordinator {
                 if GiniPayBank.shared.returnAssistantEnabled {
                     do {
                         let digitalInvoice = try DigitalInvoice(extractionResult: extractionResult)
-                        let config = self.returnAssistantConfiguration
-                        self.showDigitalInvoiceScreen(digitalInvoice: digitalInvoice, withReturnAssistantConfiguration: config)
+                        self.showDigitalInvoiceScreen(digitalInvoice: digitalInvoice)
                     } catch {
                         self.showResultsTableScreen(withExtractions: extractionResult.extractions)
                     }

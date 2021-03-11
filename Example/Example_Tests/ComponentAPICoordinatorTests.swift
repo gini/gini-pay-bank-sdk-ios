@@ -19,8 +19,7 @@ final class ComponentAPICoordinatorTests: XCTestCase {
     
     func testInitialization() {
         componentAPICoordinator = ComponentAPICoordinator(pages: [],
-                                                          configuration: GiniConfiguration(),
-                                                          returnAssistantConfiguration: ReturnAssistantConfiguration(),
+                                                          configuration: GiniPayBankConfiguration(),
                                                           documentService: documentService)
         componentAPICoordinator?.start()
         
@@ -31,8 +30,7 @@ final class ComponentAPICoordinatorTests: XCTestCase {
     
     func testInitializationWhenNoDocument() {
         componentAPICoordinator = ComponentAPICoordinator(pages: [],
-                                                          configuration: GiniConfiguration(),
-                                                          returnAssistantConfiguration: ReturnAssistantConfiguration(),
+                                                          configuration: GiniPayBankConfiguration(),
                                                           documentService: documentService)
         componentAPICoordinator?.start()
         
@@ -51,8 +49,7 @@ final class ComponentAPICoordinatorTests: XCTestCase {
         let document = builder.build(with: image!.pngData()!)!
         
         componentAPICoordinator = ComponentAPICoordinator(pages: [GiniCapturePage(document: document)],
-                                                          configuration: GiniConfiguration(),
-                                                          returnAssistantConfiguration: ReturnAssistantConfiguration(),
+                                                          configuration: GiniPayBankConfiguration(),
                                                           documentService: documentService)
         componentAPICoordinator?.start()
         
@@ -72,8 +69,7 @@ final class ComponentAPICoordinatorTests: XCTestCase {
         let pdfDocument = loadPDFDocument(withName: "testPDF")
         
         componentAPICoordinator = ComponentAPICoordinator(pages: [GiniCapturePage(document: pdfDocument)],
-                                                          configuration: GiniConfiguration(),
-                                                          returnAssistantConfiguration: ReturnAssistantConfiguration(),
+                                                          configuration: GiniPayBankConfiguration(),
                                                           documentService: documentService)
         componentAPICoordinator?.start()
         

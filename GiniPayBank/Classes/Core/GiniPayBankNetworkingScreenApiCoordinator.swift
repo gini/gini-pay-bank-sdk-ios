@@ -16,34 +16,31 @@ protocol Coordinator: class {
 open class GiniPayBankNetworkingScreenApiCoordinator: GiniScreenAPICoordinator {
     weak var resultsDelegate: GiniCaptureResultsDelegate?
     let documentService: DocumentServiceProtocol
-    var returnAssistantConfig: ReturnAssistantConfiguration?
+    var giniPayBankConfiguration: GiniPayBankConfiguration = GiniPayBankConfiguration()
     
     init(client: Client,
          resultsDelegate: GiniCaptureResultsDelegate,
-         giniConfiguration: GiniConfiguration,
-         returnAssistantConfiguration: ReturnAssistantConfiguration,
+         configuration: GiniPayBankConfiguration,
          documentMetadata: Document.Metadata?,
          api: APIDomain,
          trackingDelegate: GiniCaptureTrackingDelegate?,
          lib: GiniApiLib) {
         documentService = GiniPayBankNetworkingScreenApiCoordinator.documentService(with: lib,
                                                                documentMetadata: documentMetadata,
-                                                               giniConfiguration: giniConfiguration,
+                                                               configuration: configuration,
                                                                for: api)
-
-        super.init(withDelegate: nil,
-                   giniConfiguration: giniConfiguration)
+        let captureConfiguration = configuration.captureConfiguration()
+        super.init(withDelegate: nil, giniConfiguration: captureConfiguration)
 
         visionDelegate = self
-        self.returnAssistantConfig = returnAssistantConfiguration
+        self.giniPayBankConfiguration = configuration
         self.resultsDelegate = resultsDelegate
         self.trackingDelegate = trackingDelegate
     }
 
     convenience init(client: Client,
                      resultsDelegate: GiniCaptureResultsDelegate,
-                     giniConfiguration: GiniConfiguration,
-                     returnAssistantConfig: ReturnAssistantConfiguration,
+                     configuration: GiniPayBankConfiguration,
                      documentMetadata: Document.Metadata?,
                      api: APIDomain,
                      userApi: UserDomain,
@@ -54,8 +51,7 @@ open class GiniPayBankNetworkingScreenApiCoordinator: GiniScreenAPICoordinator {
 
         self.init(client: client,
                   resultsDelegate: resultsDelegate,
-                  giniConfiguration: giniConfiguration,
-                  returnAssistantConfiguration: returnAssistantConfig,
+                  configuration: configuration,
                   documentMetadata: documentMetadata,
                   api: api,
                   trackingDelegate: trackingDelegate,
@@ -64,13 +60,14 @@ open class GiniPayBankNetworkingScreenApiCoordinator: GiniScreenAPICoordinator {
 
     private static func documentService(with lib: GiniApiLib,
                                         documentMetadata: Document.Metadata?,
-                                        giniConfiguration: GiniConfiguration,
+                                        configuration: GiniPayBankConfiguration,
                                         for api: APIDomain) -> DocumentServiceProtocol {
+        let captureConfiguration = configuration.captureConfiguration()
         switch api {
         case .default, .gym, .custom:
             return DocumentService(lib: lib, metadata: documentMetadata)
         case .accounting:
-            if giniConfiguration.multipageEnabled {
+            if captureConfiguration.multipageEnabled {
                 preconditionFailure("The accounting API does not support multipage")
             }
             return AccountingDocumentService(lib: lib, metadata: documentMetadata)
@@ -147,9 +144,9 @@ extension GiniPayBankNetworkingScreenApiCoordinator {
         }
     }
 
-    public func showDigitalInvoiceScreen(digitalInvoice: DigitalInvoice, analysisDelegate: AnalysisDelegate, configuration: ReturnAssistantConfiguration) {
+    public func showDigitalInvoiceScreen(digitalInvoice: DigitalInvoice, analysisDelegate: AnalysisDelegate) {
         let digitalInvoiceViewController = DigitalInvoiceViewController()
-        digitalInvoiceViewController.returnAssistantConfiguration = returnAssistantConfig ?? ReturnAssistantConfiguration.shared
+        digitalInvoiceViewController.returnAssistantConfiguration = giniPayBankConfiguration.returnAssistantConfiguration()
         digitalInvoiceViewController.invoice = digitalInvoice
         digitalInvoiceViewController.delegate = self
         digitalInvoiceViewController.analysisDelegate = analysisDelegate
@@ -167,8 +164,7 @@ extension GiniPayBankNetworkingScreenApiCoordinator {
                     if GiniPayBank.shared.returnAssistantEnabled {
                         do {
                             let digitalInvoice = try DigitalInvoice(extractionResult: extractionResult)
-                            let config = self.returnAssistantConfig ?? ReturnAssistantConfiguration.shared
-                            self.showDigitalInvoiceScreen(digitalInvoice: digitalInvoice, analysisDelegate: networkDelegate, configuration: config)
+                            self.showDigitalInvoiceScreen(digitalInvoice: digitalInvoice, analysisDelegate: networkDelegate)
                         } catch {
                             self.deliverWithReturnAssistant(result: extractionResult, analysisDelegate: networkDelegate)
                         }
