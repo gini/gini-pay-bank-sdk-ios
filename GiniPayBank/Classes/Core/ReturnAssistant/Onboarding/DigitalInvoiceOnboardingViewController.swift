@@ -8,7 +8,7 @@
 import Foundation
 import GiniCapture
     final class DigitalInvoiceOnboardingViewController: UIViewController {
-    let returnAssistantConfiguration = ReturnAssistantConfiguration.shared
+    var returnAssistantConfiguration = ReturnAssistantConfiguration()
 
     @IBOutlet var topImageView: UIImageView!
     @IBOutlet var badgeImageView: UIImageView!

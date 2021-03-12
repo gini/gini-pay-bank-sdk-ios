@@ -131,6 +131,11 @@ public final class ReturnAssistantConfiguration: NSObject {
     @objc public var digitalInvoiceFooterMessageTextFont = UIFont.systemFont(ofSize: 11)
     
     /**
+     Sets the text color of the footer message on the digital invoice screen.
+     */
+    @objc public var digitalInvoiceFooterMessageTextColor = GiniColor(lightModeColor: .gray, darkModeColor:.white)
+    
+    /**
      Sets the font of the items section header on the digital invoice screen to the specified font.
      */
     @objc public var digitalInvoiceItemsSectionHeaderTextFont = UIFont.systemFont(ofSize: 12)

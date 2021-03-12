@@ -140,7 +140,8 @@ public class DigitalInvoiceViewController: UIViewController {
         if onboardingWillBeShown {
             let bundle = Bundle(for: type(of: self))
             let storyboard = UIStoryboard(name: "DigitalInvoiceOnboarding", bundle: bundle)
-            let digitalInvoiceOnboardingViewController = storyboard.instantiateViewController(withIdentifier: "digitalInvoiceOnboardingViewController")
+            let digitalInvoiceOnboardingViewController = storyboard.instantiateViewController(withIdentifier: "digitalInvoiceOnboardingViewController") as! DigitalInvoiceOnboardingViewController
+            digitalInvoiceOnboardingViewController.returnAssistantConfiguration = returnAssistantConfiguration
             present(digitalInvoiceOnboardingViewController, animated: true)
         }
     }

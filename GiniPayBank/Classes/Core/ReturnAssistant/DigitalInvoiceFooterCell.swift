@@ -16,14 +16,10 @@ class DigitalInvoiceFooterCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
-        setup()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-
-        setup()
     }
 
     private func setup() {
@@ -35,13 +31,7 @@ class DigitalInvoiceFooterCell: UITableViewCell {
         messageLabel.text = .ginipayLocalized(resource: DigitalInvoiceStrings.footerMessage)
         messageLabel.numberOfLines = 0
         messageLabel.font = configuration.digitalInvoiceFooterMessageTextFont
-
-        if #available(iOS 13.0, *) {
-            messageLabel.textColor = .secondaryLabel
-        } else {
-            messageLabel.textColor = .gray
-        }
-        messageLabel.textAlignment = .center
+        messageLabel.textColor = UIColor.from(giniColor:configuration.digitalInvoiceFooterMessageTextColor)
 
         contentView.addSubview(messageLabel)
         let messageLabelHeight: CGFloat = 48
