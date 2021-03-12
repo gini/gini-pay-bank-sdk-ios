@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import GiniCapture
 import GiniPayApiLib
+import GiniPayBank
 
 final class AppCoordinator: Coordinator {
         
@@ -26,17 +27,17 @@ final class AppCoordinator: Coordinator {
         selectAPIViewController.clientId = self.client.id
         return selectAPIViewController
     }()
-    
-    lazy var giniConfiguration: GiniConfiguration = {
-        let giniConfiguration = GiniConfiguration()
-        giniConfiguration.debugModeOn = true
-        giniConfiguration.fileImportSupportedTypes = .pdf_and_images
-        giniConfiguration.openWithEnabled = true
-        giniConfiguration.qrCodeScanningEnabled = true
-        giniConfiguration.multipageEnabled = true
-        giniConfiguration.flashToggleEnabled = true
-        giniConfiguration.navigationBarItemTintColor = .white
-        giniConfiguration.customDocumentValidations = { document in
+
+    lazy var configuration: GiniPayBankConfiguration = {
+        let configuration = GiniPayBankConfiguration()
+        configuration.debugModeOn = true
+        configuration.fileImportSupportedTypes = .pdf_and_images
+        configuration.openWithEnabled = true
+        configuration.qrCodeScanningEnabled = true
+        configuration.multipageEnabled = true
+        configuration.flashToggleEnabled = true
+        configuration.navigationBarItemTintColor = .white
+        configuration.customDocumentValidations = { document in
             // As an example of custom document validation, we add a more strict check for file size
             let maxFileSize = 5 * 1024 * 1024
             if document.data.count > maxFileSize {
@@ -45,7 +46,7 @@ final class AppCoordinator: Coordinator {
             }
             return CustomDocumentValidationResult.success()
         }
-        return giniConfiguration
+       return configuration
     }()
     
     private lazy var client: Client = CredentialsManager.fetchClientFromBundle()
@@ -68,6 +69,7 @@ final class AppCoordinator: Coordinator {
     
     func processExternalDocument(withUrl url: URL, sourceApplication: String?) {
         
+        let captureConfiguration = configuration.captureConfiguration()
         // 1. Build the document
         let documentBuilder = GiniCaptureDocumentBuilder(documentSource: .appName(name: sourceApplication))
         documentBuilder.importMethod = .openWith
@@ -84,7 +86,7 @@ final class AppCoordinator: Coordinator {
             if let document = document {
                 do {
                     try GiniCapture.validate(document,
-                                            withConfig: self.giniConfiguration)
+                                             withConfig: captureConfiguration)
                     self.showOpenWithSwitchDialog(for: [GiniCapturePage(document: document, error: nil)])
                 } catch {
                     self.showExternalDocumentNotValidDialog()
@@ -101,20 +103,20 @@ final class AppCoordinator: Coordinator {
     fileprivate func showScreenAPI(with pages: [GiniCapturePage]? = nil) {
         documentMetadata = Document.Metadata(branchId: documentMetadataBranchId,
                                              additionalHeaders: [documentMetadataAppFlowKey: "ScreenAPI"])
-        let screenAPICoordinator = ScreenAPICoordinator(configuration: giniConfiguration,
+        let screenAPICoordinator = ScreenAPICoordinator(configuration: configuration,
                                                         importedDocuments: pages?.map { $0.document },
                                                         client: client,
                                                         documentMetadata: documentMetadata)
         screenAPICoordinator.delegate = self
         screenAPICoordinator.start()
-        add(childCoordinator: screenAPICoordinator)
+        add(childCoordinator: screenAPICoordinator as Coordinator)
         
         rootViewController.present(screenAPICoordinator.rootViewController, animated: true, completion: nil)
     }
     
     fileprivate func showComponentAPI(with pages: [GiniCapturePage]? = nil) {
         let componentAPICoordinator = ComponentAPICoordinator(pages: pages ?? [],
-                                                              configuration: giniConfiguration,
+                                                              configuration: configuration,
                                                               documentService: componentAPIDocumentService())
         componentAPICoordinator.delegate = self
         componentAPICoordinator.start()
@@ -135,7 +137,7 @@ final class AppCoordinator: Coordinator {
         let settingsViewController = (UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(withIdentifier: "settingsViewController") as? SettingsViewController)!
         settingsViewController.delegate = self
-        settingsViewController.giniConfiguration = giniConfiguration
+        settingsViewController.giniConfiguration = configuration.captureConfiguration()
         settingsViewController.modalPresentationStyle = .overFullScreen
         settingsViewController.modalTransitionStyle = .crossDissolve
         
@@ -198,8 +200,8 @@ extension AppCoordinator: SelectAPIViewControllerDelegate {
 
 extension AppCoordinator: SettingsViewControllerDelegate {
     func settings(settingViewController: SettingsViewController,
-                  didChangeConfiguration configuration: GiniConfiguration) {
-        giniConfiguration = configuration
+                  didChangeConfiguration captureConfiguration: GiniConfiguration) {
+        configuration.updateConfiguration(withCaptureConfiguration: captureConfiguration)
     }
 }
 
@@ -208,7 +210,7 @@ extension AppCoordinator: SettingsViewControllerDelegate {
 extension AppCoordinator: ScreenAPICoordinatorDelegate {
     func screenAPI(coordinator: ScreenAPICoordinator, didFinish: ()) {
         coordinator.rootViewController.dismiss(animated: true, completion: nil)
-        self.remove(childCoordinator: coordinator)
+        self.remove(childCoordinator: coordinator as Coordinator)
     }
 }
 

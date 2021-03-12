@@ -11,7 +11,7 @@ import AVFoundation
 
 protocol SettingsViewControllerDelegate: class {
     func settings(settingViewController: SettingsViewController,
-                  didChangeConfiguration configuration: GiniConfiguration)
+                  didChangeConfiguration captureConfiguration: GiniConfiguration)
 }
 
 final class SettingsViewController: UIViewController {

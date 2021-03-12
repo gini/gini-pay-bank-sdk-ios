@@ -8,8 +8,8 @@
 
 import XCTest
 @testable import Example_Swift
-@testable import GiniCapture
 @testable import GiniPayApiLib
+@testable import GiniPayBank
 
 
 final class ScreenAPICoordinatorTests: XCTestCase {
@@ -20,7 +20,7 @@ final class ScreenAPICoordinatorTests: XCTestCase {
     var screenAPICoordinator: ScreenAPICoordinator?
     
     func testInitialization() {
-        screenAPICoordinator = ScreenAPICoordinator(configuration: GiniConfiguration(),
+        screenAPICoordinator = ScreenAPICoordinator(configuration: GiniPayBankConfiguration(),
                                                     importedDocuments: nil,
                                                     client: client,
                                                     documentMetadata: nil)

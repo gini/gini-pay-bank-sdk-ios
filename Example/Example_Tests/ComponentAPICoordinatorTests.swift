@@ -9,6 +9,7 @@
 import XCTest
 @testable import Example_Swift
 @testable import GiniCapture
+@testable import GiniPayBank
 
 final class ComponentAPICoordinatorTests: XCTestCase {
     
@@ -18,7 +19,7 @@ final class ComponentAPICoordinatorTests: XCTestCase {
     
     func testInitialization() {
         componentAPICoordinator = ComponentAPICoordinator(pages: [],
-                                                          configuration: GiniConfiguration(),
+                                                          configuration: GiniPayBankConfiguration(),
                                                           documentService: documentService)
         componentAPICoordinator?.start()
         
@@ -29,7 +30,7 @@ final class ComponentAPICoordinatorTests: XCTestCase {
     
     func testInitializationWhenNoDocument() {
         componentAPICoordinator = ComponentAPICoordinator(pages: [],
-                                                          configuration: GiniConfiguration(),
+                                                          configuration: GiniPayBankConfiguration(),
                                                           documentService: documentService)
         componentAPICoordinator?.start()
         
@@ -48,7 +49,7 @@ final class ComponentAPICoordinatorTests: XCTestCase {
         let document = builder.build(with: image!.pngData()!)!
         
         componentAPICoordinator = ComponentAPICoordinator(pages: [GiniCapturePage(document: document)],
-                                                          configuration: GiniConfiguration(),
+                                                          configuration: GiniPayBankConfiguration(),
                                                           documentService: documentService)
         componentAPICoordinator?.start()
         
@@ -60,7 +61,7 @@ final class ComponentAPICoordinatorTests: XCTestCase {
                      "camera screen should be nil when a image is imported")
         
         XCTAssertEqual(componentAPICoordinator?.reviewScreen?.navigationItem.leftBarButtonItem?.title,
-                       "Schließen")
+                      "Close")
         
     }
     
@@ -68,7 +69,7 @@ final class ComponentAPICoordinatorTests: XCTestCase {
         let pdfDocument = loadPDFDocument(withName: "testPDF")
         
         componentAPICoordinator = ComponentAPICoordinator(pages: [GiniCapturePage(document: pdfDocument)],
-                                                          configuration: GiniConfiguration(),
+                                                          configuration: GiniPayBankConfiguration(),
                                                           documentService: documentService)
         componentAPICoordinator?.start()
         
@@ -80,7 +81,7 @@ final class ComponentAPICoordinatorTests: XCTestCase {
                      "camera screen should be nil when a pdfpdf is imported")
         
         XCTAssertEqual(componentAPICoordinator?.analysisScreen?.navigationItem.leftBarButtonItem?.title,
-                       "Schließen")
+                       "Close")
     }
     
     fileprivate func loadPDFDocument(withName name: String) -> GiniPDFDocument {
