@@ -293,6 +293,7 @@ extension DigitalInvoiceViewController: DigitalLineItemTableViewCellDelegate {
         viewController.lineItem = invoice?.lineItems[viewModel.index]
         viewController.returnReasons = invoice?.returnReasons
         viewController.lineItemIndex = viewModel.index
+        viewController.returnAssistantConfiguration = returnAssistantConfiguration
         viewController.delegate = self
         
         navigationController?.pushViewController(viewController, animated: true)
