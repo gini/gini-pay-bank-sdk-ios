@@ -665,6 +665,11 @@ public final class GiniPayBankConfiguration: NSObject {
     @objc public var digitalInvoiceFooterMessageTextColor = GiniColor(lightModeColor: .gray, darkModeColor:.white)
     
     /**
+     Sets the text color of the items section header on the digital invoice screen.
+     */
+    @objc public var digitalInvoiceItemsSectionHeaderTextColor = GiniColor(lightModeColor: .gray, darkModeColor:.white)
+
+    /**
      Sets the font of the items section header on the digital invoice screen to the specified font.
      */
     @objc public var digitalInvoiceItemsSectionHeaderTextFont = UIFont.systemFont(ofSize: 12)
@@ -1045,7 +1050,9 @@ public final class GiniPayBankConfiguration: NSObject {
         configuration.digitalInvoiceLineItemsBackgroundColor = self.digitalInvoiceLineItemsBackgroundColor
         configuration.digitalInvoiceFooterMessageTextFont = self.digitalInvoiceFooterMessageTextFont
         configuration.digitalInvoiceFooterMessageTextColor = self.digitalInvoiceFooterMessageTextColor
+        
         configuration.digitalInvoiceItemsSectionHeaderTextFont = self.digitalInvoiceItemsSectionHeaderTextFont
+        configuration.digitalInvoiceItemsSectionHeaderTextColor = self.digitalInvoiceItemsSectionHeaderTextColor
         
         configuration.payButtonBackgroundColor = self.payButtonBackgroundColor
         configuration.payButtonTitleTextColor = self.payButtonTitleTextColor

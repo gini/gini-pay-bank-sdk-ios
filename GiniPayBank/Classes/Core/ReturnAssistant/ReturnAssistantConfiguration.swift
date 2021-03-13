@@ -141,6 +141,11 @@ public final class ReturnAssistantConfiguration: NSObject {
     @objc public var digitalInvoiceItemsSectionHeaderTextFont = UIFont.systemFont(ofSize: 12)
     
     /**
+     Sets the text color of the items section header on the digital invoice screen.
+     */
+    @objc public var digitalInvoiceItemsSectionHeaderTextColor = GiniColor(lightModeColor: .gray, darkModeColor:.white)
+    
+    /**
      Sets the background color of the digital invoice pay button to the specified color
      */
     @objc public var payButtonBackgroundColor = Colors.Gini.blue
