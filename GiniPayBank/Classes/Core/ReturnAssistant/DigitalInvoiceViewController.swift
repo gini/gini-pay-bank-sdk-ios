@@ -80,7 +80,7 @@ public class DigitalInvoiceViewController: UIViewController {
                            forCellReuseIdentifier: "TextFieldTableViewCell")
         
         tableView.register(UINib(nibName: "DigitalLineItemTableViewCell",
-                                 bundle: Bundle(for: GiniPayBank.self)),
+                                 bundle: giniPayBankBundle()),
                            forCellReuseIdentifier: "DigitalLineItemTableViewCell")
         
         tableView.register(DigitalInvoiceAddonCell.self,

@@ -54,7 +54,7 @@ func prefferedImage(named name: String) -> UIImage? {
     if let clientImage = UIImage(named: name) {
         return clientImage
     }
-    let bundle = Bundle(for: GiniPayBank.self)
+    let bundle = giniPayBankBundle()
     return UIImage(named: name, in: bundle, compatibleWith: nil)
 }
 

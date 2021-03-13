@@ -83,7 +83,7 @@ class DigitalInvoiceHeaderCell: UITableViewCell {
         spacerView.backgroundColor = .clear
         
         let imageView = UIImageView(image: UIImage(named: "invoiceIllustration",
-                                                   in: Bundle(for: GiniPayBank.self),
+                                                   in: giniPayBankBundle(),
                                                    compatibleWith: nil))
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
