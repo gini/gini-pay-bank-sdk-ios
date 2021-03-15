@@ -58,7 +58,7 @@ public final class GiniPayBankConfiguration: NSObject {
      
      - note: Screen API only.
      */
-    @objc public var navigationBarTintColor = UINavigationBar.appearance().barTintColor ?? Colors.Gini.blue
+    @objc public var navigationBarTintColor = UINavigationBar.appearance().barTintColor ?? Colors.Gini.raspberry
     
     /**
      Sets the tint color of all navigation items in all screens of the Gini Pay Bank SDK to
