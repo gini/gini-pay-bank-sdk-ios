@@ -70,7 +70,7 @@ class CheckboxButton: UIButton {
             backgroundView.backgroundColor = tintColor
             backgroundView.layer.borderColor = UIColor.clear.cgColor
             
-            setImage(UIImage(named: "checkmark", in: Bundle(for: GiniPayBank.self), compatibleWith: nil),
+            setImage(UIImage(named: "checkmark", in: giniPayBankBundle(), compatibleWith: nil),
                      for: .normal)
             
             accessibilityLabel = .ginipayLocalized(resource: DigitalInvoiceStrings.checkmarkButtonDeselectAccessibilityLabel)

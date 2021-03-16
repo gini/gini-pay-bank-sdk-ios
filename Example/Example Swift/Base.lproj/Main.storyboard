@@ -2,8 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Ggv-ZP-h5h">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -157,7 +157,6 @@
                                 </variation>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" name="AccentColor"/>
                         <constraints>
                             <constraint firstItem="AaL-kG-aBp" firstAttribute="top" secondItem="08c-kU-hUA" secondAttribute="top" constant="100" id="0Da-gP-FEA"/>
                             <constraint firstItem="ZlJ-hw-K1e" firstAttribute="top" secondItem="MbF-2O-gGH" secondAttribute="bottom" constant="50" id="0FA-tj-CBP"/>
@@ -238,7 +237,6 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yit-Ul-7WY">
                                                     <rect key="frame" x="317" y="16" width="51" height="31"/>
                                                     <color key="onTintColor" red="0.97003465889999996" green="0.0" blue="0.35686057809999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    <color key="thumbTintColor" name="AccentColor"/>
                                                     <connections>
                                                         <action selector="openWithSwitch:" destination="jLX-Py-40o" eventType="valueChanged" id="Izp-34-DoH"/>
                                                     </connections>
@@ -256,7 +254,6 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kKD-zg-kit">
                                                     <rect key="frame" x="317" y="110" width="51" height="31"/>
                                                     <color key="onTintColor" red="0.97003465889999996" green="0.0" blue="0.35686057809999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    <color key="thumbTintColor" name="AccentColor"/>
                                                     <connections>
                                                         <action selector="multipageSwitch:" destination="jLX-Py-40o" eventType="valueChanged" id="cys-V0-HNA"/>
                                                     </connections>
@@ -269,7 +266,6 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iBn-2O-R5s">
                                                     <rect key="frame" x="317" y="63" width="51" height="31"/>
                                                     <color key="onTintColor" red="0.97003465889999996" green="0.0" blue="0.35686057809999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    <color key="thumbTintColor" name="AccentColor"/>
                                                     <connections>
                                                         <action selector="qrCodeScanningSwitch:" destination="jLX-Py-40o" eventType="valueChanged" id="Yjt-RY-c4e"/>
                                                     </connections>
@@ -303,13 +299,11 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fe9-Mu-ich">
                                                     <rect key="frame" x="317" y="157" width="51" height="31"/>
                                                     <color key="onTintColor" red="0.97003465889999996" green="0.0" blue="0.35686057809999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    <color key="thumbTintColor" name="AccentColor"/>
                                                     <connections>
                                                         <action selector="flashToggleSwitch:" destination="jLX-Py-40o" eventType="valueChanged" id="GAb-uQ-8nE"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
-                                            <color key="backgroundColor" name="AccentColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="nr0-nM-ziR" secondAttribute="bottom" id="04j-bz-ZBg"/>
                                                 <constraint firstItem="cVO-kR-liJ" firstAttribute="leading" secondItem="9Jl-Kr-1sd" secondAttribute="leading" constant="16" id="1bV-8f-LqT"/>
@@ -354,7 +348,6 @@
                                             </connections>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" name="AccentColor"/>
                                     <constraints>
                                         <constraint firstItem="9Jl-Kr-1sd" firstAttribute="leading" secondItem="eer-tI-Ukv" secondAttribute="leading" constant="16" id="DSt-uz-z4Y"/>
                                         <constraint firstAttribute="trailing" secondItem="42r-Zq-01h" secondAttribute="trailing" constant="16" id="k9S-dK-djb"/>
@@ -365,11 +358,9 @@
                                         <constraint firstItem="9Jl-Kr-1sd" firstAttribute="centerX" secondItem="eer-tI-Ukv" secondAttribute="centerX" id="yjd-sF-SkR"/>
                                     </constraints>
                                 </view>
-                                <color key="backgroundColor" name="AccentColor"/>
                                 <blurEffect style="extraLight"/>
                             </visualEffectView>
                         </subviews>
-                        <color key="backgroundColor" name="AccentColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="R6a-XM-gNJ" secondAttribute="trailing" id="62T-o5-2AI"/>
                             <constraint firstItem="R6a-XM-gNJ" firstAttribute="leading" secondItem="MEj-9J-Hjf" secondAttribute="leading" id="dKI-JQ-twI"/>
@@ -622,9 +613,6 @@ dA55DoQOjQ6gDqQOrw64Dr0OxQ7IDs0O3A7gDucO7w78DwEPAw8FDwoPEg8VDxoPIgAAAAAAAAIBAAAA
 AAAAAEIAAAAAAAAAAAAAAAAAAA8lA
 </mutableData>
         </image>
-        <namedColor name="AccentColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

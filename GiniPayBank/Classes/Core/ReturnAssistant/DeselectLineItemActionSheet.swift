@@ -17,7 +17,7 @@ class DeselectLineItemActionSheet {
         
         let actionSheet = UIAlertController(title: nil,
                                             message: NSLocalizedString("ginipaybank.digitalinvoice.deselectreasonactionsheet.message",
-                                                                       bundle: Bundle(for: GiniPayBank.self),
+                                                                       bundle: giniPayBankBundle(),
                                                                        comment: ""),
                                             preferredStyle: .actionSheet)
         
@@ -32,7 +32,7 @@ class DeselectLineItemActionSheet {
         }
         
         actionSheet.addAction(UIAlertAction(title: NSLocalizedString("ginipaybank.digitalinvoice.deselectreasonactionsheet.action.cancel",
-                                                                     bundle: Bundle(for: GiniPayBank.self),
+                                                                     bundle: giniPayBankBundle(),
                                                                      comment: ""),
                                             style: .cancel,
                                             handler: { _ in

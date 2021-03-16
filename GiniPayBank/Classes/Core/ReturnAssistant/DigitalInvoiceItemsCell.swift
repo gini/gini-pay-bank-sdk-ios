@@ -6,6 +6,17 @@
 //
 
 import Foundation
+class ButtonWithImage: UIButton {
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if imageView != nil {
+            imageView?.contentMode = .scaleAspectFit
+            imageEdgeInsets = UIEdgeInsets(top: 5, left: (bounds.width), bottom: 0, right: 25)
+            titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 15)
+        }
+    }
+}
 protocol DigitalInvoiceItemsCellDelegate: class {
     
     func whatIsThisTapped(source: UIButton)
@@ -37,8 +48,8 @@ class DigitalInvoiceItemsCell: UITableViewCell {
         }
     }
     
-    private var itemsLabel: UILabel?
-    private let whatIsThisButton = UIButton(type: .system)
+    private var itemsLabel: UILabel? = UILabel()
+    private let whatIsThisButton = ButtonWithImage()
     
     var viewModel: DigitalInvoiceItemsCellViewModel? {
         didSet {
@@ -62,48 +73,35 @@ class DigitalInvoiceItemsCell: UITableViewCell {
     private func setup() {
         
         selectionStyle = .none
-        
-        let itemsLabel = UILabel()
-        itemsLabel.translatesAutoresizingMaskIntoConstraints = false
-        itemsLabel.font = returnAssistantConfiguration?.digitalInvoiceItemsSectionHeaderTextFont ??
+        backgroundColor = UIColor.from(giniColor: returnAssistantConfiguration?.digitalInvoiceBackgroundColor ?? ReturnAssistantConfiguration.shared.digitalInvoiceBackgroundColor)
+        itemsLabel?.translatesAutoresizingMaskIntoConstraints = false
+        itemsLabel?.font = returnAssistantConfiguration?.digitalInvoiceItemsSectionHeaderTextFont ??
             ReturnAssistantConfiguration.shared.digitalInvoiceItemsSectionHeaderTextFont
+        itemsLabel?.textColor = UIColor.from(giniColor:returnAssistantConfiguration?.digitalInvoiceItemsSectionHeaderTextColor ??
+                                                ReturnAssistantConfiguration.shared.digitalInvoiceItemsSectionHeaderTextColor)
         
-        self.itemsLabel = itemsLabel
+        contentView.addSubview(itemsLabel ?? UILabel())
         
-        if #available(iOS 13.0, *) {
-            itemsLabel.textColor = .secondaryLabel
-        } else {
-            itemsLabel.textColor = .gray
-        }
+        itemsLabel?.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
+        itemsLabel?.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
-        contentView.addSubview(itemsLabel)
-        
-        itemsLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
-        itemsLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        
+        whatIsThisButton.tintColor = returnAssistantConfiguration?.lineItemTintColor ??
+            ReturnAssistantConfiguration.shared.lineItemTintColor
         whatIsThisButton.translatesAutoresizingMaskIntoConstraints = false
-        whatIsThisButton.setTitle(.ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisButtonTitle), for: .normal)
-        whatIsThisButton.titleLabel?.font = returnAssistantConfiguration?.digitalInvoiceItemsSectionHeaderTextFont ??
-        ReturnAssistantConfiguration.shared.digitalInvoiceItemsSectionHeaderTextFont
-        
         let image = UIImage(named: "infoIcon",
                             in: Bundle(for: GiniPayBank.self),
                             compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
         
         whatIsThisButton.setImage(image, for: .normal)
         
+        whatIsThisButton.setTitle(.ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisButtonTitle), for: .normal)
+        whatIsThisButton.setTitleColor(returnAssistantConfiguration?.lineItemTintColor ??
+                                                    ReturnAssistantConfiguration.shared.lineItemTintColor, for: .normal)
+        whatIsThisButton.titleLabel?.font = returnAssistantConfiguration?.digitalInvoiceItemsSectionHeaderTextFont ??
+        ReturnAssistantConfiguration.shared.digitalInvoiceItemsSectionHeaderTextFont
+        
         whatIsThisButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 4)
-        whatIsThisButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -48, bottom: 0, right: 0)
-        whatIsThisButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 73, bottom: 0, right: 0)
-        
-        if #available(iOS 13.0, *) {
-            whatIsThisButton.setTitleColor(.secondaryLabel, for: .normal)
-        } else {
-            whatIsThisButton.setTitleColor(.gray, for: .normal)
-        }
-        
-        whatIsThisButton.tintColor = returnAssistantConfiguration?.lineItemTintColor ??
-            ReturnAssistantConfiguration.shared.lineItemTintColor
+
                 
         contentView.addSubview(whatIsThisButton)
         
@@ -113,7 +111,7 @@ class DigitalInvoiceItemsCell: UITableViewCell {
         whatIsThisButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         
         whatIsThisButton.addTarget(self, action: #selector(whatIsThisButtonTapped), for: .touchUpInside)
-        backgroundColor = UIColor.from(giniColor: returnAssistantConfiguration?.digitalInvoiceBackgroundColor ?? ReturnAssistantConfiguration.shared.digitalInvoiceBackgroundColor)
+
     }
     
     @objc func whatIsThisButtonTapped() {

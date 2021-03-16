@@ -80,7 +80,7 @@ public class DigitalInvoiceViewController: UIViewController {
                            forCellReuseIdentifier: "TextFieldTableViewCell")
         
         tableView.register(UINib(nibName: "DigitalLineItemTableViewCell",
-                                 bundle: Bundle(for: GiniPayBank.self)),
+                                 bundle: giniPayBankBundle()),
                            forCellReuseIdentifier: "DigitalLineItemTableViewCell")
         
         tableView.register(DigitalInvoiceAddonCell.self,
@@ -140,7 +140,8 @@ public class DigitalInvoiceViewController: UIViewController {
         if onboardingWillBeShown {
             let bundle = Bundle(for: type(of: self))
             let storyboard = UIStoryboard(name: "DigitalInvoiceOnboarding", bundle: bundle)
-            let digitalInvoiceOnboardingViewController = storyboard.instantiateViewController(withIdentifier: "digitalInvoiceOnboardingViewController")
+            let digitalInvoiceOnboardingViewController = storyboard.instantiateViewController(withIdentifier: "digitalInvoiceOnboardingViewController") as! DigitalInvoiceOnboardingViewController
+            digitalInvoiceOnboardingViewController.returnAssistantConfiguration = returnAssistantConfiguration
             present(digitalInvoiceOnboardingViewController, animated: true)
         }
     }
@@ -292,6 +293,7 @@ extension DigitalInvoiceViewController: DigitalLineItemTableViewCellDelegate {
         viewController.lineItem = invoice?.lineItems[viewModel.index]
         viewController.returnReasons = invoice?.returnReasons
         viewController.lineItemIndex = viewModel.index
+        viewController.returnAssistantConfiguration = returnAssistantConfiguration
         viewController.delegate = self
         
         navigationController?.pushViewController(viewController, animated: true)

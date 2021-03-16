@@ -58,7 +58,7 @@ public final class GiniPayBankConfiguration: NSObject {
      
      - note: Screen API only.
      */
-    @objc public var navigationBarTintColor = UINavigationBar.appearance().barTintColor ?? Colors.Gini.blue
+    @objc public var navigationBarTintColor = UINavigationBar.appearance().barTintColor ?? Colors.Gini.raspberry
     
     /**
      Sets the tint color of all navigation items in all screens of the Gini Pay Bank SDK to
@@ -660,6 +660,16 @@ public final class GiniPayBankConfiguration: NSObject {
     @objc public var digitalInvoiceFooterMessageTextFont = UIFont.systemFont(ofSize: 11)
     
     /**
+     Sets the text color of the footer message on the digital invoice screen.
+     */
+    @objc public var digitalInvoiceFooterMessageTextColor = GiniColor(lightModeColor: .gray, darkModeColor:.white)
+    
+    /**
+     Sets the text color of the items section header on the digital invoice screen.
+     */
+    @objc public var digitalInvoiceItemsSectionHeaderTextColor = GiniColor(lightModeColor: .gray, darkModeColor:.white)
+
+    /**
      Sets the font of the items section header on the digital invoice screen to the specified font.
      */
     @objc public var digitalInvoiceItemsSectionHeaderTextFont = UIFont.systemFont(ofSize: 12)
@@ -1039,7 +1049,10 @@ public final class GiniPayBankConfiguration: NSObject {
         configuration.digitalInvoiceBackgroundColor = self.digitalInvoiceBackgroundColor
         configuration.digitalInvoiceLineItemsBackgroundColor = self.digitalInvoiceLineItemsBackgroundColor
         configuration.digitalInvoiceFooterMessageTextFont = self.digitalInvoiceFooterMessageTextFont
+        configuration.digitalInvoiceFooterMessageTextColor = self.digitalInvoiceFooterMessageTextColor
+        
         configuration.digitalInvoiceItemsSectionHeaderTextFont = self.digitalInvoiceItemsSectionHeaderTextFont
+        configuration.digitalInvoiceItemsSectionHeaderTextColor = self.digitalInvoiceItemsSectionHeaderTextColor
         
         configuration.payButtonBackgroundColor = self.payButtonBackgroundColor
         configuration.payButtonTitleTextColor = self.payButtonTitleTextColor
