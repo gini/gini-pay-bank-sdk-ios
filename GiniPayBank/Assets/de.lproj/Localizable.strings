@@ -45,7 +45,7 @@
 "ginipaybank.digitalinvoice.headermessage.primary" = "Scan war erfolgreich!";
 "ginipaybank.digitalinvoice.headermessage.secondary" = "Du kannst nun die Artikel abwählen, die du zurückschicken willst.";
 "ginipaybank.digitalinvoice.total.accessibilitylabel" = "Total: %@";
-"ginipaybank.digitalinvoice.footermessage" = "Überprüfe, ob so alles in Ordnung ist und editiere, bevor du bezahlst.";
+"ginipaybank.digitalinvoice.footermessage" = "Bitte überprüfe vor der Zahlung, ob alles in Ordnung ist und bearbeite eventuell die Gesamtsumme.";
 "ginipaybank.digitalinvoice.lineitem.savebutton" = "Speichern";
 "ginipaybank.digitalinvoice.lineitem.itemnametextfieldtitle" = "Artikelname";
 "ginipaybank.digitalinvoice.lineitem.quantitytextfieldtitle" = "Anzahl";

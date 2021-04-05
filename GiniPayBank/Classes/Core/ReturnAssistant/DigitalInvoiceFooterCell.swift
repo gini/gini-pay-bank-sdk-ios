@@ -32,6 +32,7 @@ class DigitalInvoiceFooterCell: UITableViewCell {
         messageLabel.numberOfLines = 0
         messageLabel.font = configuration.digitalInvoiceFooterMessageTextFont
         messageLabel.textColor = UIColor.from(giniColor:configuration.digitalInvoiceFooterMessageTextColor)
+        messageLabel.textAlignment = .center
 
         contentView.addSubview(messageLabel)
         let messageLabelHeight: CGFloat = 48
