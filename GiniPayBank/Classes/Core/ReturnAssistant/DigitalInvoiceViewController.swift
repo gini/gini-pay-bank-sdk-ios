@@ -70,9 +70,6 @@ public class DigitalInvoiceViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         
-        tableView.register(DigitalInvoiceHeaderCell.self,
-                           forCellReuseIdentifier: "DigitalInvoiceHeaderCell")
-        
         tableView.register(DigitalInvoiceItemsCell.self,
                            forCellReuseIdentifier: "DigitalInvoiceItemsCell")
         
@@ -161,7 +158,6 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     enum Section: Int, CaseIterable {
-        case header
         case itemsHeader
         case lineItems
         case addons
@@ -176,7 +172,6 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
         switch Section(rawValue: section) {
-        case .header: return 1
         case .itemsHeader: return 1
         case .lineItems: return invoice?.lineItems.count ?? 0
         case .addons: return invoice?.addons.count ?? 0
@@ -189,15 +184,6 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch Section(rawValue: indexPath.section) {
-        case .header:
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DigitalInvoiceHeaderCell",
-                                                     for: indexPath) as! DigitalInvoiceHeaderCell
-            
-            cell.returnAssistantConfiguration = returnAssistantConfiguration
-            
-            return cell
-            
         case .itemsHeader:
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "DigitalInvoiceItemsCell",
