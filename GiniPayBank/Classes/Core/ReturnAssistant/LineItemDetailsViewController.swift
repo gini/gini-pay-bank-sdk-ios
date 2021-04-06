@@ -12,7 +12,8 @@ protocol LineItemDetailsViewControllerDelegate: class {
     
     func didSaveLineItem(lineItemDetailsViewController: LineItemDetailsViewController,
                          lineItem: DigitalInvoice.LineItem,
-                         index: Int)
+                         index: Int,
+                         shouldPopViewController: Bool)
 }
 
 class LineItemDetailsViewController: UIViewController {
@@ -235,13 +236,29 @@ class LineItemDetailsViewController: UIViewController {
         view.backgroundColor = UIColor.from(giniColor: configuration.lineItemDetailsBackgroundColor)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if isMovingFromParent, transitionCoordinator?.isInteractive == false {
+            /*
+            Automatically save changes before user returns to main screen, so in case he
+            forgets to save it, changes are not lost
+             */
+            proceedWithSaveAction(shouldPopViewController: false)
+        }
+      }
+    
     @objc func saveButtonTapped() {
+        proceedWithSaveAction(shouldPopViewController: true)
+    }
+    
+    @objc func proceedWithSaveAction(shouldPopViewController: Bool) {
         
         if let index = lineItemIndex, let lineItem = lineItemFromFields() {
             
             delegate?.didSaveLineItem(lineItemDetailsViewController: self,
                                       lineItem: lineItem,
-                                      index: index)
+                                      index: index, shouldPopViewController: shouldPopViewController)
         }
     }
     
@@ -271,7 +288,6 @@ class LineItemDetailsViewController: UIViewController {
     }
     
     @objc func backgroundTapped() {
-        
         _ = itemNameTextField.resignFirstResponder()
         _ = quantityTextField.resignFirstResponder()
         _ = itemPriceTextField.resignFirstResponder()

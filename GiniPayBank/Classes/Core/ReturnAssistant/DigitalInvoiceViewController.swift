@@ -363,12 +363,12 @@ extension DigitalInvoiceViewController: DigitalInvoiceItemsCellDelegate {
 }
 
 extension DigitalInvoiceViewController: LineItemDetailsViewControllerDelegate {
-    
-    func didSaveLineItem(lineItemDetailsViewController: LineItemDetailsViewController,
-                         lineItem: DigitalInvoice.LineItem,
-                         index: Int) {
+    func didSaveLineItem(lineItemDetailsViewController: LineItemDetailsViewController, lineItem: DigitalInvoice.LineItem, index: Int, shouldPopViewController: Bool) {
         
-        navigationController?.popViewController(animated: true)
+        if shouldPopViewController {
+            navigationController?.popViewController(animated: true)
+        }
+        
         invoice?.lineItems[index] = lineItem
     }
 }
