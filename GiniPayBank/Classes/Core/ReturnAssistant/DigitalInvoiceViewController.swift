@@ -160,19 +160,12 @@ public class DigitalInvoiceViewController: UIViewController {
                                                 invoice.numTotal)
     }
     
-    fileprivate var onboardingWillBeShown: Bool {
-        let key = "ginipaybank.defaults.digitalInvoiceOnboardingShowed"
-        return UserDefaults.standard.object(forKey: key) == nil ? true : false
-    }
-    
     fileprivate func showDigitalInvoiceOnboarding() {
-        if onboardingWillBeShown {
-            let bundle = Bundle(for: type(of: self))
-            let storyboard = UIStoryboard(name: "DigitalInvoiceOnboarding", bundle: bundle)
-            let digitalInvoiceOnboardingViewController = storyboard.instantiateViewController(withIdentifier: "digitalInvoiceOnboardingViewController") as! DigitalInvoiceOnboardingViewController
-            digitalInvoiceOnboardingViewController.returnAssistantConfiguration = returnAssistantConfiguration
-            present(digitalInvoiceOnboardingViewController, animated: true)
-        }
+        let bundle = Bundle(for: type(of: self))
+        let storyboard = UIStoryboard(name: "DigitalInvoiceOnboarding", bundle: bundle)
+        let digitalInvoiceOnboardingViewController = storyboard.instantiateViewController(withIdentifier: "digitalInvoiceOnboardingViewController") as! DigitalInvoiceOnboardingViewController
+        digitalInvoiceOnboardingViewController.returnAssistantConfiguration = returnAssistantConfiguration
+        present(digitalInvoiceOnboardingViewController, animated: true)
     }
     
 }
