@@ -37,6 +37,7 @@ public class DigitalInvoiceViewController: UIViewController {
     public var invoice: DigitalInvoice? {
         didSet {
             tableView.reloadData()
+            setPayButton()
         }
     }
     
@@ -53,6 +54,7 @@ public class DigitalInvoiceViewController: UIViewController {
     public var returnAssistantConfiguration = ReturnAssistantConfiguration.shared
     
     private let tableView = UITableView()
+    private let payButton = UIButton(type: .system)
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -104,6 +106,36 @@ public class DigitalInvoiceViewController: UIViewController {
         
         guard let invoice = invoice else { return }
         delegate?.didFinish(viewController: self, invoice: invoice)
+    }
+    
+    private func setPayButton() {
+        let configuration = returnAssistantConfiguration
+
+        payButton.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(payButton)
+        let payButtonHeight: CGFloat = 48
+        let margin: CGFloat = 16
+        payButton.heightAnchor.constraint(equalToConstant: payButtonHeight).isActive = true
+        payButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: margin).isActive = true
+        payButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -margin).isActive = true
+
+        payButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30).isActive = true
+        let bottomContentInset = payButtonHeight + 30
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: bottomContentInset, right: 0)
+
+        payButton.layer.cornerRadius = 7
+        payButton.backgroundColor = configuration.payButtonBackgroundColor
+        payButton.setTitleColor(configuration.payButtonTitleTextColor, for: .normal)
+        payButton.titleLabel?.font = configuration.payButtonTitleFont
+
+        payButton.layer.shadowColor = UIColor.black.cgColor
+        payButton.layer.shadowRadius = 4
+        payButton.layer.shadowOffset = CGSize(width: 0, height: 3)
+        payButton.layer.shadowOpacity = 0.15
+        payButton.setTitle(payButtonTitle(), for: .normal)
+        payButton.accessibilityLabel = payButtonAccessibilityLabel()
+        payButton.addTarget(self, action: #selector(payButtonTapped), for: .touchUpInside)
     }
     
     private func payButtonTitle() -> String {
@@ -238,9 +270,6 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
                                                      for: indexPath) as! DigitalInvoiceFooterCell
             
             cell.returnAssistantConfiguration = returnAssistantConfiguration
-            cell.payButton.setTitle(payButtonTitle(), for: .normal)
-            cell.payButton.accessibilityLabel = payButtonAccessibilityLabel()
-            cell.payButton.addTarget(self, action: #selector(payButtonTapped), for: .touchUpInside)
 
             return cell
             
