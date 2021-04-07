@@ -46,6 +46,8 @@
 "ginipaybank.digitalinvoice.headermessage.secondary" = "Du kannst nun die Artikel abwählen, die du zurückschicken willst.";
 "ginipaybank.digitalinvoice.total.accessibilitylabel" = "Total: %@";
 "ginipaybank.digitalinvoice.footermessage" = "Bitte überprüfe vor der Zahlung, ob alles in Ordnung ist und bearbeite eventuell die Gesamtsumme.";
+"ginipaybank.digitalinvoice.totalcaptionlabeltext" = "Gesamt";
+"ginipaybank.digitalinvoice.totalexplanationlabeltext" = "Inkl. Versandkosten, Rabatt usw.";
 "ginipaybank.digitalinvoice.lineitem.savebutton" = "Speichern";
 "ginipaybank.digitalinvoice.lineitem.itemnametextfieldtitle" = "Artikelname";
 "ginipaybank.digitalinvoice.lineitem.quantitytextfieldtitle" = "Anzahl";

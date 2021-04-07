@@ -15,6 +15,7 @@ class DigitalInvoiceTotalPriceCell: UITableViewCell {
         }
     }
     
+    private var totalCaptionLabel = UILabel()
     private var totalPriceLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -39,6 +40,16 @@ class DigitalInvoiceTotalPriceCell: UITableViewCell {
         
         selectionStyle = .none
         
+        totalCaptionLabel.text = .ginipayLocalized(resource: DigitalInvoiceStrings.totalCaptionLabel)
+        totalCaptionLabel.font = returnAssistantConfiguration?.digitalInvoiceTotalCaptionLabelFont ?? ReturnAssistantConfiguration.shared.digitalInvoiceTotalCaptionLabelFont
+        
+        totalCaptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(totalCaptionLabel)
+        
+        totalCaptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
+        totalCaptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        totalCaptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+    
         totalPriceLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(totalPriceLabel)
         

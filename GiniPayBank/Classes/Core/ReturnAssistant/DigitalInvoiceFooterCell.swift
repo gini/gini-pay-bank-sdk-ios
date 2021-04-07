@@ -12,6 +12,9 @@ class DigitalInvoiceFooterCell: UITableViewCell {
             setup()
         }
     }
+    
+    private var totalCaptionExplanationLabel = UILabel()
+
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -25,6 +28,17 @@ class DigitalInvoiceFooterCell: UITableViewCell {
         let configuration = returnAssistantConfiguration ?? ReturnAssistantConfiguration.shared
         selectionStyle = .none
         backgroundColor = UIColor.from(giniColor: configuration.digitalInvoiceBackgroundColor)
+        
+        totalCaptionExplanationLabel.text = .ginipayLocalized(resource: DigitalInvoiceStrings.totalExplanationLabel)
+        totalCaptionExplanationLabel.font = configuration.digitalInvoiceTotalExplanationLabelFont
+        totalCaptionExplanationLabel.textColor = UIColor.from(giniColor: configuration.digitalInvoiceTotalExplanationLabelTextColor)
+
+        totalCaptionExplanationLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(totalCaptionExplanationLabel)
+        
+        totalCaptionExplanationLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2).isActive = true
+        totalCaptionExplanationLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true        
+        
         let messageLabel = UILabel()
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         messageLabel.text = .ginipayLocalized(resource: DigitalInvoiceStrings.footerMessage)

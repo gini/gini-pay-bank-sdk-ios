@@ -166,6 +166,21 @@ public final class ReturnAssistantConfiguration: NSObject {
     @objc public var digitalInvoiceAddonLabelFont = UIFont.systemFont(ofSize: 14, weight: .medium)
     
     /**
+     Sets the font of the total caption label on the digital invoice screen to the specified font.
+     */
+    @objc public var digitalInvoiceTotalCaptionLabelFont = UIFont.systemFont(ofSize: 32, weight: .semibold)
+    
+    /**
+     Sets the font of the total explanation label on the digital invoice screen to the specified font.
+     */
+    @objc public var digitalInvoiceTotalExplanationLabelFont = UIFont.systemFont(ofSize: 14, weight: .regular)
+    
+    /**
+     Sets the text color of the explanation label on the digital invoice screen.
+     */
+    @objc public var digitalInvoiceTotalExplanationLabelTextColor = GiniColor(lightModeColor: .lightGray, darkModeColor: .lightGray)
+    
+    /**
      Sets the font of the main unit of the addon price labels to the specified font
      */
     @objc public var digitalInvoiceAddonPriceMainUnitFont = UIFont.systemFont(ofSize: 16, weight: .bold)

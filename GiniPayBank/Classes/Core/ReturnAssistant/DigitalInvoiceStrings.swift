@@ -21,6 +21,8 @@ enum DigitalInvoiceStrings: LocalizableStringResource {
     case checkmarkButtonDeselectAccessibilityLabel, checkmarkButtonSelectAccessibilityLabel
     case headerMessagePrimary, headerMessageSecondary
     case totalAccessibilityLabel
+    case totalCaptionLabel
+    case totalExplanationLabel
     case footerMessage
     case addonNameDiscount, addonNameGiftCard, addonNameOtherDiscounts, addonNameOtherCharges, addonNameShipment
     
@@ -96,6 +98,10 @@ enum DigitalInvoiceStrings: LocalizableStringResource {
             return ("addonname.othercharges", "Digital invoice other charges addon label")
         case .addonNameShipment:
             return ("addonname.shipment", "Digital invoice shipment addon label")
+        case .totalCaptionLabel:
+            return ("totalcaptionlabeltext", "Digital invoice total caption label")
+        case .totalExplanationLabel:
+            return ("totalexplanationlabeltext", "Digital invoice total explanation label")
         }
     }
     
