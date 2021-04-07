@@ -80,6 +80,7 @@
 "ginipaybank.digitalinvoice.addonname.otherdiscounts" = "Other discounts";
 "ginipaybank.digitalinvoice.addonname.othercharges" = "Other charges";
 "ginipaybank.digitalinvoice.addonname.shipment" = "Shipment";
-"ginipaybank.digitalinvoice.onboarding.text1" = "Select which items you do not want to pay for and send back.";
-"ginipaybank.digitalinvoice.onboarding.text2" = "You can edit the quantity of individual items here.";
-"ginipaybank.digitalinvoice.onboarding.donebutton" = "Got it!";
+"ginipaybank.digitalinvoice.onboarding.text1" = "Your new return assistant!";
+"ginipaybank.digitalinvoice.onboarding.text2" = "Deselect article that you want to return and pay only for what you keep!";
+"ginipaybank.digitalinvoice.onboarding.donebutton" = "Next";
+"ginipaybank.digitalinvoice.onboarding.hidebutton" = "Don’t show anymore";

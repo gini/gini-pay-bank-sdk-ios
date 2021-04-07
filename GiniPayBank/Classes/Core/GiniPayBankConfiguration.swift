@@ -855,32 +855,48 @@ public final class GiniPayBankConfiguration: NSObject {
     /**
      Sets the backgroundColor on the digital invoice onboarding screen
      */
-    @objc public var digitalInvoiceOnboardingBackgroundColor = GiniColor(lightModeColor: .white, darkModeColor: .black)
+    @objc public var digitalInvoiceOnboardingBackgroundColor = GiniColor(lightModeColor: Colors.Gini.blue, darkModeColor: Colors.Gini.blue)
     
     /**
      Sets the color on the digital invoice onboarding screen for text labels
      */
-    @objc public var digitalInvoiceOnboardingTextColor = GiniColor(lightModeColor: Colors.Gini.blue, darkModeColor: Colors.Gini.blue)
+    @objc public var digitalInvoiceOnboardingTextColor = GiniColor(lightModeColor: UIColor.white, darkModeColor: UIColor.white)
+
+    /**
+     Sets the font of the first text label on the digital invoice onboarding screen
+     */
+    @objc public var digitalInvoiceOnboardingFirstLabelTextFont = UIFont.systemFont(ofSize: 32, weight: .semibold)
     
     /**
-     Sets the font of the text labels on the digital invoice onboarding screen
+     Sets the font of the second text label on the digital invoice onboarding screen
      */
-    @objc public var digitalInvoiceOnboardingTextFont = UIFont.systemFont(ofSize: 16, weight: .semibold)
+    @objc public var digitalInvoiceOnboardingSecondLabelTextFont = UIFont.systemFont(ofSize: 16, weight: .semibold)
     
     /**
      Sets the backgroundColor  on the digital invoice onboarding screen for done button
      */
-    @objc public var digitalInvoiceOnboardingDoneButtonBackgroundColor = GiniColor(lightModeColor: Colors.Gini.blue, darkModeColor: Colors.Gini.blue)
+    @objc public var digitalInvoiceOnboardingDoneButtonBackgroundColor = GiniColor(lightModeColor: UIColor.white, darkModeColor: UIColor.white)
     
     /**
      Sets the font of the done button on the digital invoice onboarding screen
      */
-    @objc public var digitalInvoiceOnboardingDoneButtonTextFont = UIFont.systemFont(ofSize: 20, weight: .bold)
+    @objc public var digitalInvoiceOnboardingDoneButtonTextFont = UIFont.systemFont(ofSize: 16, weight: .bold)
+    
+    /**
+     Sets the font of the hide button on the digital invoice onboarding screen
+     */
+    @objc public var digitalInvoiceOnboardingHideButtonTextFont = UIFont.systemFont(ofSize: 16, weight: .semibold)
     
     /**
      Sets the text color of the done button on the digital invoice onboarding screen
      */
-    @objc public var digitalInvoiceOnboardingDoneButtonTextColor = GiniColor(lightModeColor: .white, darkModeColor: .black)
+    @objc public var digitalInvoiceOnboardingDoneButtonTextColor = GiniColor(lightModeColor: Colors.Gini.blue, darkModeColor: Colors.Gini.blue)
+    
+    /**
+     Sets the text color of the done button on the digital invoice onboarding screen
+     */
+    @objc public var digitalInvoiceOnboardingHideButtonTextColor = GiniColor(lightModeColor: .white, darkModeColor: .white)
+    
     
     /**
      Sets the font used in the Return Assistant screens by default.
@@ -1078,10 +1094,13 @@ public final class GiniPayBankConfiguration: NSObject {
         
         configuration.digitalInvoiceOnboardingBackgroundColor = self.digitalInvoiceOnboardingBackgroundColor
         configuration.digitalInvoiceOnboardingTextColor = self.digitalInvoiceOnboardingTextColor
-        configuration.digitalInvoiceOnboardingTextFont = self.digitalInvoiceOnboardingTextFont
+        configuration.digitalInvoiceOnboardingFirstLabelTextFont = self.digitalInvoiceOnboardingFirstLabelTextFont
+        configuration.digitalInvoiceOnboardingSecondLabelTextFont = self.digitalInvoiceOnboardingSecondLabelTextFont
         configuration.digitalInvoiceOnboardingDoneButtonBackgroundColor = self.digitalInvoiceOnboardingDoneButtonBackgroundColor
         configuration.digitalInvoiceOnboardingDoneButtonTextFont = self.digitalInvoiceOnboardingDoneButtonTextFont
+        configuration.digitalInvoiceOnboardingHideButtonTextFont = self.digitalInvoiceOnboardingHideButtonTextFont
         configuration.digitalInvoiceOnboardingDoneButtonTextColor = self.digitalInvoiceOnboardingDoneButtonTextColor
+        configuration.digitalInvoiceOnboardingHideButtonTextColor = self.digitalInvoiceOnboardingHideButtonTextColor
         configuration.customFont = self.customFont
         
         // TODO! Add for Xamarin colors
