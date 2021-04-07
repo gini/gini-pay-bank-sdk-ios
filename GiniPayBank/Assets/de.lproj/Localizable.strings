@@ -30,7 +30,6 @@
 "ginipaybank.digitalinvoice.paybuttontitle.accessibilitylabel" = "Bezahlen %d von %d";
 "ginipaybank.digitalinvoice.items" = "Artikel %d/%d";
 "ginipaybank.digitalinvoice.items.accessibilitylabel" = "%d von %d Artikel";
-"ginipaybank.digitalinvoice.whatisthisbutton" = "Was ist das?";
 "ginipaybank.digitalinvoice.whatisthisactionsheet.title" = "Was ist das?";
 "ginipaybank.digitalinvoice.whatisthisactionsheet.message" = "Wir haben die Artikel aus deiner Rechnung extrahiert. Wenn du einige Artikel zurückschicken oder du deine Rechnung nur teilweise bezahlen möchtest, kannst du einzelne Artikel abwählen und der zu bezahlende Betrag wird automatisch neu berechnet.";
 "ginipaybank.digitalinvoice.whatisthisactionsheet.action.helpful" = "Ja, das ist hilfreich";

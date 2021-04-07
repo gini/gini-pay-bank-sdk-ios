@@ -13,7 +13,6 @@ enum DigitalInvoiceStrings: LocalizableStringResource {
     case screenTitle
     case noInvoicePayButtonTitle, payButtonTitle, payButtonTitleAccessibilityLabel
     case items, itemsAccessibilityLabel
-    case whatIsThisButtonTitle
     case whatIsThisActionSheetTitle, whatIsThisActionSheetMessage, whatIsThisActionSheetActionHelpful, whatIsThisActionSheetActionNotHelpful,
     whatIsThisActionSheetActionCancel
     case lineItemCheckmarkLabel, lineItemQuantity, lineItemEditButtonTitle, lineItemSaveButtonTitle, lineItemNameTextFieldTitle, lineItemQuantityTextFieldTitle,
@@ -46,8 +45,6 @@ enum DigitalInvoiceStrings: LocalizableStringResource {
             return ("items", "Digital invoice selected and total items")
         case .itemsAccessibilityLabel:
             return ("items.accessibilitylabel", "Digital invoice selected and total items accessibility label")
-        case .whatIsThisButtonTitle:
-            return ("whatisthisbutton", "Digital invoice 'What is this?' button title")
         case .whatIsThisActionSheetTitle:
             return ("whatisthisactionsheet.title", "Digital invoice 'What is this?' action sheet title")
         case .whatIsThisActionSheetMessage:

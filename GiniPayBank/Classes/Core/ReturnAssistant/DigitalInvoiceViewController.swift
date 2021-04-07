@@ -61,6 +61,8 @@ public class DigitalInvoiceViewController: UIViewController {
         
         title = .ginipayLocalized(resource: DigitalInvoiceStrings.screenTitle)
 
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: prefferedImage(named: "infoIcon"), style: .plain, target: self, action: #selector(whatIsThisTapped(source:)))
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -160,6 +162,33 @@ public class DigitalInvoiceViewController: UIViewController {
                                                 invoice.numTotal)
     }
     
+    @objc func whatIsThisTapped(source: UIButton) {
+        
+        let actionSheet = UIAlertController(title: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetTitle),
+                                            message: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetMessage),
+                                            preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetActionHelpful),
+                                            style: .default,
+                                            handler: { _ in
+                                                // TODO:
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetActionNotHelpful),
+                                            style: .destructive,
+                                            handler: { _ in
+                                                // TODO:
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetActionCancel),
+                                            style: .cancel,
+                                            handler: nil))
+        
+        actionSheet.popoverPresentationController?.sourceView = source
+        
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
     fileprivate var onboardingWillBeShown: Bool {
         let key = "ginipaybank.defaults.digitalInvoiceOnboardingShowed"
         return UserDefaults.standard.object(forKey: key) == nil ? true : false
@@ -222,7 +251,6 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
                                                      for: indexPath) as! DigitalInvoiceItemsCell
             
             cell.returnAssistantConfiguration = returnAssistantConfiguration
-            cell.delegate = self
             
             if let invoice = invoice {
                 cell.viewModel = DigitalInvoiceItemsCellViewModel(invoice: invoice)
@@ -328,37 +356,6 @@ extension DigitalInvoiceViewController {
                 self.invoice?.lineItems[index].selectedState = .deselected(reason: reason)
             }
         }
-    }
-}
-
-
-extension DigitalInvoiceViewController: DigitalInvoiceItemsCellDelegate {
-    
-    func whatIsThisTapped(source: UIButton) {
-        
-        let actionSheet = UIAlertController(title: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetTitle),
-                                            message: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetMessage),
-                                            preferredStyle: .actionSheet)
-        
-        actionSheet.addAction(UIAlertAction(title: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetActionHelpful),
-                                            style: .default,
-                                            handler: { _ in
-                                                // TODO:
-        }))
-        
-        actionSheet.addAction(UIAlertAction(title: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetActionNotHelpful),
-                                            style: .destructive,
-                                            handler: { _ in
-                                                // TODO:
-        }))
-        
-        actionSheet.addAction(UIAlertAction(title: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetActionCancel),
-                                            style: .cancel,
-                                            handler: nil))
-        
-        actionSheet.popoverPresentationController?.sourceView = source
-        
-        present(actionSheet, animated: true, completion: nil)
     }
 }
 

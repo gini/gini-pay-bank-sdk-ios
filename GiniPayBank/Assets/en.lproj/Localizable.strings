@@ -44,7 +44,6 @@
 
 "ginipaybank.digitalinvoice.items" = "Items %d/%d";
 "ginipaybank.digitalinvoice.items.accessibilitylabel" = "Items %d out of %d";
-"ginipaybank.digitalinvoice.whatisthisbutton" = "What is this?";
 
 "ginipaybank.digitalinvoice.whatisthisactionsheet.title" = "What is this?";
 "ginipaybank.digitalinvoice.whatisthisactionsheet.message" = "We extracted the detailed items from your invoice. If you would like to return some items or partially pay the invoice, you can deselect them and the amount to pay will be recalculated.";
