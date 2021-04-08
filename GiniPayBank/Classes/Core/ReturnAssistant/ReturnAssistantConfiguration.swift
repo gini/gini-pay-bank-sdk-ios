@@ -78,6 +78,16 @@ public final class ReturnAssistantConfiguration: NSObject {
     @objc public var lineItemTintColor = Colors.Gini.blue
     
     /**
+     Sets the color of the active elements on the digital invoice line item count label to the specified color
+     */
+    @objc public var lineItemCountLabelColor = UIColor.lightGray
+    
+    /**
+     Sets the font of the line item name on the digital invoice  line item count label to the specified font.
+     */
+    @objc public var lineItemCountLabelFont = UIFont.systemFont(ofSize: 16)
+    
+    /**
      Sets the font of the line item name on the digital invoice screen to the specified font.
      */
     @objc public var digitalInvoiceLineItemNameFont = UIFont.systemFont(ofSize: 14, weight: .medium)
@@ -91,19 +101,19 @@ public final class ReturnAssistantConfiguration: NSObject {
      Sets the font of the line item label that either displays the quantity or the reason for returning the item
      on the digital invoice screen to the specified font.
      */
-    @objc public var digitalInvoiceLineItemQuantityOrReturnReasonFont = UIFont.systemFont(ofSize: 12)
+    @objc public var digitalInvoiceLineItemQuantityOrReturnReasonFont = UIFont.systemFont(ofSize: 32, weight: .bold)
     
     /**
      Sets the font of the main currency unit of the price on the line item
      of the digital invoice screen to the specified font.
      */
-    @objc public var digitalInvoiceLineItemPriceMainUnitFont = UIFont.systemFont(ofSize: 18, weight: .bold)
+    @objc public var digitalInvoiceLineItemPriceMainUnitFont = UIFont.systemFont(ofSize: 32, weight: .bold)
     
     /**
     Sets the font of the fractional currency unit of the price on the line item
     of the digital invoice screen to the specified font.
     */
-    @objc public var digitalInvoiceLineItemPriceFractionalUnitFont = UIFont.systemFont(ofSize: 9, weight: .bold)
+    @objc public var digitalInvoiceLineItemPriceFractionalUnitFont = UIFont.systemFont(ofSize: 18, weight: .bold)
     
     /**
      Sets the font of the secondary informational message on the digital invoice screen to the specified font.
@@ -128,12 +138,12 @@ public final class ReturnAssistantConfiguration: NSObject {
     /**
      Sets the font of the footer message on the digital invoice screen to the specified font.
      */
-    @objc public var digitalInvoiceFooterMessageTextFont = UIFont.systemFont(ofSize: 11)
+    @objc public var digitalInvoiceFooterMessageTextFont = UIFont.systemFont(ofSize: 14)
     
     /**
      Sets the text color of the footer message on the digital invoice screen.
      */
-    @objc public var digitalInvoiceFooterMessageTextColor = GiniColor(lightModeColor: .gray, darkModeColor:.white)
+    @objc public var digitalInvoiceFooterMessageTextColor = GiniColor(lightModeColor: .darkGray, darkModeColor:.white)
     
     /**
      Sets the font of the items section header on the digital invoice screen to the specified font.
@@ -249,12 +259,12 @@ public final class ReturnAssistantConfiguration: NSObject {
     /**
      Sets the font of the digital invoice main unit of the total price label to the specified font
      */
-    @objc public var digitalInvoiceTotalPriceMainUnitFont = UIFont.systemFont(ofSize: 24, weight: .bold)
+    @objc public var digitalInvoiceTotalPriceMainUnitFont = UIFont.systemFont(ofSize: 32, weight: .bold)
     
     /**
      Sets the font of the digital invoice fractional unit of the total price label to the specified font
      */
-    @objc public var digitalInvoiceTotalPriceFractionalUnitFont = UIFont.systemFont(ofSize: 11, weight: .bold)
+    @objc public var digitalInvoiceTotalPriceFractionalUnitFont = UIFont.systemFont(ofSize: 18, weight: .bold)
     
     /**
      Sets the font of the content description labels in the line item details view controller to the specified font

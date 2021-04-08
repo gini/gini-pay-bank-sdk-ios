@@ -35,7 +35,7 @@
 "ginipaybank.digitalinvoice.whatisthisactionsheet.action.helpful" = "Ja, das ist hilfreich";
 "ginipaybank.digitalinvoice.whatisthisactionsheet.action.nothelpful" = "Nein, nicht mehr angezeigen";
 "ginipaybank.digitalinvoice.whatisthisactionsheet.action.cancel" = "Cancel";
-"ginipaybank.digitalinvoice.lineitem.quantity" = "Anzahl: %d";
+"ginipaybank.digitalinvoice.lineitem.quantity" = "%dx";
 "ginipaybank.digitalinvoice.lineitem.editbutton" = "Bearbeiten";
 "ginipaybank.digitalinvoice.checkmarkbutton.deselect.accessibilitylabel" = "Artikel abwählen";
 "ginipaybank.digitalinvoice.checkmarkbutton.select.accessibilitylabel" = "Artikel wählen";

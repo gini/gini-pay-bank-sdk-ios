@@ -14,6 +14,7 @@ struct DigitalLineItemViewModel {
     let returnAssistantConfiguration : ReturnAssistantConfiguration
 
     let index: Int
+    let invoiceNumTotal: Int
     
     var name: String? {
         return lineItem.name
@@ -37,11 +38,41 @@ struct DigitalLineItemViewModel {
         return returnAssistantConfiguration.digitalInvoiceLineItemQuantityOrReturnReasonFont
     }
     
+    var quantityOrReturnReasonColor: UIColor {
+        switch lineItem.selectedState {
+        case .selected:
+            return .black
+        case .deselected:
+            if #available(iOS 13.0, *) {
+                return .secondaryLabel
+            } else {
+                return .gray
+            }
+        }
+    }
+    
+    var outilneViewColor: UIColor {
+        switch lineItem.selectedState {
+        case .selected:
+            return returnAssistantConfiguration.lineItemTintColor
+        case .deselected:
+            return UIColor.darkGray
+        }
+    }
+    
+    var countLabelColor: UIColor {
+        return returnAssistantConfiguration.lineItemCountLabelColor
+    }
+    
+    var countLabelFont: UIFont {
+        return returnAssistantConfiguration.lineItemCountLabelFont
+    }
+    
     var totalPriceString: String? {
         return lineItem.totalPrice.string
     }
     
-    var checkboxTintColor: UIColor {
+    var modeSwitchTintColor: UIColor {
         
         switch lineItem.selectedState {
         case .selected:
@@ -121,20 +152,20 @@ struct DigitalLineItemViewModel {
 }
 
 protocol DigitalLineItemTableViewCellDelegate: class {
-    
-    func checkboxButtonTapped(cell: DigitalLineItemTableViewCell, viewModel: DigitalLineItemViewModel)
+    func modeSwitchValueChanged(cell: DigitalLineItemTableViewCell, viewModel: DigitalLineItemViewModel)
     func editTapped(cell: DigitalLineItemTableViewCell, viewModel: DigitalLineItemViewModel)
 }
 
 class DigitalLineItemTableViewCell: UITableViewCell {
     
     @IBOutlet weak var shadowCastView: UIView!
-    
-    @IBOutlet weak var checkboxButton: CheckboxButton!
+    @IBOutlet weak var modeSwitch: UISwitch!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var quantityOrReturnReasonLabel: UILabel!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var outilneView: UIView!
+    @IBOutlet weak var countLabel: UILabel!
     
     var viewModel: DigitalLineItemViewModel? {
         didSet {
@@ -143,6 +174,9 @@ class DigitalLineItemTableViewCell: UITableViewCell {
             quantityOrReturnReasonLabel.text = viewModel?.quantityOrReturnReasonString
             quantityOrReturnReasonLabel.font = viewModel?.quantityOrReturnReasonFont
             
+            quantityOrReturnReasonLabel.textColor = viewModel?.quantityOrReturnReasonColor
+            outilneView.layer.borderColor = viewModel?.outilneViewColor.cgColor
+
             if let viewModel = viewModel, let priceString = viewModel.totalPriceString {
                 
                 let attributedString =
@@ -159,9 +193,16 @@ class DigitalLineItemTableViewCell: UITableViewCell {
                 
                 let format = DigitalInvoiceStrings.totalAccessibilityLabel.localizedGiniPayFormat
                 priceLabel.accessibilityLabel = String.localizedStringWithFormat(format, priceString)
+                
+                countLabel.text = String.localizedStringWithFormat(DigitalInvoiceStrings.items.localizedGiniPayFormat,
+                                                                   viewModel.index.advanced(by: 1),
+                                                                   viewModel.invoiceNumTotal.advanced(by: 1))
+                countLabel.font = viewModel.countLabelFont
+                countLabel.textColor = viewModel.countLabelColor
             }
             
-            checkboxButton.tintColor = viewModel?.checkboxTintColor
+            modeSwitch.addTarget(self, action: #selector(modeSwitchValueChange(sender:)), for: .valueChanged)
+            modeSwitch.onTintColor = viewModel?.modeSwitchTintColor
             
             editButton.setTitleColor(viewModel?.editButtonTintColor ?? .black, for: .normal)
             editButton.titleLabel?.font = viewModel?.editButtonTitleFont
@@ -173,15 +214,13 @@ class DigitalLineItemTableViewCell: UITableViewCell {
 
             nameLabel.font = viewModel?.nameLabelFont
             
-            shadowCastView.layer.shadowColor = viewModel?.cellShadowColor.cgColor
-            shadowCastView.layer.borderColor = viewModel?.cellBorderColor.cgColor
             
             if let viewModel = viewModel {
                 switch viewModel.lineItem.selectedState {
                 case .selected:
-                    checkboxButton.checkedState = .checked
+                    modeSwitch.isOn = true
                 case .deselected:
-                    checkboxButton.checkedState = .unchecked
+                    modeSwitch.isOn = false
                 }
             }
             
@@ -210,21 +249,16 @@ class DigitalLineItemTableViewCell: UITableViewCell {
     private func setup() {
         backgroundColor = UIColor.from(giniColor: viewModel?.returnAssistantConfiguration.digitalInvoiceBackgroundColor ?? ReturnAssistantConfiguration.shared.digitalInvoiceBackgroundColor)
         selectionStyle = .none
-
-        shadowCastView.layer.cornerRadius = 7
-        shadowCastView.layer.shadowRadius = 5
-        shadowCastView.layer.shadowOpacity = 0.15
-        shadowCastView.layer.shadowOffset = .zero
         
-        shadowCastView.layer.borderWidth = 0.5
+        outilneView.layer.borderWidth = 2
+        outilneView.layer.cornerRadius = 5
         
         shadowCastView.layer.backgroundColor = UIColor.from(giniColor: viewModel?.returnAssistantConfiguration.digitalInvoiceLineItemsBackgroundColor ?? ReturnAssistantConfiguration.shared.digitalInvoiceLineItemsBackgroundColor).cgColor
     }
     
-    @IBAction func checkButtonTapped(_ sender: Any) {
-        
+    @objc func modeSwitchValueChange(sender: UISwitch) {
         if let viewModel = viewModel {
-            delegate?.checkboxButtonTapped(cell: self, viewModel: viewModel)
+            delegate?.modeSwitchValueChanged(cell: self, viewModel: viewModel)
         }
     }
     

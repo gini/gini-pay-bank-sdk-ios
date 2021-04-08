@@ -37,7 +37,6 @@ public class DigitalInvoiceViewController: UIViewController {
     public var invoice: DigitalInvoice? {
         didSet {
             tableView.reloadData()
-            setPayButton()
         }
     }
     
@@ -54,7 +53,6 @@ public class DigitalInvoiceViewController: UIViewController {
     public var returnAssistantConfiguration = ReturnAssistantConfiguration.shared
     
     private let tableView = UITableView()
-    private let payButton = UIButton(type: .system)
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -74,9 +72,6 @@ public class DigitalInvoiceViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         
-        tableView.register(DigitalInvoiceItemsCell.self,
-                           forCellReuseIdentifier: "DigitalInvoiceItemsCell")
-        
         tableView.register(TextFieldTableViewCell.self,
                            forCellReuseIdentifier: "TextFieldTableViewCell")
         
@@ -95,7 +90,7 @@ public class DigitalInvoiceViewController: UIViewController {
         
         tableView.separatorStyle = .none
         
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 25, left: 0, bottom: 0, right: 0)
         tableView.backgroundColor = UIColor.from(giniColor: returnAssistantConfiguration.digitalInvoiceBackgroundColor)
     }
     
@@ -108,36 +103,6 @@ public class DigitalInvoiceViewController: UIViewController {
         
         guard let invoice = invoice else { return }
         delegate?.didFinish(viewController: self, invoice: invoice)
-    }
-    
-    private func setPayButton() {
-        let configuration = returnAssistantConfiguration
-
-        payButton.translatesAutoresizingMaskIntoConstraints = false
-
-        view.addSubview(payButton)
-        let payButtonHeight: CGFloat = 48
-        let margin: CGFloat = 16
-        payButton.heightAnchor.constraint(equalToConstant: payButtonHeight).isActive = true
-        payButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: margin).isActive = true
-        payButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -margin).isActive = true
-
-        payButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30).isActive = true
-        let bottomContentInset = payButtonHeight + 30
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: bottomContentInset, right: 0)
-
-        payButton.layer.cornerRadius = 7
-        payButton.backgroundColor = configuration.payButtonBackgroundColor
-        payButton.setTitleColor(configuration.payButtonTitleTextColor, for: .normal)
-        payButton.titleLabel?.font = configuration.payButtonTitleFont
-
-        payButton.layer.shadowColor = UIColor.black.cgColor
-        payButton.layer.shadowRadius = 4
-        payButton.layer.shadowOffset = CGSize(width: 0, height: 3)
-        payButton.layer.shadowOpacity = 0.15
-        payButton.setTitle(payButtonTitle(), for: .normal)
-        payButton.accessibilityLabel = payButtonAccessibilityLabel()
-        payButton.addTarget(self, action: #selector(payButtonTapped), for: .touchUpInside)
     }
     
     private func payButtonTitle() -> String {
@@ -219,7 +184,6 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     enum Section: Int, CaseIterable {
-        case itemsHeader
         case lineItems
         case addons
         case totalPrice
@@ -233,7 +197,6 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
         switch Section(rawValue: section) {
-        case .itemsHeader: return 1
         case .lineItems: return invoice?.lineItems.count ?? 0
         case .addons: return invoice?.addons.count ?? 0
         case .totalPrice: return 1
@@ -245,25 +208,13 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch Section(rawValue: indexPath.section) {
-        case .itemsHeader:
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DigitalInvoiceItemsCell",
-                                                     for: indexPath) as! DigitalInvoiceItemsCell
-            
-            cell.returnAssistantConfiguration = returnAssistantConfiguration
-            
-            if let invoice = invoice {
-                cell.viewModel = DigitalInvoiceItemsCellViewModel(invoice: invoice)
-            }
-            
-            return cell
-            
         case .lineItems:
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "DigitalLineItemTableViewCell",
                                                      for: indexPath) as! DigitalLineItemTableViewCell
-            
-            cell.viewModel = DigitalLineItemViewModel(lineItem: invoice!.lineItems[indexPath.row], returnAssistantConfiguration: returnAssistantConfiguration, index: indexPath.row)
+            if let invoice = invoice {
+                cell.viewModel = DigitalLineItemViewModel(lineItem: invoice.lineItems[indexPath.row], returnAssistantConfiguration: returnAssistantConfiguration, index: indexPath.row, invoiceNumTotal: invoice.numTotal)
+            }
             
             cell.delegate = self
             
@@ -298,6 +249,9 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
                                                      for: indexPath) as! DigitalInvoiceFooterCell
             
             cell.returnAssistantConfiguration = returnAssistantConfiguration
+            cell.payButton.setTitle(payButtonTitle(), for: .normal)
+            cell.payButton.accessibilityLabel = payButtonAccessibilityLabel()
+            cell.payButton.addTarget(self, action: #selector(payButtonTapped), for: .touchUpInside)
 
             return cell
             
@@ -307,8 +261,8 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
 }
 
 extension DigitalInvoiceViewController: DigitalLineItemTableViewCellDelegate {
-    
-    func checkboxButtonTapped(cell: DigitalLineItemTableViewCell, viewModel: DigitalLineItemViewModel) {
+
+    func modeSwitchValueChanged(cell: DigitalLineItemTableViewCell, viewModel: DigitalLineItemViewModel) {
         
         guard let invoice = invoice else { return }
         
@@ -322,7 +276,7 @@ extension DigitalInvoiceViewController: DigitalLineItemTableViewCellDelegate {
             }
             
             presentReturnReasonActionSheet(for: viewModel.index,
-                                           source: cell.checkboxButton,
+                                           source: cell.modeSwitch,
                                            with: returnReasons)
             
         case .deselected:
@@ -351,7 +305,7 @@ extension DigitalInvoiceViewController {
             
             switch selectedState {
             case .selected:
-                break
+                self.invoice?.lineItems[index].selectedState = .selected
             case .deselected(let reason):
                 self.invoice?.lineItems[index].selectedState = .deselected(reason: reason)
             }

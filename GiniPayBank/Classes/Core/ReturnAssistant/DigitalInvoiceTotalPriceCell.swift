@@ -46,15 +46,15 @@ class DigitalInvoiceTotalPriceCell: UITableViewCell {
         totalCaptionLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(totalCaptionLabel)
         
-        totalCaptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
+        totalCaptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 55).isActive = true
         totalCaptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         totalCaptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
     
         totalPriceLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(totalPriceLabel)
         
-        totalPriceLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
-        totalPriceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
+        totalPriceLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 55).isActive = true
+        totalPriceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         totalPriceLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         backgroundColor = UIColor.from(giniColor: returnAssistantConfiguration?.digitalInvoiceBackgroundColor ?? ReturnAssistantConfiguration.shared.digitalInvoiceBackgroundColor)
     }

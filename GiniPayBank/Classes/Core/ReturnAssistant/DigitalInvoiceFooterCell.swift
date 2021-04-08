@@ -13,8 +13,8 @@ class DigitalInvoiceFooterCell: UITableViewCell {
         }
     }
     
+    let payButton = UIButton(type: .system)
     private var totalCaptionExplanationLabel = UILabel()
-
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -28,6 +28,10 @@ class DigitalInvoiceFooterCell: UITableViewCell {
         let configuration = returnAssistantConfiguration ?? ReturnAssistantConfiguration.shared
         selectionStyle = .none
         backgroundColor = UIColor.from(giniColor: configuration.digitalInvoiceBackgroundColor)
+        
+        let multiplier = 322 / UIScreen.main.bounds.height
+        let contentHeight = UIScreen.main.bounds.height * multiplier
+        contentView.heightAnchor.constraint(equalToConstant: contentHeight).isActive = true
         
         totalCaptionExplanationLabel.text = .ginipayLocalized(resource: DigitalInvoiceStrings.totalExplanationLabel)
         totalCaptionExplanationLabel.font = configuration.digitalInvoiceTotalExplanationLabelFont
@@ -50,10 +54,34 @@ class DigitalInvoiceFooterCell: UITableViewCell {
         contentView.addSubview(messageLabel)
         let messageLabelHeight: CGFloat = 48
         messageLabel.heightAnchor.constraint(equalToConstant: messageLabelHeight).isActive = true
+        
+        let messageLabelYConstraint = NSLayoutConstraint(item: messageLabel, attribute: .centerY, relatedBy: .equal, toItem: self.contentView, attribute: .centerY, multiplier: 1, constant: 0)
+
+        NSLayoutConstraint.activate([messageLabelYConstraint])
 
         messageLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 40).isActive = true
-        messageLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 35).isActive = true
         messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -40).isActive = true
 
+        payButton.translatesAutoresizingMaskIntoConstraints = false
+
+        contentView.addSubview(payButton)
+        let payButtonHeight: CGFloat = 48
+        let margin: CGFloat = 16
+        payButton.heightAnchor.constraint(equalToConstant: payButtonHeight).isActive = true
+
+        payButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: margin).isActive = true
+        payButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -margin).isActive = true
+
+        payButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -28).isActive = true
+
+        payButton.layer.cornerRadius = 7
+        payButton.backgroundColor = configuration.payButtonBackgroundColor
+        payButton.setTitleColor(configuration.payButtonTitleTextColor, for: .normal)
+        payButton.titleLabel?.font = configuration.payButtonTitleFont
+
+        payButton.layer.shadowColor = UIColor.black.cgColor
+        payButton.layer.shadowRadius = 4
+        payButton.layer.shadowOffset = CGSize(width: 0, height: 3)
+        payButton.layer.shadowOpacity = 0.15
     }
 }

@@ -42,7 +42,7 @@
 "ginipaybank.digitalinvoice.paybuttontitle" = "Pay %d/%d";
 "ginipaybank.digitalinvoice.paybuttontitle.accessibilitylabel" = "Pay %d out of %d";
 
-"ginipaybank.digitalinvoice.items" = "Items %d/%d";
+"ginipaybank.digitalinvoice.items" = "Article %d/%d";
 "ginipaybank.digitalinvoice.items.accessibilitylabel" = "Items %d out of %d";
 
 "ginipaybank.digitalinvoice.whatisthisactionsheet.title" = "What is this?";
@@ -51,7 +51,7 @@
 "ginipaybank.digitalinvoice.whatisthisactionsheet.action.nothelpful" = "No, I don't want to see it again";
 "ginipaybank.digitalinvoice.whatisthisactionsheet.action.cancel" = "Cancel";
 
-"ginipaybank.digitalinvoice.lineitem.quantity" = "Quantity: %d";
+"ginipaybank.digitalinvoice.lineitem.quantity" = "%dx";
 "ginipaybank.digitalinvoice.lineitem.editbutton" = "Edit";
 
 "ginipaybank.digitalinvoice.checkmarkbutton.deselect.accessibilitylabel" = "Deselect item";
