@@ -56,7 +56,7 @@ struct DigitalLineItemViewModel {
         case .selected:
             return returnAssistantConfiguration.lineItemTintColor
         case .deselected:
-            return UIColor.darkGray
+            return UIColor.gray
         }
     }
     

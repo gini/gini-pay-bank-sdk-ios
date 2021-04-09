@@ -54,6 +54,8 @@ public class DigitalInvoiceViewController: UIViewController {
     
     private let tableView = UITableView()
     
+    private var didShowOnboardInCurrentSession = false
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
         
@@ -160,12 +162,13 @@ public class DigitalInvoiceViewController: UIViewController {
     }
     
     fileprivate func showDigitalInvoiceOnboarding() {
-        if onboardingWillBeShown {
+        if onboardingWillBeShown && !didShowOnboardInCurrentSession {
             let bundle = Bundle(for: type(of: self))
             let storyboard = UIStoryboard(name: "DigitalInvoiceOnboarding", bundle: bundle)
             let digitalInvoiceOnboardingViewController = storyboard.instantiateViewController(withIdentifier: "digitalInvoiceOnboardingViewController") as! DigitalInvoiceOnboardingViewController
             digitalInvoiceOnboardingViewController.returnAssistantConfiguration = returnAssistantConfiguration
             present(digitalInvoiceOnboardingViewController, animated: true)
+            didShowOnboardInCurrentSession = true
         }
     }
     
