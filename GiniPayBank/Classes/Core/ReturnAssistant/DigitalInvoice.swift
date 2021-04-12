@@ -18,6 +18,7 @@ public struct DigitalInvoice {
     var lineItems: [LineItem]
     var addons: [DigitalInvoiceAddon]
     var returnReasons: [ReturnReason]?
+    var inaccurateResults = true
     
     var total: Price? {
         

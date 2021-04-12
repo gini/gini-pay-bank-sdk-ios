@@ -171,6 +171,26 @@ public final class ReturnAssistantConfiguration: NSObject {
     @objc public var payButtonTitleFont = UIFont.systemFont(ofSize: 16, weight: .semibold)
     
     /**
+     Sets the background color of the digital invoice skip button to the specified color
+     */
+    @objc public var skipButtonBackgroundColor = UIColor.white
+    
+    /**
+     Sets the title text color of the digital invoice skip button to the specified color
+     */
+    @objc public var skipButtonTitleTextColor = Colors.Gini.blue
+    
+    /**
+     Sets the layer border color of the digital invoice skip button to the specified color
+     */
+    @objc public var skipButtonBorderColor = Colors.Gini.blue
+    
+    /**
+     Sets the title text font of the digital invoice skip button to the specified font
+     */
+    @objc public var skipButtonTitleFont = UIFont.systemFont(ofSize: 16, weight: .semibold)
+    
+    /**
      Sets the font of the addon labels on the digital invoice screen to the specified font.
      */
     @objc public var digitalInvoiceAddonLabelFont = UIFont.systemFont(ofSize: 14, weight: .medium)
@@ -393,6 +413,70 @@ public final class ReturnAssistantConfiguration: NSObject {
      */
     @objc public var digitalInvoiceOnboardingHideButtonTextColor = GiniColor(lightModeColor: .white, darkModeColor: .white)
     
+    /**
+     Sets the background color of the warning info view on the digital invoice screen
+     */
+    @objc public var digitalInvoiceInfoViewBackgroundColor = Colors.Gini.blue
+    
+    /**
+     Sets the  chevron image tint color of the warning info view on the digital invoice screen
+     */
+    @objc public var  digitalInvoiceInfoViewChevronImageViewTintColor = UIColor.white
+    
+    /**
+     Sets the text color for the warning info view warning labels on the digital invoice screen
+     */
+    @objc public var digitalInvoiceInfoViewWarningLabelsTextColor = UIColor.white
+    
+    /**
+     Sets the font for the warning info view top label on the digital invoice screen
+     */
+    @objc public var digitalInvoiceInfoViewTopLabelFont = UIFont.systemFont(ofSize: 17, weight: .regular)
+    
+    /**
+     Sets the font for the warning info view middle label on the digital invoice screen
+     */
+    @objc public var digitalInvoiceInfoViewMiddleLabelFont = UIFont.systemFont(ofSize: 14, weight: .regular)
+    
+    /**
+     Sets the font for the warning info view bottom label on the digital invoice screen
+     */
+    @objc public var digitalInvoiceInfoViewBottomLabelFont = UIFont.systemFont(ofSize: 14, weight: .regular)
+    
+    /**
+     Sets the background color for the warning info left button on the digital invoice screen
+     */
+    @objc public var digitalInvoiceInfoViewLeftButtonBackgroundColor = UIColor.white
+    
+    /**
+     Sets the border color for the warning info left button on the digital invoice screen
+     */
+    @objc public var digitalInvoiceInfoViewLeftButtonBorderColor = UIColor.white
+    
+    /**
+     Sets the title color for the warning info left button on the digital invoice screen
+     */
+    @objc public var digitalInvoiceInfoViewLeftkButtonTitleColor = Colors.Gini.blue
+    
+    /**
+     Sets the background color for the warning info right button on the digital invoice screen
+     */
+    @objc public var digitalInvoiceInfoViewRightButtonBackgroundColor = UIColor.clear
+    
+    /**
+     Sets the border color for the warning info right button on the digital invoice screen
+     */
+    @objc public var digitalInvoiceInfoViewRightButtonBorderColor = UIColor.white
+    
+    /**
+     Sets the title color for the warning info right button on the digital invoice screen
+     */
+    @objc public var digitalInvoiceInfoViewRightButtonTitleColor = UIColor.white
+    
+    /**
+     Sets the font for the warning info buttons on the digital invoice screen
+     */
+    @objc public var digitalInvoiceInfoViewButtonsFont = UIFont.systemFont(ofSize: 16)
     
     /**
      Sets the font used in the Return Assistant screens by default.

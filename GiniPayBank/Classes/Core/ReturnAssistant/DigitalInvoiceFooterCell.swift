@@ -14,7 +14,10 @@ class DigitalInvoiceFooterCell: UITableViewCell {
     }
     
     let payButton = UIButton(type: .system)
+    let skipButton = UIButton(type: .system)
+    
     private var totalCaptionExplanationLabel = UILabel()
+    private var payButtonBottomConstraint = NSLayoutConstraint()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -72,7 +75,8 @@ class DigitalInvoiceFooterCell: UITableViewCell {
         payButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: margin).isActive = true
         payButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -margin).isActive = true
 
-        payButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -28).isActive = true
+        payButtonBottomConstraint = payButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -28)
+        payButtonBottomConstraint.isActive = true
 
         payButton.layer.cornerRadius = 7
         payButton.backgroundColor = configuration.payButtonBackgroundColor
@@ -83,5 +87,38 @@ class DigitalInvoiceFooterCell: UITableViewCell {
         payButton.layer.shadowRadius = 4
         payButton.layer.shadowOffset = CGSize(width: 0, height: 3)
         payButton.layer.shadowOpacity = 0.15
+    }
+    
+    func shouldSetUIForInaccurateResults(_ bool: Bool) {
+        let configuration = returnAssistantConfiguration ?? ReturnAssistantConfiguration.shared
+
+        if bool {
+            contentView.addSubview(skipButton)
+            let skipButtonHeight: CGFloat = 48
+            let margin: CGFloat = 16
+            
+            skipButton.translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                skipButton.heightAnchor.constraint(equalToConstant: skipButtonHeight),
+                skipButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: margin),
+                skipButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -margin),
+                skipButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
+            ])
+
+            skipButton.layer.cornerRadius = 7
+            skipButton.backgroundColor = configuration.skipButtonBackgroundColor
+            skipButton.setTitleColor(configuration.skipButtonTitleTextColor, for: .normal)
+            skipButton.titleLabel?.font = configuration.skipButtonTitleFont
+            skipButton.layer.borderColor = configuration.skipButtonBorderColor.cgColor
+            skipButton.layer.borderWidth = 1
+            
+            payButtonBottomConstraint.isActive = false
+            payButton.bottomAnchor.constraint(equalTo: skipButton.topAnchor, constant: -8).isActive = true
+        } else {
+            skipButton.removeFromSuperview()
+            payButtonBottomConstraint.isActive = true
+        }
+
     }
 }

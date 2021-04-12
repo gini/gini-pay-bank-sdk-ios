@@ -28,6 +28,12 @@
 "ginipaybank.digitalinvoice.paybuttontitle.noinvoice" = "Bezahlen";
 "ginipaybank.digitalinvoice.paybuttontitle" = "Bezahlen %d/%d";
 "ginipaybank.digitalinvoice.paybuttontitle.accessibilitylabel" = "Bezahlen %d von %d";
+"ginipaybank.digitalinvoice.warningleftbuttontitle" = "OK";
+"ginipaybank.digitalinvoice.warningrightbuttontitle" = "Überspringen";
+"ginipaybank.digitalinvoice.warningtoptitle" = "Info";
+"ginipaybank.digitalinvoice.warningmiddletext" = "Diese neue Funktion kann Fehler enthalten. Bitte überprüfe noch einmal die Artikel und den Gesamtbetrag und bearbeite diese gegebenenfalls. ";
+"ginipaybank.digitalinvoice.warningbottomtext" = "Du kannst die neue Funktion jederzeit überspringen.";
+"ginipaybank.digitalinvoice.skipbuttontitle" = "Funktion überspringen";
 "ginipaybank.digitalinvoice.items" = "Artikel %d/%d";
 "ginipaybank.digitalinvoice.items.accessibilitylabel" = "%d von %d Artikel";
 "ginipaybank.digitalinvoice.whatisthisactionsheet.title" = "Was ist das?";

@@ -36,6 +36,11 @@ public class DigitalInvoiceViewController: UIViewController {
      */
     public var invoice: DigitalInvoice? {
         didSet {
+            if let invoice = invoice,
+               invoice.inaccurateResults {
+                shouldShowInfoView()
+            }
+
             tableView.reloadData()
         }
     }
@@ -53,6 +58,9 @@ public class DigitalInvoiceViewController: UIViewController {
     public var returnAssistantConfiguration = ReturnAssistantConfiguration.shared
     
     private let tableView = UITableView()
+    
+    private var infoView: InfoView?
+    private var tableHeaderViewHeightConstraint: NSLayoutConstraint?
     
     private var didShowOnboardInCurrentSession = false
     
@@ -129,6 +137,14 @@ public class DigitalInvoiceViewController: UIViewController {
                                                 invoice.numTotal)
     }
     
+    @objc func skipButtonTapped() {
+        payButtonTapped()
+    }
+    
+    private func skipButtonTitle() -> String {
+        return .ginipayLocalized(resource: DigitalInvoiceStrings.skipButtonTitle)
+    }
+    
     @objc func whatIsThisTapped(source: UIButton) {
         
         let actionSheet = UIAlertController(title: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetTitle),
@@ -170,6 +186,30 @@ public class DigitalInvoiceViewController: UIViewController {
             present(digitalInvoiceOnboardingViewController, animated: true)
             didShowOnboardInCurrentSession = true
         }
+    }
+    
+    fileprivate func shouldShowInfoView() {
+        infoView = InfoView()
+        
+        guard let headerView = infoView else {
+            return
+        }
+        headerView.delegate = self
+        headerView.returnAssistantConfiguration = returnAssistantConfiguration
+        
+        tableView.contentInset.top = 15
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+
+        self.tableView.tableHeaderView = headerView
+        headerView.centerXAnchor.constraint(equalTo: self.tableView.centerXAnchor).isActive = true
+        headerView.widthAnchor.constraint(equalTo: self.tableView.widthAnchor).isActive = true
+        headerView.topAnchor.constraint(equalTo: self.tableView.topAnchor).isActive = true
+        tableHeaderViewHeightConstraint = headerView.heightAnchor.constraint(equalToConstant: 80)
+        tableHeaderViewHeightConstraint?.isActive = true
+
+        self.tableView.tableHeaderView?.layoutIfNeeded()
+        self.tableView.tableHeaderView = self.tableView.tableHeaderView
+        self.didExpandButton(expanded: false)
     }
     
 }
@@ -255,7 +295,11 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
             cell.payButton.setTitle(payButtonTitle(), for: .normal)
             cell.payButton.accessibilityLabel = payButtonAccessibilityLabel()
             cell.payButton.addTarget(self, action: #selector(payButtonTapped), for: .touchUpInside)
-
+            if let invoice = invoice {
+                cell.shouldSetUIForInaccurateResults(invoice.inaccurateResults)
+                cell.skipButton.setTitle(skipButtonTitle(), for: .normal)
+                cell.skipButton.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
+            }
             return cell
             
         default: fatalError()
@@ -324,5 +368,25 @@ extension DigitalInvoiceViewController: LineItemDetailsViewControllerDelegate {
         }
         
         invoice?.lineItems[index] = lineItem
+    }
+}
+
+extension DigitalInvoiceViewController: InfoViewDelegate {
+    func didTapSkipButton() {
+        payButtonTapped()
+    }
+    
+    func didExpandButton(expanded: Bool) {
+        guard let infoView = infoView else { return }
+        let infoViewHeight: CGFloat = expanded ? 80: 430
+        tableHeaderViewHeightConstraint?.constant = infoViewHeight
+
+        self.tableView.layoutIfNeeded()
+        infoView.animate()
+
+        UIView.animate(withDuration: 0.4) {
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
+        }
     }
 }
