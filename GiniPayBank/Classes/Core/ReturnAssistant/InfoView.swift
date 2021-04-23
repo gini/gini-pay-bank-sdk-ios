@@ -114,7 +114,8 @@ class InfoView: UIView {
         NSLayoutConstraint.activate([
             illustrationImageView.topAnchor.constraint(equalTo: warningLabel.bottomAnchor, constant: -3),
             illustrationImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
-            illustrationImageView.heightAnchor.constraint(equalToConstant: 199)
+            illustrationImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.46),
+            illustrationImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.69)
         ])
         
         contentView.addSubview(skipLabel)

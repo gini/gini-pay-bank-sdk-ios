@@ -55,8 +55,6 @@ class DigitalInvoiceFooterCell: UITableViewCell {
         messageLabel.textAlignment = .center
 
         contentView.addSubview(messageLabel)
-        let messageLabelHeight: CGFloat = 48
-        messageLabel.heightAnchor.constraint(equalToConstant: messageLabelHeight).isActive = true
         
         let messageLabelYConstraint = NSLayoutConstraint(item: messageLabel, attribute: .centerY, relatedBy: .equal, toItem: self.contentView, attribute: .centerY, multiplier: 1, constant: 0)
 
