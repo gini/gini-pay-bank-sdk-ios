@@ -337,13 +337,20 @@ extension LineItemDetailsViewController {
 extension LineItemDetailsViewController {
     
     private func lineItemFromFields() -> DigitalInvoice.LineItem? {
+        let lineItemMaximumAllowedValue = Decimal(25000)
         
-        guard var lineItem = lineItem else { return nil }
-        guard let priceValue = decimal(from: itemPriceTextField.text ?? "0") else { return nil }
+        guard var lineItem = lineItem else { return nil}
+        guard let priceValue = decimal(from: itemPriceTextField.text ?? "0") else{ return nil }
+        
+        var itemPriceValue = priceValue
+        
+        if itemPriceValue > lineItemMaximumAllowedValue {
+            itemPriceValue = lineItemMaximumAllowedValue
+        }
         
         lineItem.name = itemNameTextField.text
         lineItem.quantity = Int(quantityTextField.text ?? "") ?? 0
-        lineItem.price = Price(value: priceValue, currencyCode: lineItem.price.currencyCode)
+        lineItem.price = Price(value: itemPriceValue, currencyCode: lineItem.price.currencyCode)
         
         return lineItem
     }
@@ -360,7 +367,6 @@ extension LineItemDetailsViewController {
 extension LineItemDetailsViewController: GiniTextFieldDelegate {
     
     func textDidChange(_ giniTextField: GiniTextField) {
-        
         lineItem = lineItemFromFields()
     }
 }
