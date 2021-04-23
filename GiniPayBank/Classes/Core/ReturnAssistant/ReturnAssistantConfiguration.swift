@@ -98,10 +98,9 @@ public final class ReturnAssistantConfiguration: NSObject {
     @objc public var digitalInvoiceLineItemEditButtonTitleFont = UIFont.systemFont(ofSize: 14, weight: .medium)
     
     /**
-     Sets the font of the line item label that either displays the quantity or the reason for returning the item
-     on the digital invoice screen to the specified font.
+     Sets the font of the line item label that  displays the quantity on the digital invoice screen to the specified font.
      */
-    @objc public var digitalInvoiceLineItemQuantityOrReturnReasonFont = UIFont.systemFont(ofSize: 32, weight: .bold)
+    @objc public var digitalInvoiceLineItemQuantityFont = UIFont.systemFont(ofSize: 32, weight: .bold)
     
     /**
      Sets the font of the main currency unit of the price on the line item

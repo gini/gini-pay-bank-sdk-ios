@@ -20,25 +20,16 @@ struct DigitalLineItemViewModel {
         return lineItem.name
     }
     
-    var quantityOrReturnReasonString: String {
-        
-        switch lineItem.selectedState {
-        case .selected:
-            return String.localizedStringWithFormat(DigitalInvoiceStrings.lineItemQuantity.localizedGiniPayFormat,
-                                                    lineItem.quantity)
-        case .deselected(let reason):
-            return reason?.labelInLocalLanguageOrGerman ??
-                String.localizedStringWithFormat(DigitalInvoiceStrings.lineItemQuantity.localizedGiniPayFormat,
-                                                 lineItem.quantity)
-        }
+    var quantityString: String {
+        return String.localizedStringWithFormat(DigitalInvoiceStrings.lineItemQuantity.localizedGiniPayFormat,
+                                                lineItem.quantity)
     }
     
-    var quantityOrReturnReasonFont: UIFont {
-        
-        return returnAssistantConfiguration.digitalInvoiceLineItemQuantityOrReturnReasonFont
+    var quantityFont: UIFont {
+        return returnAssistantConfiguration.digitalInvoiceLineItemQuantityFont
     }
     
-    var quantityOrReturnReasonColor: UIColor {
+    var quantityColor: UIColor {
         switch lineItem.selectedState {
         case .selected:
             return .black
@@ -161,7 +152,7 @@ class DigitalLineItemTableViewCell: UITableViewCell {
     @IBOutlet weak var shadowCastView: UIView!
     @IBOutlet weak var modeSwitch: UISwitch!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var quantityOrReturnReasonLabel: UILabel!
+    @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var outilneView: UIView!
@@ -171,10 +162,10 @@ class DigitalLineItemTableViewCell: UITableViewCell {
         didSet {
             
             nameLabel.text = viewModel?.name
-            quantityOrReturnReasonLabel.text = viewModel?.quantityOrReturnReasonString
-            quantityOrReturnReasonLabel.font = viewModel?.quantityOrReturnReasonFont
+            quantityLabel.text = viewModel?.quantityString
+            quantityLabel.font = viewModel?.quantityFont
             
-            quantityOrReturnReasonLabel.textColor = viewModel?.quantityOrReturnReasonColor
+            quantityLabel.textColor = viewModel?.quantityColor
             outilneView.layer.borderColor = viewModel?.outilneViewColor.cgColor
 
             if let viewModel = viewModel, let priceString = viewModel.totalPriceString {

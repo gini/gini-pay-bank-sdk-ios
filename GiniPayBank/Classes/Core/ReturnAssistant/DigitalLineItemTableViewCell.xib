@@ -125,7 +125,7 @@
                 <outlet property="nameLabel" destination="ci3-Xk-SLN" id="whg-Zb-Jno"/>
                 <outlet property="outilneView" destination="jTs-oe-Qg0" id="xN7-jl-3qT"/>
                 <outlet property="priceLabel" destination="GOU-G0-cKp" id="eio-a5-2Wg"/>
-                <outlet property="quantityOrReturnReasonLabel" destination="hFr-mI-xcl" id="9Ug-II-g9m"/>
+                <outlet property="quantityLabel" destination="hFr-mI-xcl" id="Ql1-j9-IOn"/>
                 <outlet property="shadowCastView" destination="W0B-Jq-NI4" id="iia-id-Obi"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="-27.455357142857142"/>
