@@ -296,10 +296,13 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
                                                      for: indexPath) as! DigitalInvoiceFooterCell
             
             cell.returnAssistantConfiguration = returnAssistantConfiguration
+
             cell.payButton.setTitle(payButtonTitle(), for: .normal)
             cell.payButton.accessibilityLabel = payButtonAccessibilityLabel()
             cell.payButton.addTarget(self, action: #selector(payButtonTapped), for: .touchUpInside)
             if let invoice = invoice {
+                let shouldEnablePayButton = invoice.numSelected > 0
+                cell.enablePayButton(shouldEnablePayButton)
                 cell.shouldSetUIForInaccurateResults(invoice.inaccurateResults)
                 cell.skipButton.setTitle(skipButtonTitle(), for: .normal)
                 cell.skipButton.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)

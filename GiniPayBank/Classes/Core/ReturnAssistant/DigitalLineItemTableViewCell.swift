@@ -187,7 +187,7 @@ class DigitalLineItemTableViewCell: UITableViewCell {
                 
                 countLabel.text = String.localizedStringWithFormat(DigitalInvoiceStrings.items.localizedGiniPayFormat,
                                                                    viewModel.index.advanced(by: 1),
-                                                                   viewModel.invoiceNumTotal.advanced(by: 1))
+                                                                   viewModel.invoiceNumTotal)
                 countLabel.font = viewModel.countLabelFont
                 countLabel.textColor = viewModel.countLabelColor
             }
