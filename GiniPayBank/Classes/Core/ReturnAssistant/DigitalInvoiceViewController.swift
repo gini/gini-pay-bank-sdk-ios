@@ -112,6 +112,13 @@ public class DigitalInvoiceViewController: UIViewController {
         showDigitalInvoiceOnboarding()
     }
     
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !onboardingWillBeShown {
+            showFooterDemo()
+        }
+    }
+    
     @objc func payButtonTapped() {
         
         guard let invoice = invoice else { return }
@@ -180,14 +187,41 @@ public class DigitalInvoiceViewController: UIViewController {
         return UserDefaults.standard.object(forKey: key) == nil ? true : false
     }
     
+    fileprivate var footerDemoWillBeShown: Bool {
+        let key = "ginipaybank.defaults.digitalInvoiceFooterDemoShowed"
+        return UserDefaults.standard.object(forKey: key) == nil ? true : false
+    }
+    
     fileprivate func showDigitalInvoiceOnboarding() {
         if onboardingWillBeShown && !didShowOnboardInCurrentSession {
             let bundle = Bundle(for: type(of: self))
             let storyboard = UIStoryboard(name: "DigitalInvoiceOnboarding", bundle: bundle)
             let digitalInvoiceOnboardingViewController = storyboard.instantiateViewController(withIdentifier: "digitalInvoiceOnboardingViewController") as! DigitalInvoiceOnboardingViewController
+            digitalInvoiceOnboardingViewController.delegate = self
             digitalInvoiceOnboardingViewController.returnAssistantConfiguration = returnAssistantConfiguration
             present(digitalInvoiceOnboardingViewController, animated: true)
             didShowOnboardInCurrentSession = true
+        }
+    }
+    
+    fileprivate func showFooterDemo() {
+        if footerDemoWillBeShown {
+            UIView.animate(withDuration: 0.8) {
+                self.tableView.setContentOffset(
+                    CGPoint(x: .zero, y: self.tableView.contentSize.height - self.tableView.bounds.size.height),
+                    animated: false)
+                self.view.layoutIfNeeded()
+            } completion: { (_) in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    UIView.animate(withDuration: 0.8) {
+                        self.tableView.setContentOffset(
+                            .zero,
+                            animated: false)
+                        self.view.layoutIfNeeded()
+                    }
+                }
+            }
+            UserDefaults.standard.set(true, forKey: "ginipaybank.defaults.digitalInvoiceFooterDemoShowed")
         }
     }
     
@@ -395,5 +429,11 @@ extension DigitalInvoiceViewController: InfoViewDelegate {
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
         }
+    }
+}
+
+extension DigitalInvoiceViewController: DigitalInvoiceOnboardingViewControllerDelegate {
+    func didDismissViewController() {
+        showFooterDemo()
     }
 }

@@ -7,8 +7,13 @@
 
 import Foundation
 import GiniCapture
+
+protocol DigitalInvoiceOnboardingViewControllerDelegate: class {
+    func didDismissViewController()
+}
 final class DigitalInvoiceOnboardingViewController: UIViewController {
     var returnAssistantConfiguration = ReturnAssistantConfiguration()
+    weak var delegate: DigitalInvoiceOnboardingViewControllerDelegate?
     
     @IBOutlet var topImageView: UIImageView!
     @IBOutlet var firstLabel: UILabel!
@@ -70,12 +75,17 @@ final class DigitalInvoiceOnboardingViewController: UIViewController {
     }
     
     @objc func doneAction(_ sender: UIButton!) {
-        dismiss(animated: true, completion: nil)
+        dismissViewController()
     }
     
     @objc func hideAction(_ sender: UIButton!) {
+        UserDefaults.standard.set(true, forKey: "ginipaybank.defaults.digitalInvoiceOnboardingShowed")
+        dismissViewController()
+    }
+    
+    func dismissViewController() {
         dismiss(animated: true) {
-            UserDefaults.standard.set(true, forKey: "ginipaybank.defaults.digitalInvoiceOnboardingShowed")
+            self.delegate?.didDismissViewController()
         }
     }
 }
