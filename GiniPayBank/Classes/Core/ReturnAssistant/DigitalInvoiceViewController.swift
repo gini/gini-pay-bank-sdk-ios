@@ -36,7 +36,8 @@ public class DigitalInvoiceViewController: UIViewController {
      */
     public var invoice: DigitalInvoice? {
         didSet {
-            if let invoice = invoice,
+            if !didShowInfoViewInCurrentSession,
+               let invoice = invoice,
                invoice.inaccurateResults {
                 shouldShowInfoView()
             }
@@ -63,6 +64,8 @@ public class DigitalInvoiceViewController: UIViewController {
     private var tableHeaderViewHeightConstraint: NSLayoutConstraint?
     
     private var didShowOnboardInCurrentSession = false
+    private var didShowInfoViewInCurrentSession = false
+
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -210,6 +213,7 @@ public class DigitalInvoiceViewController: UIViewController {
         self.tableView.tableHeaderView?.layoutIfNeeded()
         self.tableView.tableHeaderView = self.tableView.tableHeaderView
         self.didExpandButton(expanded: false)
+        didShowInfoViewInCurrentSession = true
     }
     
 }
