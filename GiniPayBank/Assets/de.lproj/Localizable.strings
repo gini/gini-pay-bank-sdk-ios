@@ -49,6 +49,7 @@
 "ginipaybank.digitalinvoice.deselectreasonactionsheet.action.cancel" = "Cancel";
 "ginipaybank.digitalinvoice.headermessage.primary" = "Scan war erfolgreich!";
 "ginipaybank.digitalinvoice.headermessage.secondary" = "Du kannst nun die Artikel abwählen, die du zurückschicken willst.";
+"ginipaybank.digitalinvoice.total.addArticleButtonTitle" = "Artikel hinzufügen";
 "ginipaybank.digitalinvoice.total.accessibilitylabel" = "Total: %@";
 "ginipaybank.digitalinvoice.footermessage" = "Bitte überprüfe vor der Zahlung, ob alles in Ordnung ist und bearbeite eventuell die Gesamtsumme.";
 "ginipaybank.digitalinvoice.totalcaptionlabeltext" = "Gesamt";

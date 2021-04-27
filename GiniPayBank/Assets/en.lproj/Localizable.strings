@@ -71,6 +71,7 @@
 "ginipaybank.digitalinvoice.headermessage.primary" = "Scan successful!";
 "ginipaybank.digitalinvoice.headermessage.secondary" = "You can now deselect items you would like to return.";
 
+"ginipaybank.digitalinvoice.total.addArticleButtonTitle" = "Add article";
 "ginipaybank.digitalinvoice.total.accessibilitylabel" = "Total: %@";
 
 "ginipaybank.digitalinvoice.footermessage" = "Please double check if the amount is correct and edit total if necessary.";

@@ -36,12 +36,7 @@ public class DigitalInvoiceViewController: UIViewController {
      */
     public var invoice: DigitalInvoice? {
         didSet {
-            if !didShowInfoViewInCurrentSession,
-               let invoice = invoice,
-               invoice.inaccurateResults {
-                shouldShowInfoView()
-            }
-
+            toggleUIChanges()
             tableView.reloadData()
         }
     }
@@ -145,6 +140,16 @@ public class DigitalInvoiceViewController: UIViewController {
         return String.localizedStringWithFormat(DigitalInvoiceStrings.payButtonTitleAccessibilityLabel.localizedGiniPayFormat,
                                                 invoice.numSelected,
                                                 invoice.numTotal)
+    }
+    
+    private func toggleUIChanges() {
+        guard let invoice = invoice else { return }
+        if !didShowInfoViewInCurrentSession,
+           invoice.inaccurateResults {
+            shouldShowInfoView()
+        }
+        let shouldEnableSkipButton = invoice.numSelected > 0
+        infoView?.enableSkipButton(shouldEnableSkipButton)
     }
     
     @objc func skipButtonTapped() {
@@ -294,7 +299,7 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
             let cell = tableView.dequeueReusableCell(withIdentifier: "DigitalLineItemTableViewCell",
                                                      for: indexPath) as! DigitalLineItemTableViewCell
             if let invoice = invoice {
-                cell.viewModel = DigitalLineItemViewModel(lineItem: invoice.lineItems[indexPath.row], returnAssistantConfiguration: returnAssistantConfiguration, index: indexPath.row, invoiceNumTotal: invoice.numTotal)
+                cell.viewModel = DigitalLineItemViewModel(lineItem: invoice.lineItems[indexPath.row], returnAssistantConfiguration: returnAssistantConfiguration, index: indexPath.row, invoiceNumTotal: invoice.numTotal, invoiceLineItemsCount: invoice.lineItems.count)
             }
             
             cell.delegate = self
@@ -322,6 +327,8 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
             
             cell.totalPrice = invoice?.total
             
+            cell.delegate = self
+            
             return cell
             
         case .footer:
@@ -336,7 +343,7 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
             cell.payButton.addTarget(self, action: #selector(payButtonTapped), for: .touchUpInside)
             if let invoice = invoice {
                 let shouldEnablePayButton = invoice.numSelected > 0
-                cell.enablePayButton(shouldEnablePayButton)
+                cell.enableButtons(shouldEnablePayButton)
                 cell.shouldSetUIForInaccurateResults(invoice.inaccurateResults)
                 cell.skipButton.setTitle(skipButtonTitle(), for: .normal)
                 cell.skipButton.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
@@ -349,6 +356,10 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
 }
 
 extension DigitalInvoiceViewController: DigitalLineItemTableViewCellDelegate {
+    func deleteTapped(cell: DigitalLineItemTableViewCell, viewModel: DigitalLineItemViewModel) {
+        invoice?.lineItems.remove(at: viewModel.index)
+    }
+    
 
     func modeSwitchValueChanged(cell: DigitalLineItemTableViewCell, viewModel: DigitalLineItemViewModel) {
         
@@ -407,8 +418,15 @@ extension DigitalInvoiceViewController: LineItemDetailsViewControllerDelegate {
         if shouldPopViewController {
             navigationController?.popViewController(animated: true)
         }
+        guard let invoice = invoice else { return }
         
-        invoice?.lineItems[index] = lineItem
+        if invoice.lineItems.indices.contains(index) {
+            self.invoice?.lineItems[index] = lineItem
+        } else {
+            self.invoice?.lineItems.append(lineItem)
+        }
+
+        
     }
 }
 
@@ -435,5 +453,18 @@ extension DigitalInvoiceViewController: InfoViewDelegate {
 extension DigitalInvoiceViewController: DigitalInvoiceOnboardingViewControllerDelegate {
     func didDismissViewController() {
         showFooterDemo()
+    }
+}
+
+extension DigitalInvoiceViewController: DigitalInvoiceTotalPriceCellDelegate {
+    func didTapAddArticleButton() {
+        guard let firstItem = invoice?.lineItems.first else { return }
+        let viewController = LineItemDetailsViewController()
+        viewController.lineItem = DigitalInvoice.LineItem(name: "New Article", quantity: 1, price: Price(value: 1, currencyCode: firstItem.price.currencyCode), selectedState: .selected, isUserInitiated: true)
+        viewController.returnAssistantConfiguration = returnAssistantConfiguration
+        viewController.lineItemIndex = invoice?.lineItems.count
+        viewController.delegate = self
+        
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }

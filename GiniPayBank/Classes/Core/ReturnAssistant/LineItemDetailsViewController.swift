@@ -148,6 +148,7 @@ class LineItemDetailsViewController: UIViewController {
         itemNameTextField.textFont = configuration.lineItemDetailsContentLabelFont
         itemNameTextField.textColor = configuration.lineItemDetailsContentLabelColor
         itemNameTextField.prefixText = nil
+        itemNameTextField.shouldAllowLetters = true
         
         stackView.addArrangedSubview(itemNameTextField)
         
@@ -238,6 +239,7 @@ class LineItemDetailsViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        guard let lineItem = lineItem, !lineItem.isUserInitiated else { return }
         
         if isMovingFromParent, transitionCoordinator?.isInteractive == false {
             /*
@@ -253,13 +255,12 @@ class LineItemDetailsViewController: UIViewController {
     }
     
     @objc func proceedWithSaveAction(shouldPopViewController: Bool) {
+        guard let lineItem = lineItemFromFields(), let index = lineItemIndex else { return }
         
-        if let index = lineItemIndex, let lineItem = lineItemFromFields() {
-            
-            delegate?.didSaveLineItem(lineItemDetailsViewController: self,
-                                      lineItem: lineItem,
-                                      index: index, shouldPopViewController: shouldPopViewController)
-        }
+        delegate?.didSaveLineItem(lineItemDetailsViewController: self,
+                                  lineItem: lineItem,
+                                  index: index, shouldPopViewController: shouldPopViewController)
+
     }
     
     @objc func checkboxButtonTapped() {
@@ -309,6 +310,9 @@ extension LineItemDetailsViewController {
         quantityTextField.text = String(lineItem.quantity)
         itemPriceTextField.prefixText = lineItem.price.currencySymbol
         itemPriceTextField.text = lineItem.price.stringWithoutSymbol
+        
+        checkboxButton.isHidden = lineItem.isUserInitiated
+        checkboxButtonTextLabel.isHidden = lineItem.isUserInitiated
         
         switch lineItem.selectedState {
         case .selected:

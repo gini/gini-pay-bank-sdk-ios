@@ -6,7 +6,13 @@
 //
 
 import Foundation
+
+protocol DigitalInvoiceTotalPriceCellDelegate: class {
+    func didTapAddArticleButton()
+}
+
 class DigitalInvoiceTotalPriceCell: UITableViewCell {
+    weak var delegate: DigitalInvoiceTotalPriceCellDelegate?
     
     var returnAssistantConfiguration: ReturnAssistantConfiguration? {
         didSet {
@@ -17,6 +23,7 @@ class DigitalInvoiceTotalPriceCell: UITableViewCell {
     
     private var totalCaptionLabel = UILabel()
     private var totalPriceLabel = UILabel()
+    private var addArticleButton = UIButton()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -57,6 +64,25 @@ class DigitalInvoiceTotalPriceCell: UITableViewCell {
         totalPriceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         totalPriceLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         backgroundColor = UIColor.from(giniColor: returnAssistantConfiguration?.digitalInvoiceBackgroundColor ?? ReturnAssistantConfiguration.shared.digitalInvoiceBackgroundColor)
+        
+        contentView.addSubview(addArticleButton)
+        addArticleButton.addTarget(self, action: #selector(didTapAddButton), for: .touchUpInside)
+        addArticleButton.setTitle(.ginipayLocalized(resource: DigitalInvoiceStrings.addArticleButton), for: .normal)
+        addArticleButton.setImage(UIImage(named: "plus-icon", in: giniPayBankBundle(), compatibleWith: nil), for: .normal)
+        addArticleButton.setTitleColor(returnAssistantConfiguration?.digitalInvoiceFooterAddArticleButtonTintColor ?? ReturnAssistantConfiguration.shared.digitalInvoiceFooterAddArticleButtonTintColor, for: .normal)
+        addArticleButton.tintColor = returnAssistantConfiguration?.digitalInvoiceFooterAddArticleButtonTintColor ?? ReturnAssistantConfiguration.shared.digitalInvoiceFooterAddArticleButtonTintColor
+        addArticleButton.semanticContentAttribute = .forceRightToLeft
+        addArticleButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 12, bottom: 2, right: 0)
+        addArticleButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            addArticleButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),
+            addArticleButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -22)
+        ])
+    }
+    
+    @objc func didTapAddButton() {
+        delegate?.didTapAddArticleButton()
     }
     
     private func updateTotalPriceLabel() {

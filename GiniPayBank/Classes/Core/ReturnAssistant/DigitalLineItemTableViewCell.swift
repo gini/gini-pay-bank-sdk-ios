@@ -15,6 +15,7 @@ struct DigitalLineItemViewModel {
 
     let index: Int
     let invoiceNumTotal: Int
+    let invoiceLineItemsCount: Int
     
     var name: String? {
         return lineItem.name
@@ -86,6 +87,10 @@ struct DigitalLineItemViewModel {
         }
     }
     
+    var deleButtonTintColor: UIColor {
+        return returnAssistantConfiguration.lineItemTintColor
+    }
+    
     var primaryTextColor: UIColor {
         switch lineItem.selectedState {
         case .selected:
@@ -145,6 +150,7 @@ struct DigitalLineItemViewModel {
 protocol DigitalLineItemTableViewCellDelegate: class {
     func modeSwitchValueChanged(cell: DigitalLineItemTableViewCell, viewModel: DigitalLineItemViewModel)
     func editTapped(cell: DigitalLineItemTableViewCell, viewModel: DigitalLineItemViewModel)
+    func deleteTapped(cell: DigitalLineItemTableViewCell, viewModel: DigitalLineItemViewModel)
 }
 
 class DigitalLineItemTableViewCell: UITableViewCell {
@@ -157,6 +163,7 @@ class DigitalLineItemTableViewCell: UITableViewCell {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var outilneView: UIView!
     @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var deleteButton: UIButton!
     
     var viewModel: DigitalLineItemViewModel? {
         didSet {
@@ -187,9 +194,12 @@ class DigitalLineItemTableViewCell: UITableViewCell {
                 
                 countLabel.text = String.localizedStringWithFormat(DigitalInvoiceStrings.items.localizedGiniPayFormat,
                                                                    viewModel.index.advanced(by: 1),
-                                                                   viewModel.invoiceNumTotal)
+                                                                   viewModel.invoiceLineItemsCount)
                 countLabel.font = viewModel.countLabelFont
                 countLabel.textColor = viewModel.countLabelColor
+                modeSwitch.isHidden = viewModel.lineItem.isUserInitiated
+                deleteButton.isHidden = !viewModel.lineItem.isUserInitiated
+                deleteButton.tintColor = viewModel.deleButtonTintColor
             }
             
             modeSwitch.addTarget(self, action: #selector(modeSwitchValueChange(sender:)), for: .valueChanged)
@@ -250,6 +260,13 @@ class DigitalLineItemTableViewCell: UITableViewCell {
     @objc func modeSwitchValueChange(sender: UISwitch) {
         if let viewModel = viewModel {
             delegate?.modeSwitchValueChanged(cell: self, viewModel: viewModel)
+        }
+    }
+    
+    @IBAction func deleteButtonTapped(_ sender: Any) {
+        
+        if let viewModel = viewModel {
+            delegate?.deleteTapped(cell: self, viewModel: viewModel)
         }
     }
     

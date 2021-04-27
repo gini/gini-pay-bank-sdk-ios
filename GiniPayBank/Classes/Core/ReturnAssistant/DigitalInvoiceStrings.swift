@@ -23,6 +23,7 @@ enum DigitalInvoiceStrings: LocalizableStringResource {
     case checkmarkButtonDeselectAccessibilityLabel, checkmarkButtonSelectAccessibilityLabel
     case headerMessagePrimary, headerMessageSecondary
     case totalAccessibilityLabel
+    case addArticleButton
     case totalCaptionLabel
     case totalExplanationLabel
     case footerMessage
@@ -114,6 +115,8 @@ enum DigitalInvoiceStrings: LocalizableStringResource {
             return ("warningmiddletext", "Digital invoice warning middle label")
         case .warningViewBottomTitle:
             return ("warningbottomtext", "Digital invoice warning bottom label")
+        case .addArticleButton:
+            return("total.addArticleButtonTitle", "Digital invoice add article button title")
         }
     }
     

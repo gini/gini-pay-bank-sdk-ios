@@ -140,6 +140,11 @@ public final class ReturnAssistantConfiguration: NSObject {
     @objc public var digitalInvoiceFooterMessageTextFont = UIFont.systemFont(ofSize: 14)
     
     /**
+     Sets the add article button tint color of the footer section on the digital invoice screen.
+     */
+    @objc public var digitalInvoiceFooterAddArticleButtonTintColor = Colors.Gini.blue
+    
+    /**
      Sets the text color of the footer message on the digital invoice screen.
      */
     @objc public var digitalInvoiceFooterMessageTextColor = GiniColor(lightModeColor: .darkGray, darkModeColor:.white)

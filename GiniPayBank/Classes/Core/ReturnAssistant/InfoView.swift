@@ -167,6 +167,11 @@ class InfoView: UIView {
         
     }
     
+    func enableSkipButton(_ value: Bool) {
+        skipButton.isEnabled = value
+        skipButton.alpha = value ? 1.0 : 0.3
+    }
+    
     @objc func animate() {
         contentViewHeightConstraint.constant =  isExpanded ? 54 : 400
         contentViewWidthConstraint.constant = isExpanded ? 115 : UIScreen.main.bounds.width - 18

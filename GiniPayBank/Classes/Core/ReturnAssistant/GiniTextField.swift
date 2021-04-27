@@ -24,6 +24,8 @@ class GiniTextField: UIView {
     
     weak var delegate: GiniTextFieldDelegate?
     
+    var shouldAllowLetters = false
+    
     var title: String? {
         didSet {
             titleLabel.text = title
@@ -225,6 +227,7 @@ extension GiniTextField: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if shouldAllowLetters { return true }
         guard CharacterSet(charactersIn: "0123456789,.").isSuperset(of: CharacterSet(charactersIn: string)) else {
             return false
         }

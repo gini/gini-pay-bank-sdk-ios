@@ -669,6 +669,11 @@ public final class GiniPayBankConfiguration: NSObject {
     @objc public var digitalInvoiceFooterMessageTextFont = UIFont.systemFont(ofSize: 14)
     
     /**
+     Sets the add article button tint color of the footer section on the digital invoice screen.
+     */
+    @objc public var digitalInvoiceFooterAddArticleButtonTintColor = Colors.Gini.blue
+    
+    /**
      Sets the text color of the footer message on the digital invoice screen.
      */
     @objc public var digitalInvoiceFooterMessageTextColor = GiniColor(lightModeColor: .darkGray, darkModeColor:.white)
@@ -1174,6 +1179,7 @@ public final class GiniPayBankConfiguration: NSObject {
         configuration.digitalInvoiceSecondaryMessageTextColor = self.digitalInvoiceSecondaryMessageTextColor
         configuration.digitalInvoiceBackgroundColor = self.digitalInvoiceBackgroundColor
         configuration.digitalInvoiceLineItemsBackgroundColor = self.digitalInvoiceLineItemsBackgroundColor
+        configuration.digitalInvoiceFooterAddArticleButtonTintColor = self.digitalInvoiceFooterAddArticleButtonTintColor
         configuration.digitalInvoiceFooterMessageTextFont = self.digitalInvoiceFooterMessageTextFont
         configuration.digitalInvoiceFooterMessageTextColor = self.digitalInvoiceFooterMessageTextColor
         

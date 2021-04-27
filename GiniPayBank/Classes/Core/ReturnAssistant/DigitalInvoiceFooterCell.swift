@@ -87,11 +87,17 @@ class DigitalInvoiceFooterCell: UITableViewCell {
         payButton.layer.shadowOpacity = 0.15
     }
     
-    func enablePayButton(_ newValue: Bool) {
+    func enableButtons(_ newValue: Bool) {
         payButton.isEnabled = newValue
+        skipButton.isEnabled = newValue
+        
         let configuration = returnAssistantConfiguration ?? ReturnAssistantConfiguration.shared
-        let backgroundColor = newValue ? configuration.payButtonBackgroundColor : UIColor.lightGray
-        payButton.backgroundColor = backgroundColor
+        
+        let payButtonBackgroundColor = newValue ? configuration.payButtonBackgroundColor : UIColor.lightGray
+        payButton.backgroundColor = payButtonBackgroundColor
+        
+        skipButton.alpha = newValue ? 1.0 : 0.3
+
     }
     
     func shouldSetUIForInaccurateResults(_ bool: Bool) {

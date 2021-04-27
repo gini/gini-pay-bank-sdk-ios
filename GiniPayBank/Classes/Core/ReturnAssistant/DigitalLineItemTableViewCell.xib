@@ -57,6 +57,18 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bLu-fg-GDa">
+                                            <rect key="frame" x="12.5" y="3.5" width="44" height="44"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="44" id="8cN-Rd-1Iq"/>
+                                                <constraint firstAttribute="height" constant="44" id="kAF-ua-XHT"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <state key="normal" image="garbage-bin-icon"/>
+                                            <connections>
+                                                <action selector="deleteButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="2Xk-Pw-5vY"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
@@ -64,11 +76,13 @@
                                         <constraint firstItem="ci3-Xk-SLN" firstAttribute="leading" secondItem="CUJ-3d-daD" secondAttribute="trailing" constant="38" id="Cdy-PK-z2W"/>
                                         <constraint firstAttribute="bottom" secondItem="hFr-mI-xcl" secondAttribute="bottom" constant="10" id="JYs-1Q-K4n"/>
                                         <constraint firstItem="GOU-G0-cKp" firstAttribute="leading" secondItem="hFr-mI-xcl" secondAttribute="trailing" constant="20" id="Lju-xW-WMs"/>
+                                        <constraint firstItem="bLu-fg-GDa" firstAttribute="centerX" secondItem="CUJ-3d-daD" secondAttribute="centerX" id="TtR-aY-KjK"/>
                                         <constraint firstItem="CUJ-3d-daD" firstAttribute="leading" secondItem="jTs-oe-Qg0" secondAttribute="leading" constant="10" id="U9M-sF-Wfb"/>
                                         <constraint firstItem="ci3-Xk-SLN" firstAttribute="top" secondItem="jTs-oe-Qg0" secondAttribute="top" constant="4" id="XA9-v9-djA"/>
                                         <constraint firstItem="hFr-mI-xcl" firstAttribute="leading" secondItem="jTs-oe-Qg0" secondAttribute="leading" constant="10" id="YSX-Z3-7Zu"/>
                                         <constraint firstAttribute="trailing" secondItem="GOU-G0-cKp" secondAttribute="trailing" constant="10" id="ibE-0t-oIT"/>
                                         <constraint firstItem="CUJ-3d-daD" firstAttribute="top" secondItem="jTs-oe-Qg0" secondAttribute="top" constant="10" id="qu1-BO-tjo"/>
+                                        <constraint firstItem="bLu-fg-GDa" firstAttribute="centerY" secondItem="CUJ-3d-daD" secondAttribute="centerY" id="sSA-uI-8Dj"/>
                                         <constraint firstAttribute="trailing" secondItem="ci3-Xk-SLN" secondAttribute="trailing" constant="40" id="xk0-C7-Tym"/>
                                     </constraints>
                                 </view>
@@ -120,6 +134,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="countLabel" destination="Mp2-C5-5Lg" id="Anc-pj-WWr"/>
+                <outlet property="deleteButton" destination="bLu-fg-GDa" id="COv-3T-Ups"/>
                 <outlet property="editButton" destination="ogc-mD-pz6" id="oiL-SO-VZw"/>
                 <outlet property="modeSwitch" destination="CUJ-3d-daD" id="fEz-kD-dRR"/>
                 <outlet property="nameLabel" destination="ci3-Xk-SLN" id="whg-Zb-Jno"/>
@@ -133,6 +148,7 @@
     </objects>
     <resources>
         <image name="editIcon" width="18" height="17"/>
+        <image name="garbage-bin-icon" width="20" height="22"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
