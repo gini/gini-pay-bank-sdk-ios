@@ -14,34 +14,57 @@ struct DigitalLineItemViewModel {
     let returnAssistantConfiguration : ReturnAssistantConfiguration
 
     let index: Int
+    let invoiceNumTotal: Int
+    let invoiceLineItemsCount: Int
     
     var name: String? {
         return lineItem.name
     }
     
-    var quantityOrReturnReasonString: String {
-        
+    var quantityString: String {
+        return String.localizedStringWithFormat(DigitalInvoiceStrings.lineItemQuantity.localizedGiniPayFormat,
+                                                lineItem.quantity)
+    }
+    
+    var quantityFont: UIFont {
+        return returnAssistantConfiguration.digitalInvoiceLineItemQuantityFont
+    }
+    
+    var quantityColor: UIColor {
         switch lineItem.selectedState {
         case .selected:
-            return String.localizedStringWithFormat(DigitalInvoiceStrings.lineItemQuantity.localizedGiniPayFormat,
-                                                    lineItem.quantity)
-        case .deselected(let reason):
-            return reason?.labelInLocalLanguageOrGerman ??
-                String.localizedStringWithFormat(DigitalInvoiceStrings.lineItemQuantity.localizedGiniPayFormat,
-                                                 lineItem.quantity)
+            return .black
+        case .deselected:
+            if #available(iOS 13.0, *) {
+                return .secondaryLabel
+            } else {
+                return .gray
+            }
         }
     }
     
-    var quantityOrReturnReasonFont: UIFont {
-        
-        return returnAssistantConfiguration.digitalInvoiceLineItemQuantityOrReturnReasonFont
+    var outilneViewColor: UIColor {
+        switch lineItem.selectedState {
+        case .selected:
+            return returnAssistantConfiguration.lineItemTintColor
+        case .deselected:
+            return UIColor.gray
+        }
+    }
+    
+    var countLabelColor: UIColor {
+        return returnAssistantConfiguration.lineItemCountLabelColor
+    }
+    
+    var countLabelFont: UIFont {
+        return returnAssistantConfiguration.lineItemCountLabelFont
     }
     
     var totalPriceString: String? {
         return lineItem.totalPrice.string
     }
     
-    var checkboxTintColor: UIColor {
+    var modeSwitchTintColor: UIColor {
         
         switch lineItem.selectedState {
         case .selected:
@@ -62,6 +85,10 @@ struct DigitalLineItemViewModel {
                 return .gray
             }
         }
+    }
+    
+    var deleButtonTintColor: UIColor {
+        return returnAssistantConfiguration.lineItemTintColor
     }
     
     var primaryTextColor: UIColor {
@@ -121,28 +148,33 @@ struct DigitalLineItemViewModel {
 }
 
 protocol DigitalLineItemTableViewCellDelegate: class {
-    
-    func checkboxButtonTapped(cell: DigitalLineItemTableViewCell, viewModel: DigitalLineItemViewModel)
+    func modeSwitchValueChanged(cell: DigitalLineItemTableViewCell, viewModel: DigitalLineItemViewModel)
     func editTapped(cell: DigitalLineItemTableViewCell, viewModel: DigitalLineItemViewModel)
+    func deleteTapped(cell: DigitalLineItemTableViewCell, viewModel: DigitalLineItemViewModel)
 }
 
 class DigitalLineItemTableViewCell: UITableViewCell {
     
     @IBOutlet weak var shadowCastView: UIView!
-    
-    @IBOutlet weak var checkboxButton: CheckboxButton!
+    @IBOutlet weak var modeSwitch: UISwitch!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var quantityOrReturnReasonLabel: UILabel!
+    @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var outilneView: UIView!
+    @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var deleteButton: UIButton!
     
     var viewModel: DigitalLineItemViewModel? {
         didSet {
             
             nameLabel.text = viewModel?.name
-            quantityOrReturnReasonLabel.text = viewModel?.quantityOrReturnReasonString
-            quantityOrReturnReasonLabel.font = viewModel?.quantityOrReturnReasonFont
+            quantityLabel.text = viewModel?.quantityString
+            quantityLabel.font = viewModel?.quantityFont
             
+            quantityLabel.textColor = viewModel?.quantityColor
+            outilneView.layer.borderColor = viewModel?.outilneViewColor.cgColor
+
             if let viewModel = viewModel, let priceString = viewModel.totalPriceString {
                 
                 let attributedString =
@@ -159,9 +191,19 @@ class DigitalLineItemTableViewCell: UITableViewCell {
                 
                 let format = DigitalInvoiceStrings.totalAccessibilityLabel.localizedGiniPayFormat
                 priceLabel.accessibilityLabel = String.localizedStringWithFormat(format, priceString)
+                
+                countLabel.text = String.localizedStringWithFormat(DigitalInvoiceStrings.items.localizedGiniPayFormat,
+                                                                   viewModel.index.advanced(by: 1),
+                                                                   viewModel.invoiceLineItemsCount)
+                countLabel.font = viewModel.countLabelFont
+                countLabel.textColor = viewModel.countLabelColor
+                modeSwitch.isHidden = viewModel.lineItem.isUserInitiated
+                deleteButton.isHidden = !viewModel.lineItem.isUserInitiated
+                deleteButton.tintColor = viewModel.deleButtonTintColor
             }
             
-            checkboxButton.tintColor = viewModel?.checkboxTintColor
+            modeSwitch.addTarget(self, action: #selector(modeSwitchValueChange(sender:)), for: .valueChanged)
+            modeSwitch.onTintColor = viewModel?.modeSwitchTintColor
             
             editButton.setTitleColor(viewModel?.editButtonTintColor ?? .black, for: .normal)
             editButton.titleLabel?.font = viewModel?.editButtonTitleFont
@@ -173,15 +215,13 @@ class DigitalLineItemTableViewCell: UITableViewCell {
 
             nameLabel.font = viewModel?.nameLabelFont
             
-            shadowCastView.layer.shadowColor = viewModel?.cellShadowColor.cgColor
-            shadowCastView.layer.borderColor = viewModel?.cellBorderColor.cgColor
             
             if let viewModel = viewModel {
                 switch viewModel.lineItem.selectedState {
                 case .selected:
-                    checkboxButton.checkedState = .checked
+                    modeSwitch.isOn = true
                 case .deselected:
-                    checkboxButton.checkedState = .unchecked
+                    modeSwitch.isOn = false
                 }
             }
             
@@ -210,21 +250,23 @@ class DigitalLineItemTableViewCell: UITableViewCell {
     private func setup() {
         backgroundColor = UIColor.from(giniColor: viewModel?.returnAssistantConfiguration.digitalInvoiceBackgroundColor ?? ReturnAssistantConfiguration.shared.digitalInvoiceBackgroundColor)
         selectionStyle = .none
-
-        shadowCastView.layer.cornerRadius = 7
-        shadowCastView.layer.shadowRadius = 5
-        shadowCastView.layer.shadowOpacity = 0.15
-        shadowCastView.layer.shadowOffset = .zero
         
-        shadowCastView.layer.borderWidth = 0.5
+        outilneView.layer.borderWidth = 2
+        outilneView.layer.cornerRadius = 5
         
         shadowCastView.layer.backgroundColor = UIColor.from(giniColor: viewModel?.returnAssistantConfiguration.digitalInvoiceLineItemsBackgroundColor ?? ReturnAssistantConfiguration.shared.digitalInvoiceLineItemsBackgroundColor).cgColor
     }
     
-    @IBAction func checkButtonTapped(_ sender: Any) {
+    @objc func modeSwitchValueChange(sender: UISwitch) {
+        if let viewModel = viewModel {
+            delegate?.modeSwitchValueChanged(cell: self, viewModel: viewModel)
+        }
+    }
+    
+    @IBAction func deleteButtonTapped(_ sender: Any) {
         
         if let viewModel = viewModel {
-            delegate?.checkboxButtonTapped(cell: self, viewModel: viewModel)
+            delegate?.deleteTapped(cell: self, viewModel: viewModel)
         }
     }
     

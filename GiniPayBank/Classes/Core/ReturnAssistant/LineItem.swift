@@ -21,17 +21,19 @@ extension DigitalInvoice {
         var quantity: Int
         var price: Price
         var selectedState: SelectedState
+        var isUserInitiated = false
         
         private enum ExtractedLineItemKey: String {
             case description, quantity, baseGross
         }
         
-        init(name: String?, quantity: Int, price: Price, selectedState: SelectedState) {
+        init(name: String?, quantity: Int, price: Price, selectedState: SelectedState, isUserInitiated: Bool = false) {
             self.name = name
             self.quantity = quantity
             self.price = price
             self.selectedState = selectedState
             self._extractions = []
+            self.isUserInitiated = isUserInitiated
         }
         
         init(extractions: [Extraction]) throws {

@@ -42,9 +42,16 @@
 "ginipaybank.digitalinvoice.paybuttontitle" = "Pay %d/%d";
 "ginipaybank.digitalinvoice.paybuttontitle.accessibilitylabel" = "Pay %d out of %d";
 
-"ginipaybank.digitalinvoice.items" = "Items %d/%d";
+"ginipaybank.digitalinvoice.warningleftbuttontitle" = "OK";
+"ginipaybank.digitalinvoice.warningrightbuttontitle" = "Skip";
+"ginipaybank.digitalinvoice.warningtoptitle" = "Info";
+"ginipaybank.digitalinvoice.warningmiddletext" = "This new feature may contain some bugs. Please double check the articles and the total amount. If necessay you can edit them.";
+"ginipaybank.digitalinvoice.warningbottomtext" = "If you don’t like to use this feature, you can simply skip it.";
+
+"ginipaybank.digitalinvoice.skipbuttontitle" = "Skip feature";
+
+"ginipaybank.digitalinvoice.items" = "Article %d/%d";
 "ginipaybank.digitalinvoice.items.accessibilitylabel" = "Items %d out of %d";
-"ginipaybank.digitalinvoice.whatisthisbutton" = "What is this?";
 
 "ginipaybank.digitalinvoice.whatisthisactionsheet.title" = "What is this?";
 "ginipaybank.digitalinvoice.whatisthisactionsheet.message" = "We extracted the detailed items from your invoice. If you would like to return some items or partially pay the invoice, you can deselect them and the amount to pay will be recalculated.";
@@ -52,7 +59,7 @@
 "ginipaybank.digitalinvoice.whatisthisactionsheet.action.nothelpful" = "No, I don't want to see it again";
 "ginipaybank.digitalinvoice.whatisthisactionsheet.action.cancel" = "Cancel";
 
-"ginipaybank.digitalinvoice.lineitem.quantity" = "Quantity: %d";
+"ginipaybank.digitalinvoice.lineitem.quantity" = "%dx";
 "ginipaybank.digitalinvoice.lineitem.editbutton" = "Edit";
 
 "ginipaybank.digitalinvoice.checkmarkbutton.deselect.accessibilitylabel" = "Deselect item";
@@ -64,9 +71,12 @@
 "ginipaybank.digitalinvoice.headermessage.primary" = "Scan successful!";
 "ginipaybank.digitalinvoice.headermessage.secondary" = "You can now deselect items you would like to return.";
 
+"ginipaybank.digitalinvoice.total.addArticleButtonTitle" = "Add article";
 "ginipaybank.digitalinvoice.total.accessibilitylabel" = "Total: %@";
 
-"ginipaybank.digitalinvoice.footermessage" = "Please check that all is in order and edit if necessary before paying.";
+"ginipaybank.digitalinvoice.footermessage" = "Please double check if the amount is correct and edit total if necessary.";
+"ginipaybank.digitalinvoice.totalcaptionlabeltext" = "Total";
+"ginipaybank.digitalinvoice.totalexplanationlabeltext" = "Incl. shipping, discount and so on.";
 
 "ginipaybank.digitalinvoice.lineitem.savebutton" = "Save";
 "ginipaybank.digitalinvoice.lineitem.itemnametextfieldtitle" = "Item Name";
@@ -80,6 +90,7 @@
 "ginipaybank.digitalinvoice.addonname.otherdiscounts" = "Other discounts";
 "ginipaybank.digitalinvoice.addonname.othercharges" = "Other charges";
 "ginipaybank.digitalinvoice.addonname.shipment" = "Shipment";
-"ginipaybank.digitalinvoice.onboarding.text1" = "Select which items you do not want to pay for and send back.";
-"ginipaybank.digitalinvoice.onboarding.text2" = "You can edit the quantity of individual items here.";
-"ginipaybank.digitalinvoice.onboarding.donebutton" = "Got it!";
+"ginipaybank.digitalinvoice.onboarding.text1" = "Your new return assistant!";
+"ginipaybank.digitalinvoice.onboarding.text2" = "Deselect article that you want to return and pay only for what you keep!";
+"ginipaybank.digitalinvoice.onboarding.donebutton" = "Next";
+"ginipaybank.digitalinvoice.onboarding.hidebutton" = "Don’t show anymore";
