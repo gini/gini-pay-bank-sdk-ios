@@ -54,6 +54,7 @@
 "ginipaybank.digitalinvoice.footermessage" = "Bitte überprüfe vor der Zahlung, ob alles in Ordnung ist und füge eventuell fehlende Artikel hinzu.";
 "ginipaybank.digitalinvoice.totalcaptionlabeltext" = "Gesamt";
 "ginipaybank.digitalinvoice.totalexplanationlabeltext" = "Inkl. Versandkosten, Rabatt usw.";
+"ginipaybank.digitalinvoice.lineitem.notitle" = "Sonstiges";
 "ginipaybank.digitalinvoice.lineitem.savebutton" = "Speichern";
 "ginipaybank.digitalinvoice.lineitem.itemnametextfieldtitle" = "Artikelname";
 "ginipaybank.digitalinvoice.lineitem.quantitytextfieldtitle" = "Anzahl";

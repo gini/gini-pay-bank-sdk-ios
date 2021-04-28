@@ -78,6 +78,7 @@
 "ginipaybank.digitalinvoice.totalcaptionlabeltext" = "Total";
 "ginipaybank.digitalinvoice.totalexplanationlabeltext" = "Incl. shipping, discount and so on.";
 
+"ginipaybank.digitalinvoice.lineitem.notitle" = "Additional";
 "ginipaybank.digitalinvoice.lineitem.savebutton" = "Save";
 "ginipaybank.digitalinvoice.lineitem.itemnametextfieldtitle" = "Item Name";
 "ginipaybank.digitalinvoice.lineitem.quantitytextfieldtitle" = "Quantity";
