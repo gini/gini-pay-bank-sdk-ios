@@ -8,7 +8,7 @@
 import UIKit
 import GiniPayApiLib
 
-protocol LineItemDetailsViewControllerDelegate: class {
+protocol LineItemDetailsViewControllerDelegate: AnyObject {
     
     func didSaveLineItem(lineItemDetailsViewController: LineItemDetailsViewController,
                          lineItem: DigitalInvoice.LineItem,

@@ -11,7 +11,7 @@ import GiniCapture
 /**
  Delegate protocol for `DigitalInvoiceViewController`.
  */
-public protocol DigitalInvoiceViewControllerDelegate: class {
+public protocol DigitalInvoiceViewControllerDelegate: AnyObject {
     
     /**
      Called after the user taps the "Pay" button on the `DigitalInvoiceViewController`.

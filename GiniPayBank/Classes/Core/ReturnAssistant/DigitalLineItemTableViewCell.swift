@@ -147,7 +147,7 @@ struct DigitalLineItemViewModel {
     }
 }
 
-protocol DigitalLineItemTableViewCellDelegate: class {
+protocol DigitalLineItemTableViewCellDelegate: AnyObject {
     func modeSwitchValueChanged(cell: DigitalLineItemTableViewCell, viewModel: DigitalLineItemViewModel)
     func editTapped(cell: DigitalLineItemTableViewCell, viewModel: DigitalLineItemViewModel)
     func deleteTapped(cell: DigitalLineItemTableViewCell, viewModel: DigitalLineItemViewModel)

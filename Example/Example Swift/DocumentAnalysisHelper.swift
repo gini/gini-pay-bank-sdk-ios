@@ -12,7 +12,7 @@ import GiniPayApiLib
 typealias UploadDocumentCompletion = (Result<Document, GiniError>) -> Void
 typealias AnalysisCompletion = (Result<ExtractionResult, GiniError>) -> Void
 
-protocol DocumentAnalysisHelper: class {
+protocol DocumentAnalysisHelper: AnyObject {
     
     var analysisCancellationToken: CancellationToken? { get set }
     var pay5Parameters: [String] { get }
