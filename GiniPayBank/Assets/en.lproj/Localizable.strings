@@ -74,7 +74,7 @@
 "ginipaybank.digitalinvoice.total.addArticleButtonTitle" = "Add article";
 "ginipaybank.digitalinvoice.total.accessibilitylabel" = "Total: %@";
 
-"ginipaybank.digitalinvoice.footermessage" = "Please double check if the amount is correct and edit total if necessary.";
+"ginipaybank.digitalinvoice.footermessage" = "Please double check if the amount is correct and add further articles if necessary";
 "ginipaybank.digitalinvoice.totalcaptionlabeltext" = "Total";
 "ginipaybank.digitalinvoice.totalexplanationlabeltext" = "Incl. shipping, discount and so on.";
 
