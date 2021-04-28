@@ -33,7 +33,7 @@ struct DigitalLineItemViewModel {
     var quantityColor: UIColor {
         switch lineItem.selectedState {
         case .selected:
-            return .black
+            return UIColor.from(giniColor: returnAssistantConfiguration.digitalInvoiceLineItemQuantityColor)
         case .deselected:
             if #available(iOS 13.0, *) {
                 return .secondaryLabel
