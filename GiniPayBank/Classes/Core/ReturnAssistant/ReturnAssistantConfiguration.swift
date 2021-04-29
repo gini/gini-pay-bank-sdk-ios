@@ -103,6 +103,11 @@ public final class ReturnAssistantConfiguration: NSObject {
     @objc public var digitalInvoiceLineItemQuantityFont = UIFont.systemFont(ofSize: 32, weight: .bold)
     
     /**
+     Sets the color of  the line item label that  displays the quantity on the digital invoice line item cells to the specified color
+     */
+    @objc public var digitalInvoiceLineItemQuantityColor =  GiniColor(lightModeColor: .black, darkModeColor: .white)
+
+    /**
      Sets the font of the main currency unit of the price on the line item
      of the digital invoice screen to the specified font.
      */

@@ -10,7 +10,7 @@ import UIKit
 import GiniCapture
 import GiniPayBank
 
-protocol SelectAPIViewControllerDelegate: class {
+protocol SelectAPIViewControllerDelegate: AnyObject {
     func selectAPI(viewController: SelectAPIViewController, didSelectApi api: GiniPayBankApiType)
     func selectAPI(viewController: SelectAPIViewController, didTapSettings: ())
 }

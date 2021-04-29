@@ -23,6 +23,9 @@ public struct DigitalInvoice {
     var total: Price? {
         
         guard let firstLineItem = lineItems.first else { return nil }
+        if numSelected == 0 {
+            return Price(value: 0, currencyCode: firstLineItem.price.currencyCode)
+        }
         
         let lineItemsTotalPrice = lineItems.reduce(Price(value: 0, currencyCode: firstLineItem.price.currencyCode)) { (current, lineItem) -> Price? in
             

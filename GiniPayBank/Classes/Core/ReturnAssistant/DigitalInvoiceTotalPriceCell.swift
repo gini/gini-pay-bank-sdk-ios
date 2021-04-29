@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol DigitalInvoiceTotalPriceCellDelegate: class {
+protocol DigitalInvoiceTotalPriceCellDelegate: AnyObject {
     func didTapAddArticleButton()
 }
 

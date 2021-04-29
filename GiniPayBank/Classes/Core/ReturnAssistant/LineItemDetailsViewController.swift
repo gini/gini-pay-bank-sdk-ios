@@ -8,7 +8,7 @@
 import UIKit
 import GiniPayApiLib
 
-protocol LineItemDetailsViewControllerDelegate: class {
+protocol LineItemDetailsViewControllerDelegate: AnyObject {
     
     func didSaveLineItem(lineItemDetailsViewController: LineItemDetailsViewController,
                          lineItem: DigitalInvoice.LineItem,
@@ -351,8 +351,11 @@ extension LineItemDetailsViewController {
         if itemPriceValue > lineItemMaximumAllowedValue {
             itemPriceValue = lineItemMaximumAllowedValue
         }
-        
-        lineItem.name = itemNameTextField.text
+        if let itemName = itemNameTextField.text {
+            let emptyNameCaption: String = .ginipayLocalized(resource: DigitalInvoiceStrings.noTitleArticle)
+            
+            lineItem.name = itemName.isEmpty ? emptyNameCaption : itemName
+        }
         lineItem.quantity = Int(quantityTextField.text ?? "") ?? 0
         lineItem.price = Price(value: itemPriceValue, currencyCode: lineItem.price.currencyCode)
         

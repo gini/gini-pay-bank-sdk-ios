@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol InfoViewDelegate: class {
+protocol InfoViewDelegate: AnyObject {
     func didExpandButton(expanded: Bool)
     func didTapSkipButton()
 }

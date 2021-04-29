@@ -632,6 +632,11 @@ public final class GiniPayBankConfiguration: NSObject {
     @objc public var digitalInvoiceLineItemQuantityFont = UIFont.systemFont(ofSize: 32, weight: .bold)
     
     /**
+     Sets the color of  the line item label that  displays the quantity on the digital invoice line item cells to the specified color
+     */
+    @objc public var digitalInvoiceLineItemQuantityColor =  GiniColor(lightModeColor: .black, darkModeColor: .white)
+    
+    /**
      Sets the font of the main currency unit of the price on the line item
      of the digital invoice screen to the specified font.
      */
@@ -1172,6 +1177,7 @@ public final class GiniPayBankConfiguration: NSObject {
         configuration.digitalInvoiceLineItemNameFont = self.digitalInvoiceLineItemNameFont
         configuration.digitalInvoiceLineItemEditButtonTitleFont = self.digitalInvoiceLineItemEditButtonTitleFont
         configuration.digitalInvoiceLineItemQuantityFont = self.digitalInvoiceLineItemQuantityFont
+        configuration.digitalInvoiceLineItemQuantityColor = self.digitalInvoiceLineItemQuantityColor
         configuration.digitalInvoiceLineItemPriceMainUnitFont = self.digitalInvoiceLineItemPriceMainUnitFont
         configuration.digitalInvoiceLineItemPriceFractionalUnitFont = self.digitalInvoiceLineItemPriceFractionalUnitFont
         

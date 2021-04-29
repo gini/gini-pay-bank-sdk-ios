@@ -11,7 +11,7 @@ import GiniCapture
 /**
  Delegate protocol for `DigitalInvoiceViewController`.
  */
-public protocol DigitalInvoiceViewControllerDelegate: class {
+public protocol DigitalInvoiceViewControllerDelegate: AnyObject {
     
     /**
      Called after the user taps the "Pay" button on the `DigitalInvoiceViewController`.
@@ -313,8 +313,15 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
             cell.returnAssistantConfiguration = returnAssistantConfiguration
             if let invoice = invoice {
                 let addon = invoice.addons[indexPath.row]
+                let shouldNullAddonPrice = invoice.numSelected == 0
+
+                if shouldNullAddonPrice {
+                    cell.addonPrice = Price(value: .zero, currencyCode: addon.price.currencyCode)
+                } else {
+                    cell.addonPrice = addon.price
+                }
+                
                 cell.addonName = addon.name
-                cell.addonPrice = addon.price
             }
             
             return cell

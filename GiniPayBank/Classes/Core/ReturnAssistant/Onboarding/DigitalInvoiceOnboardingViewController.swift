@@ -8,7 +8,7 @@
 import Foundation
 import GiniCapture
 
-protocol DigitalInvoiceOnboardingViewControllerDelegate: class {
+protocol DigitalInvoiceOnboardingViewControllerDelegate: AnyObject {
     func didDismissViewController()
 }
 final class DigitalInvoiceOnboardingViewController: UIViewController {
