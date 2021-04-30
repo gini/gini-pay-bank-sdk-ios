@@ -161,7 +161,7 @@ extension GiniPayBankNetworkingScreenApiCoordinator {
             case let .success(extractionResult):
 
                 DispatchQueue.main.async {
-                    if GiniPayBank.shared.returnAssistantEnabled {
+                    if GiniPayBankConfiguration.shared.returnAssistantEnabled {
                         do {
                             let digitalInvoice = try DigitalInvoice(extractionResult: extractionResult)
                             self.showDigitalInvoiceScreen(digitalInvoice: digitalInvoice, analysisDelegate: networkDelegate)
