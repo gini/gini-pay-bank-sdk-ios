@@ -44,7 +44,7 @@ import GiniPayApiLib
             DispatchQueue.main.async {
                 switch result {
                 case let .success(paymentRequest):
-                    self.paymentRequesterScheme = "ginipay-ottonova://payment-requester"
+                    self.paymentRequesterScheme = paymentRequest.requesterURI 
                     completion(.success(paymentRequest))
                 case let .failure(error):
                     completion(.failure(.apiError(error)))
