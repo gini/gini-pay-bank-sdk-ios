@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Payment View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Bank" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="paymentViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="PaymentViewController" customModule="Bank" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -189,7 +189,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="2gF-VP-3K5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="206" id="IZj-of-JDp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2gF-VP-3K5" secondAttribute="trailing" constant="-10" id="JK9-TL-0ty"/>
@@ -197,6 +197,14 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2gF-VP-3K5" secondAttribute="bottom" id="OEi-Vc-1bn"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="amount" destination="dPF-FL-6Iw" id="qCm-Z4-F5i"/>
+                        <outlet property="backToBusinessButton" destination="JPY-eZ-Rvl" id="U5p-A9-3R6"/>
+                        <outlet property="iban" destination="Yhz-L3-tWE" id="buy-2h-rib"/>
+                        <outlet property="payButton" destination="VbG-Rc-8VR" id="JLc-Q0-3sZ"/>
+                        <outlet property="purpose" destination="9T4-bJ-NNJ" id="LUf-OR-aFx"/>
+                        <outlet property="receipient" destination="acd-wP-xPg" id="Ee8-cB-aov"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -206,9 +214,6 @@
     <resources>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>
