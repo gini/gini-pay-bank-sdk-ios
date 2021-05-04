@@ -89,13 +89,13 @@ class PaymentViewController: UIViewController {
             }
         }
         
-        viewModel?.onResolvePaymentRequest = {
+        viewModel?.onResolvePaymentRequest = { [weak self] in
             DispatchQueue.main.async {
                 self.backToBusinessButton.isHidden = false
                 self.showAlert(message: "Payment was successfully resolved")
             }
         }
-        viewModel?.onResolvePaymentRequestErrorHandling = {
+        viewModel?.onResolvePaymentRequestErrorHandling = { [weak self] in
             DispatchQueue.main.async {
                 self.backToBusinessButton.isHidden = false
                 self.showAlert(message: "Payment was not resolved")
