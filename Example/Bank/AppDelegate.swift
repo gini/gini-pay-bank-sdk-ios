@@ -5,23 +5,25 @@
 //  Created by Nadya Karaban on 30.04.21.
 //
 
-import UIKit
+import GiniPayApiLib
 import GiniPayBank
-
+import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var paymentRequestId: String = ""
+    let apiLib = GiniApiLib.Builder(client: Client(id: "gini-mobile-test", secret: "wT4o4kXPAYtDknnOYwWf4w5s", domain: "gini.net")).build()
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-                let viewController = storyboard.instantiateViewController(withIdentifier: "paymentViewController") as! PaymentViewController
-                let navigationController = UINavigationController.init(rootViewController: viewController)
-                self.window?.rootViewController = navigationController
 
-                self.window?.makeKeyAndVisible()
+        let paymentViewController = PaymentViewController.instantiate(with: apiLib)
+
+        let navigationController = UINavigationController(rootViewController: paymentViewController)
+        window?.rootViewController = navigationController
+
+        window?.makeKeyAndVisible()
         return true
     }
     
@@ -30,14 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         receivePaymentRequestId(url: url) { result in
             switch result {
-            case .success(let requestId):
+            case let .success(requestId):
                 self.paymentRequestId = requestId
-            case .failure(_):
-                print("failure")
+            case .failure:
+                break
             }
         }
         return true
     }
-
 }
-

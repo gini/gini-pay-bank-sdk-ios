@@ -28,7 +28,6 @@
                                                 <subviews>
                                                     <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" allowsEditingTextAttributes="YES" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="acd-wP-xPg">
                                                         <rect key="frame" x="0.0" y="0.0" width="370" height="40"/>
-                                                        <color key="backgroundColor" red="0.94869893790000004" green="0.95254844429999996" blue="0.96328574420000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="xny-QA-jaV"/>
                                                         </constraints>
@@ -54,7 +53,6 @@
                                                         <subviews>
                                                             <textField opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" allowsEditingTextAttributes="YES" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yhz-L3-tWE">
                                                                 <rect key="frame" x="0.0" y="0.0" width="264" height="40"/>
-                                                                <color key="backgroundColor" red="0.94869893790000004" green="0.95254844429999996" blue="0.96328574420000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="7ml-Sl-5E8"/>
                                                                 </constraints>
@@ -63,7 +61,6 @@
                                                             </textField>
                                                             <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" allowsEditingTextAttributes="YES" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dPF-FL-6Iw">
                                                                 <rect key="frame" x="272" y="0.0" width="98" height="40"/>
-                                                                <color key="backgroundColor" red="0.94869893790000004" green="0.95254844429999996" blue="0.96328574420000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="RZT-sx-2WR"/>
                                                                     <constraint firstAttribute="width" constant="98" id="uD7-hO-lAC"/>
@@ -116,7 +113,6 @@
                                                 <subviews>
                                                     <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" allowsEditingTextAttributes="YES" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9T4-bJ-NNJ">
                                                         <rect key="frame" x="0.0" y="0.0" width="370" height="40"/>
-                                                        <color key="backgroundColor" red="0.94869893790000004" green="0.95254844429999996" blue="0.96328574420000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="8Uy-ex-y1b"/>
                                                         </constraints>
@@ -148,6 +144,9 @@
                                                                 <state key="normal" title="Zur Überweisung">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="resolvePayment:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ofq-eb-R0C"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <constraints>
@@ -169,6 +168,9 @@
                                                                 <state key="normal" title="Zur Business App">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="backToBusiness:" destination="BYZ-38-t0r" eventType="touchUpInside" id="idy-p1-uo7"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <constraints>

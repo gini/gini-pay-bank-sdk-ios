@@ -28,6 +28,8 @@
 		F4807C3E263C20BA00F30FF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4807C3C263C20BA00F30FF3 /* Main.storyboard */; };
 		F4807C40263C20BB00F30FF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4807C3F263C20BB00F30FF3 /* Assets.xcassets */; };
 		F4807C43263C20BB00F30FF3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4807C41263C20BB00F30FF3 /* LaunchScreen.storyboard */; };
+		F4807F342640177600F30FF3 /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4807F332640177500F30FF3 /* PaymentViewModel.swift */; };
+		F4807F542641347F00F30FF3 /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4807F532641347F00F30FF3 /* UIView+Utils.swift */; };
 		F490C7CA25DE72E400D8CA6F /* GiniPayBankSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F490C7C025DE72E400D8CA6F /* GiniPayBankSDK.framework */; };
 		F490C7CF25DE72E400D8CA6F /* GiniPayBankSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F490C7CE25DE72E400D8CA6F /* GiniPayBankSDKTests.swift */; };
 		F490C7E525DE873900D8CA6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F490C7E425DE873900D8CA6F /* AppDelegate.swift */; };
@@ -111,6 +113,8 @@
 		F4807C3F263C20BB00F30FF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F4807C42263C20BB00F30FF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F4807C44263C20BB00F30FF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4807F332640177500F30FF3 /* PaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
+		F4807F532641347F00F30FF3 /* UIView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
 		F490C7C025DE72E400D8CA6F /* GiniPayBankSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GiniPayBankSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F490C7C925DE72E400D8CA6F /* GiniPayBankSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiniPayBankSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F490C7CE25DE72E400D8CA6F /* GiniPayBankSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiniPayBankSDKTests.swift; sourceTree = "<group>"; };
@@ -249,7 +253,9 @@
 			isa = PBXGroup;
 			children = (
 				F4807C36263C20BA00F30FF3 /* AppDelegate.swift */,
+				F4807F332640177500F30FF3 /* PaymentViewModel.swift */,
 				F4807C3A263C20BA00F30FF3 /* ViewController.swift */,
+				F4807F532641347F00F30FF3 /* UIView+Utils.swift */,
 				F4807C3C263C20BA00F30FF3 /* Main.storyboard */,
 				F4807C3F263C20BB00F30FF3 /* Assets.xcassets */,
 				F4807C41263C20BB00F30FF3 /* LaunchScreen.storyboard */,
@@ -672,6 +678,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4807C3B263C20BA00F30FF3 /* ViewController.swift in Sources */,
+				F4807F342640177600F30FF3 /* PaymentViewModel.swift in Sources */,
+				F4807F542641347F00F30FF3 /* UIView+Utils.swift in Sources */,
 				F4807C37263C20BA00F30FF3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
