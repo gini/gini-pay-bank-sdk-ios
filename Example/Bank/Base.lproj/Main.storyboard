@@ -33,6 +33,9 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="BYZ-38-t0r" id="7a7-vy-kQF"/>
+                                                        </connections>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVN-YL-PRv">
                                                         <rect key="frame" x="0.0" y="40" width="370" height="12"/>
@@ -58,6 +61,9 @@
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="qJu-bZ-I7W"/>
+                                                                </connections>
                                                             </textField>
                                                             <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" allowsEditingTextAttributes="YES" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dPF-FL-6Iw">
                                                                 <rect key="frame" x="272" y="0.0" width="98" height="40"/>
@@ -67,6 +73,9 @@
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="eq2-qv-YNo"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
@@ -118,6 +127,9 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="BYZ-38-t0r" id="FxH-Ol-8RJ"/>
+                                                        </connections>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPW-Gf-GJB">
                                                         <rect key="frame" x="0.0" y="40" width="370" height="12"/>
@@ -182,7 +194,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="rCc-Wp-FrY" secondAttribute="bottom" constant="250" id="OA5-yV-gRi"/>
                                     <constraint firstItem="rCc-Wp-FrY" firstAttribute="top" secondItem="2gF-VP-3K5" secondAttribute="topMargin" constant="16" id="STx-lC-8gv"/>
@@ -191,8 +203,9 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemFillColor"/>
                         <constraints>
+                            <constraint firstItem="2gF-VP-3K5" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="7w8-iT-sZp"/>
                             <constraint firstItem="2gF-VP-3K5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="206" id="IZj-of-JDp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2gF-VP-3K5" secondAttribute="trailing" constant="-10" id="JK9-TL-0ty"/>
                             <constraint firstItem="2gF-VP-3K5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="LOf-IG-yEk"/>
@@ -201,11 +214,23 @@
                     </view>
                     <connections>
                         <outlet property="amount" destination="dPF-FL-6Iw" id="qCm-Z4-F5i"/>
+                        <outlet property="amountErrorLabel" destination="ytu-yf-tYa" id="qmu-B9-GOc"/>
                         <outlet property="backToBusinessButton" destination="JPY-eZ-Rvl" id="U5p-A9-3R6"/>
                         <outlet property="iban" destination="Yhz-L3-tWE" id="buy-2h-rib"/>
+                        <outlet property="ibanErrorLabel" destination="oek-On-Dd4" id="0AT-GD-RPm"/>
                         <outlet property="payButton" destination="VbG-Rc-8VR" id="JLc-Q0-3sZ"/>
                         <outlet property="purpose" destination="9T4-bJ-NNJ" id="LUf-OR-aFx"/>
+                        <outlet property="purposeErrorLabel" destination="NPW-Gf-GJB" id="3oT-mz-Je9"/>
                         <outlet property="receipient" destination="acd-wP-xPg" id="Ee8-cB-aov"/>
+                        <outlet property="recipientErrorLabel" destination="sVN-YL-PRv" id="oTl-wd-pUe"/>
+                        <outletCollection property="paymentInputFields" destination="acd-wP-xPg" collectionClass="NSMutableArray" id="ElS-UW-W6R"/>
+                        <outletCollection property="paymentInputFields" destination="Yhz-L3-tWE" collectionClass="NSMutableArray" id="uJb-DU-bDN"/>
+                        <outletCollection property="paymentInputFields" destination="dPF-FL-6Iw" collectionClass="NSMutableArray" id="9ev-9K-yWx"/>
+                        <outletCollection property="paymentInputFields" destination="9T4-bJ-NNJ" collectionClass="NSMutableArray" id="ulW-iq-XtJ"/>
+                        <outletCollection property="paymentInputFieldsErrorLabels" destination="sVN-YL-PRv" collectionClass="NSMutableArray" id="v67-rY-13P"/>
+                        <outletCollection property="paymentInputFieldsErrorLabels" destination="oek-On-Dd4" collectionClass="NSMutableArray" id="Iq0-Ry-gMB"/>
+                        <outletCollection property="paymentInputFieldsErrorLabels" destination="ytu-yf-tYa" collectionClass="NSMutableArray" id="PZ1-cd-p4f"/>
+                        <outletCollection property="paymentInputFieldsErrorLabels" destination="NPW-Gf-GJB" collectionClass="NSMutableArray" id="nVX-0o-cZW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -216,6 +241,9 @@
     <resources>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemFillColor">
+            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
