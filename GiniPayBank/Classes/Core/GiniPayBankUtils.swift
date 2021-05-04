@@ -86,7 +86,7 @@ public func receivePaymentRequestId(url: URL, completion: @escaping (Result<Stri
         print("requestID = \(requestId)")
     } else {
         completion(.failure(.noRequestId))
-        print("Requst id is missing")
+        print("Request id is missing")
     }
 
 }
