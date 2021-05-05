@@ -60,7 +60,8 @@ import GiniPayApiLib
      In case of failure error from the server side.
 
      */
-    public func resolvePayment(paymentRequesId: String, paymentInfo: PaymentInfo, completion: @escaping (Result<String, GiniPayBankError>) -> Void) {
+    public func resolvePaymentRequest(paymentRequesId: String, paymentInfo: PaymentInfo, completion: @escaping (Result<Payment, GiniPayBankError>) -> Void) {
+
         paymentService.resolvePaymentRequest(id: paymentRequesId, recipient: paymentInfo.recipient, iban: paymentInfo.iban, amount: paymentInfo.amount, purpose: paymentInfo.purpose, completion: { result in
             DispatchQueue.main.async {
                 switch result {
