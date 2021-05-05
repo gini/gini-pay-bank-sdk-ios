@@ -20,4 +20,10 @@ target 'Example Swift' do
     target 'GiniPayBankSDKTests' do
         inherit! :search_paths
     end
+
+
+end
+
+target 'Bank' do
+  project_pods
 end

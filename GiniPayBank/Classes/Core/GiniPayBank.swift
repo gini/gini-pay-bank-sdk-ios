@@ -17,8 +17,6 @@ import GiniPayApiLib
     /// reponsible for the payment processing.
     public var paymentService: PaymentService
 
-    private var paymentRequesterScheme = ""
-
     /**
      Returns a GiniPayBank instance
 
@@ -44,7 +42,6 @@ import GiniPayApiLib
             DispatchQueue.main.async {
                 switch result {
                 case let .success(paymentRequest):
-                    self.paymentRequesterScheme = paymentRequest.requesterURI 
                     completion(.success(paymentRequest))
                 case let .failure(error):
                     completion(.failure(.apiError(error)))
@@ -64,10 +61,12 @@ import GiniPayApiLib
 
      */
     public func resolvePaymentRequest(paymentRequesId: String, paymentInfo: PaymentInfo, completion: @escaping (Result<Payment, GiniPayBankError>) -> Void) {
+
         paymentService.resolvePaymentRequest(id: paymentRequesId, recipient: paymentInfo.recipient, iban: paymentInfo.iban, amount: paymentInfo.amount, purpose: paymentInfo.purpose, completion: { result in
             DispatchQueue.main.async {
                 switch result {
-                case .success: break
+                case let .success(payment):
+                    completion(.success(payment))
                 case let .failure(error):
                     completion(.failure(.apiError(error)))
                 }
@@ -81,7 +80,7 @@ import GiniPayApiLib
      Return button should be active for the user after resolving the payment request.
 
      */
-    public func returnBackToBusinessAppHandler() {
+    public func returnBackToBusinessAppHandler(paymentRequesterScheme: String) {
         if let resultUrl = URL(string: paymentRequesterScheme) {
             DispatchQueue.main.async {
                 UIApplication.shared.open(resultUrl, options: [:], completionHandler: nil)
