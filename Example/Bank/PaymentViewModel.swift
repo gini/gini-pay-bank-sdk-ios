@@ -43,7 +43,7 @@ public class PaymentViewModel: NSObject {
 
     func resolvePaymentRequest(paymentInfo: PaymentInfo) {
         isLoading = true
-        bankSDK.resolvePayment(paymentRequesId: appDelegate.paymentRequestId, paymentInfo: paymentInfo) { [weak self] result in
+        bankSDK.resolvePaymentRequest(paymentRequesId: appDelegate.paymentRequestId, paymentInfo: paymentInfo) { [weak self] result in
             switch result {
             case .success:
                 self?.isLoading = false
