@@ -13,7 +13,15 @@ public final class GiniPayBankConfiguration: NSObject {
     /**
      Singleton to make configuration internally accessible in all classes of the Gini Pay Bank SDK.
      */
-    static var shared = GiniPayBankConfiguration()
+    public static var shared = GiniPayBankConfiguration()
+    
+    /**
+     Indicates whether the Return Assistant feature is enabled or not. In case of `true`,
+     the user will be presented with a digital representation of their invoice where they
+     can see individual line items and are able to amend them or choose to not to pay for them.
+    */
+    
+    @objc public var returnAssistantEnabled = true
     
     /**
      Returns a `GiniPayBankConfiguration` instance which allows to set individual configurations
