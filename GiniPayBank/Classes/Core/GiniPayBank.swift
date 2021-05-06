@@ -56,17 +56,17 @@ import GiniPayApiLib
      - parameter paymentRequesId: Id of payment request.
      - parameter completion: An action for processing asynchronous data received from the service with Result type as a paramater. Result is a value that represents either a success or a failure, including an associated value in each case.
      Completion block called on main thread.
-     In success returns the payment structure.
+     In success returns the resolved payment request structure.
      In case of failure error from the server side.
 
      */
-    public func resolvePaymentRequest(paymentRequesId: String, paymentInfo: PaymentInfo, completion: @escaping (Result<String, GiniPayBankError>) -> Void) {
+    public func resolvePaymentRequest(paymentRequesId: String, paymentInfo: PaymentInfo, completion: @escaping (Result<ResolvedPaymentRequest, GiniPayBankError>) -> Void) {
 
         paymentService.resolvePaymentRequest(id: paymentRequesId, recipient: paymentInfo.recipient, iban: paymentInfo.iban, amount: paymentInfo.amount, purpose: paymentInfo.purpose, completion: { result in
             DispatchQueue.main.async {
                 switch result {
-                case let .success(payment):
-                    completion(.success(payment))
+                case let .success(resolvedPayment):
+                    completion(.success(resolvedPayment))
                 case let .failure(error):
                     completion(.failure(.apiError(error)))
                 }
@@ -77,11 +77,12 @@ import GiniPayApiLib
 
     /**
      Returns back to the business app.
-     Return button should be active for the user after resolving the payment request.
+     
+     - parameter resolvedPaymentRequest: resolved payment request returned by method 'resolvePaymentRequest'
 
      */
-    public func returnBackToBusinessAppHandler(paymentRequesterScheme: String) {
-        if let resultUrl = URL(string: paymentRequesterScheme) {
+    public func returnBackToBusinessAppHandler(resolvedPaymentRequest: ResolvedPaymentRequest) {
+        if let resultUrl = URL(string: resolvedPaymentRequest.requesterUri) {
             DispatchQueue.main.async {
                 UIApplication.shared.open(resultUrl, options: [:], completionHandler: nil)
             }

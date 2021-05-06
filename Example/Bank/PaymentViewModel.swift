@@ -33,7 +33,7 @@ public class PaymentViewModel: NSObject {
         }
     }
 
-    var requesterAppScheme = ""
+    private var paymentRequest: ResolvedPaymentRequest?
 
     public init(with giniApiLib: GiniApiLib) {
         apiLib = giniApiLib
@@ -45,7 +45,8 @@ public class PaymentViewModel: NSObject {
         isLoading = true
         bankSDK.resolvePaymentRequest(paymentRequesId: appDelegate.paymentRequestId, paymentInfo: paymentInfo) { [weak self] result in
             switch result {
-            case .success:
+            case .success(let resolvedPaymentRequest):
+                self?.paymentRequest = resolvedPaymentRequest
                 self?.isLoading = false
                 self?.onResolvePaymentRequest()
             case .failure:
@@ -56,7 +57,9 @@ public class PaymentViewModel: NSObject {
     }
 
     func openPaymentRequesterApp() {
-        bankSDK.returnBackToBusinessAppHandler(paymentRequesterScheme: requesterAppScheme)
+        if let resolvedPayment = paymentRequest {
+            bankSDK.returnBackToBusinessAppHandler(resolvedPaymentRequest: resolvedPayment)
+        }
     }
 
     func fetchPaymentRequest() {
@@ -66,7 +69,6 @@ public class PaymentViewModel: NSObject {
                 switch result {
                 case let .success(paymentRequest):
                     self?.isLoading = false
-                    self?.requesterAppScheme = paymentRequest.requesterURI
                     let paymentInfo = PaymentInfo(recipient: paymentRequest.recipient, iban: paymentRequest.iban, bic: paymentRequest.bic, amount: paymentRequest.amount, purpose: paymentRequest.purpose)
                     self?.onPaymentInfoFetched(paymentInfo)
                 case let .failure(error):
