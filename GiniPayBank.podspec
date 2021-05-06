@@ -4,9 +4,9 @@ Pod::Spec.new do |s|
   s.summary          = 'Computer Vision Library for scanning documents.'
 
   s.description      = <<-DESC
-Gini Pay provides an information extraction system for analyzing business invoices and transfers them to the iOS banking app, where the payment process will be completed.
+Gini Pay provides the instant payment solution that enables consumers to check out and seamlessly pay directly from their bank app.
 
-The Gini Pay Bank SDK for iOS provides functionality to capture documents with mobile phones, accurate line item extraction enables the user to uncheck the items they don't want to pay and automatically calculates the new amountToPay.
+The Gini Pay Bank SDK for iOS provides functionality to capture documents with mobile phones, accurate line item extraction enables the user to uncheck the items they do not want to pay and automatically calculates the new amountToPay.
                        DESC
 
   s.homepage         = 'https://www.gini.net/en/developer/'
