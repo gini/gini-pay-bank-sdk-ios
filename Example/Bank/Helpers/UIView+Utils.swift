@@ -10,8 +10,8 @@ import UIKit
 // MARK: - Adds loading indicator to any UIView, configurable with UIActivityIndicatorView.Style, color and scale
 
 public extension UIView {
-    func showLoading(style: UIActivityIndicatorView.Style? = .large, color: UIColor? = .orange, scale: CGFloat? = 1.0) {
-        let loading = UIActivityIndicatorView(style: style ?? .large)
+    func showLoading(style: UIActivityIndicatorView.Style? = .whiteLarge, color: UIColor? = .orange, scale: CGFloat? = 1.0) {
+        let loading = UIActivityIndicatorView(style: style ?? .whiteLarge)
         if let color = color {
             loading.color = color
         }
