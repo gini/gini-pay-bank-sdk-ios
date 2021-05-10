@@ -42,7 +42,6 @@
 		F490C7E525DE873900D8CA6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F490C7E425DE873900D8CA6F /* AppDelegate.swift */; };
 		F490C7E925DE873900D8CA6F /* NoResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F490C7E825DE873900D8CA6F /* NoResultViewController.swift */; };
 		F498528B26496AF00068F0AB /* de.lproj in Resources */ = {isa = PBXBuildFile; fileRef = F498528126496AEF0068F0AB /* de.lproj */; };
-		F498528C26496AF00068F0AB /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = F498528226496AEF0068F0AB /* Base.lproj */; };
 		F498528D26496AF00068F0AB /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = F498528326496AEF0068F0AB /* Credentials.plist */; };
 		F498528E26496AF00068F0AB /* CredentialsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F498528426496AF00068F0AB /* CredentialsManager.swift */; };
 		F498528F26496AF00068F0AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F498528526496AF00068F0AB /* AppDelegate.swift */; };
@@ -161,7 +160,6 @@
 		F490C80125DE87A900D8CA6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F498525E264967150068F0AB /* Business.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Business.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F498528126496AEF0068F0AB /* de.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = de.lproj; sourceTree = "<group>"; };
-		F498528226496AEF0068F0AB /* Base.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Base.lproj; sourceTree = "<group>"; };
 		F498528326496AEF0068F0AB /* Credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Credentials.plist; sourceTree = "<group>"; };
 		F498528426496AF00068F0AB /* CredentialsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialsManager.swift; sourceTree = "<group>"; };
 		F498528526496AF00068F0AB /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -436,7 +434,6 @@
 				F498529A26496EB50068F0AB /* SelectAPIViewController.swift */,
 				F498529C26496EB50068F0AB /* UIViewController.swift */,
 				F498528626496AF00068F0AB /* Assets.xcassets */,
-				F498528226496AEF0068F0AB /* Base.lproj */,
 				F498528326496AEF0068F0AB /* Credentials.plist */,
 				F498528426496AF00068F0AB /* CredentialsManager.swift */,
 				F498528126496AEF0068F0AB /* de.lproj */,
@@ -686,7 +683,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F498528D26496AF00068F0AB /* Credentials.plist in Resources */,
-				F498528C26496AF00068F0AB /* Base.lproj in Resources */,
 				F498529026496AF00068F0AB /* Assets.xcassets in Resources */,
 				F49852A826496F330068F0AB /* Main.storyboard in Resources */,
 				F49852A926496F3F0068F0AB /* LaunchScreen.storyboard in Resources */,
