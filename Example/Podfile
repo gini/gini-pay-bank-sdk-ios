@@ -27,3 +27,8 @@ end
 target 'Bank' do
   project_pods
 end
+
+target 'Business' do
+  project_pods
+  pod 'GiniPayBusiness'
+end

@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Business</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -20,24 +22,37 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
+			<string>None</string>
 			<key>CFBundleURLName</key>
-			<string>net.gini.ginipay-ingdiba</string>
+			<string>net.gini.ginipay-ottonova</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>ginipay-ingdiba</string>
+				<string>ginipay-ottonova</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>net.gini.ginipay</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>ginipay-test</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>ginipay-ingdiba</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>UIApplicationSceneManifest</key>
-	<dict>
-		<key>UIApplicationSupportsMultipleScenes</key>
-		<false/>
-	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>for taking a picture of the document</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>for importing images from photo library</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
