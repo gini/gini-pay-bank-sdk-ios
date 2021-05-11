@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>GiniPayBank Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/GiniPayBank" class="dashAnchor"></a>
+
+    <a title="GiniPayBank Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+        <img class="logo-icon" src="../img/logo.png"/>
+    
+        </a>
+        
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/gini/gini-pay-bank-sdk-ios.git">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">GiniPayBank Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      GiniPayBank Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Documentation.html">Documentation</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../installation.html">Installation</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../integration.html">Integration</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../license.html">License</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other Classes.html">Other Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/DigitalInvoiceViewController.html">DigitalInvoiceViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/DigitalInvoiceViewController/Section.html">– Section</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/GiniPayBank.html">GiniPayBank</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/GiniPayBankConfiguration.html">GiniPayBankConfiguration</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/GiniPayBankNetworkingScreenApiCoordinator.html">GiniPayBankNetworkingScreenApiCoordinator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ReturnAssistantConfiguration.html">ReturnAssistantConfiguration</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other Global Variables.html">Other Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other%20Global%20Variables.html#/s:11GiniPayBank13versionStringSSvp">versionString</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other Enumerations.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/GiniPayBankError.html">GiniPayBankError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other Extensions.html">Other Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/DocumentServiceProtocol.html">DocumentServiceProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/LocalizableStringResource.html">LocalizableStringResource</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/ReturnReason.html">ReturnReason</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/URL.html">URL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other Functions.html">Other Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other%20Functions.html#/s:11GiniPayBank23receivePaymentRequestId3url10completiony10Foundation3URLV_ys6ResultOySSAA0abC5ErrorOGctF">receivePaymentRequestId(url:completion:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other Protocols.html">Other Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/DigitalInvoiceViewControllerDelegate.html">DigitalInvoiceViewControllerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other%20Protocols.html#/s:11GiniPayBank0abC16AnalysisDelegateP">GiniPayBankAnalysisDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other Structures.html">Other Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/DigitalInvoice.html">DigitalInvoice</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/DigitalInvoice/DigitalInvoiceParsingException.html">– DigitalInvoiceParsingException</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/DigitalInvoice.html#/s:11GiniPayBank14DigitalInvoiceV8LineItemV">– LineItem</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/PaymentInfo.html">PaymentInfo</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>GiniPayBank</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">GiniPayBank</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>Core class for GiniPayBank SDK.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11GiniPayBankAAC10giniApiLib0abeF00aeF0Cvp"></a>
+                    <a name="//apple_ref/swift/Property/giniApiLib" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11GiniPayBankAAC10giniApiLib0abeF00aeF0Cvp">giniApiLib</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>reponsible for interaction with Gini Pay backend .</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">giniApiLib</span><span class="p">:</span> <span class="kt">GiniApiLib</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11GiniPayBankAAC14paymentService0aB6ApiLib07PaymentE0Cvp"></a>
+                    <a name="//apple_ref/swift/Property/paymentService" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11GiniPayBankAAC14paymentService0aB6ApiLib07PaymentE0Cvp">paymentService</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>reponsible for the payment processing.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">paymentService</span><span class="p">:</span> <span class="kt">PaymentService</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11GiniPayBankAAC4withAB0aB6ApiLib0aeF0C_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11GiniPayBankAAC4withAB0aB6ApiLib0aeF0C_tcfc">init(with:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a GiniPayBank instance</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">with</span> <span class="nv">giniApiLib</span><span class="p">:</span> <span class="kt">GiniApiLib</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>giniApiLib</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>GiniApiLib initialized with client&rsquo;s credentials</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11GiniPayBankAAC21receivePaymentRequest07paymentF2Id10completionySS_ys6ResultOy0aB6ApiLib0eF0VAA0abC5ErrorOGctF"></a>
+                    <a name="//apple_ref/swift/Method/receivePaymentRequest(paymentRequestId:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11GiniPayBankAAC21receivePaymentRequest07paymentF2Id10completionySS_ys6ResultOy0aB6ApiLib0eF0VAA0abC5ErrorOGctF">receivePaymentRequest(paymentRequestId:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Fetches the payment request via payment request id.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">receivePaymentRequest</span><span class="p">(</span><span class="nv">paymentRequestId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt">PaymentRequest</span><span class="p">,</span> <span class="kt"><a href="../Enums/GiniPayBankError.html">GiniPayBankError</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>paymentRequestId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Id of payment request.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An action for processing asynchronous data received from the service with Result type as a paramater. Result is a value that represents either a success or a failure, including an associated value in each case.
+Completion block called on main thread.
+In success returns the payment request structure.
+In case of failure error from the server side.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11GiniPayBankAAC21resolvePaymentRequest15paymentRequesId0G4Info10completionySS_AA0eJ0Vys6ResultOy0aB6ApiLib08ResolvedeF0VAA0abC5ErrorOGctF"></a>
+                    <a name="//apple_ref/swift/Method/resolvePaymentRequest(paymentRequesId:paymentInfo:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11GiniPayBankAAC21resolvePaymentRequest15paymentRequesId0G4Info10completionySS_AA0eJ0Vys6ResultOy0aB6ApiLib08ResolvedeF0VAA0abC5ErrorOGctF">resolvePaymentRequest(paymentRequesId:paymentInfo:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Resolves the payment via payment request id.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">resolvePaymentRequest</span><span class="p">(</span><span class="nv">paymentRequesId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">paymentInfo</span><span class="p">:</span> <span class="kt"><a href="../Structs/PaymentInfo.html">PaymentInfo</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt">ResolvedPaymentRequest</span><span class="p">,</span> <span class="kt"><a href="../Enums/GiniPayBankError.html">GiniPayBankError</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>paymentRequesId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Id of payment request.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An action for processing asynchronous data received from the service with Result type as a paramater. Result is a value that represents either a success or a failure, including an associated value in each case.
+Completion block called on main thread.
+In success returns the resolved payment request structure.
+In case of failure error from the server side.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11GiniPayBankAAC30returnBackToBusinessAppHandler22resolvedPaymentRequesty0aB6ApiLib08ResolvedkL0V_tF"></a>
+                    <a name="//apple_ref/swift/Method/returnBackToBusinessAppHandler(resolvedPaymentRequest:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11GiniPayBankAAC30returnBackToBusinessAppHandler22resolvedPaymentRequesty0aB6ApiLib08ResolvedkL0V_tF">returnBackToBusinessAppHandler(resolvedPaymentRequest:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns back to the business app.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">returnBackToBusinessAppHandler</span><span class="p">(</span><span class="nv">resolvedPaymentRequest</span><span class="p">:</span> <span class="kt">ResolvedPaymentRequest</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>resolvedPaymentRequest</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>resolved payment request returned by method &lsquo;resolvePaymentRequest&rsquo;</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11GiniPayBankAAC14viewController10withClient17importedDocuments13configuration15resultsDelegate16documentMetadata3api7userApi08trackingL0So06UIViewE0C0abQ3Lib0G0V_Say0A7Capture0aU8Document_pGSgAA0abC13ConfigurationCAQ0au7ResultsL0_pAN0V0V0N0VSgAN9APIDomainOAN10UserDomainOAQ0au8TrackingL0_pSgtFZ"></a>
+                    <a name="//apple_ref/swift/Method/viewController(withClient:importedDocuments:configuration:resultsDelegate:documentMetadata:api:userApi:trackingDelegate:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11GiniPayBankAAC14viewController10withClient17importedDocuments13configuration15resultsDelegate16documentMetadata3api7userApi08trackingL0So06UIViewE0C0abQ3Lib0G0V_Say0A7Capture0aU8Document_pGSgAA0abC13ConfigurationCAQ0au7ResultsL0_pAN0V0V0N0VSgAN9APIDomainOAN10UserDomainOAQ0au8TrackingL0_pSgtFZ">viewController(withClient:importedDocuments:configuration:resultsDelegate:documentMetadata:api:userApi:trackingDelegate:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a view controller which will handle the analysis process.
+It&rsquo;s the easiest way to get started with the Gini Pay Bank SDK as it comes pre-configured and handles
+all screens and transitions out of the box, including the networking.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>Screen API only.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">viewController</span><span class="p">(</span><span class="n">withClient</span> <span class="nv">client</span><span class="p">:</span> <span class="kt">Client</span><span class="p">,</span>
+                                 <span class="nv">importedDocuments</span><span class="p">:</span> <span class="p">[</span><span class="kt">GiniCaptureDocument</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                                 <span class="nv">configuration</span><span class="p">:</span> <span class="kt"><a href="../Classes/GiniPayBankConfiguration.html">GiniPayBankConfiguration</a></span><span class="p">,</span>
+                                 <span class="nv">resultsDelegate</span><span class="p">:</span> <span class="kt">GiniCaptureResultsDelegate</span><span class="p">,</span>
+                                 <span class="nv">documentMetadata</span><span class="p">:</span> <span class="kt">Document</span><span class="o">.</span><span class="kt">Metadata</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                                 <span class="nv">api</span><span class="p">:</span> <span class="kt">APIDomain</span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">,</span>
+                                 <span class="nv">userApi</span><span class="p">:</span> <span class="kt">UserDomain</span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">,</span>
+                                 <span class="nv">trackingDelegate</span><span class="p">:</span> <span class="kt">GiniCaptureTrackingDelegate</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIViewController</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>client</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>GiniClient</code> with the information needed to enable document analysis</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>resultsDelegate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Results delegate object where you can get the results of the analysis.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>configuration</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The configuration to set.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>documentMetadata</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Additional HTTP headers to send when uploading documents</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>api</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The Gini backend API to use. Supply .custom(&ldquo;domain&rdquo;) in order to specify a custom domain.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>userApi</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The Gini user backend API to use. Supply .custom(&ldquo;domain&rdquo;) in order to specify a custom domain.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>trackingDelegate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A delegate object to receive user events</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A presentable view controller.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11GiniPayBankAAC23removeStoredCredentials3fory0aB6ApiLib6ClientV_tKFZ"></a>
+                    <a name="//apple_ref/swift/Method/removeStoredCredentials(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11GiniPayBankAAC23removeStoredCredentials3fory0aB6ApiLib6ClientV_tKFZ">removeStoredCredentials(for:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">removeStoredCredentials</span><span class="p">(</span><span class="k">for</span> <span class="nv">client</span><span class="p">:</span> <span class="kt">Client</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2021 <a class="link" href="https://gini.net" target="_blank" rel="external">Gini GmbH</a>. All rights reserved. (Last updated: 2021-05-11)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
