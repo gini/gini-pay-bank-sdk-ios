@@ -35,11 +35,11 @@ Optionally if you want to use _Certificate pinning_, provide metadata for the up
 > ⚠️  **Important**
 > - The document metadata for the upload process is intended to be used for reporting.
 
-## GiniPayBank initialization
+##  GiniPayBank initialization
 Now that the `GiniApiLib` has been initialized, you can initialize `GiniPayBank`
 
 ```swift
- let bankDK = GiniPayBank(with: giniApiLib)
+ let bankSDK = GiniPayBank(with: giniApiLib)
 ```
 and receive the payment requestID in `AppDelegate`. For handling incoming URL, please use the code snippet below.
 
@@ -68,16 +68,19 @@ bankSDK.receivePaymentRequest(paymentRequestId: appDelegate.paymentRequestId)
 
 ```
 The method above returns the completion block with the struct `PaymentRequest`, which includes recipient, iban, amount and purpose fields.
+
 ##  Resolving payment request
+
 ```swift
 
 bankSDK.resolvePaymentRequest(paymentRequesId: appDelegate.paymentRequestId,
                                  paymentInfo: paymentInfo)
 
 ```
-The method above returns the completion block with the struct `ResolvedPaymentRequest`, which includes requesterUri for redirecting back to the busithe payment requester app.
+The method above returns the completion block with the struct `ResolvedPaymentRequest`, which includes requesterUri for redirecting back to the payment requester's app.
 
-## Redirecting back to the payment requester app
+##  Redirecting back to the payment requester app
+
 If the payment request was successfully resolved you can allow the user redirect back to the payment requester app:
 
 ```swift

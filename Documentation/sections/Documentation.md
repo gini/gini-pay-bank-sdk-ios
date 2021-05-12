@@ -17,10 +17,11 @@ By integrating this SDK into your application you can allow your users to easily
 
 Further documentation with installation, integration or customization guides can be found in our [website](http://developer.gini.net/gini-pay-bank-sdk-ios/docs/).
 
-## Example
+## Example apps
 
-We are providing example app for integrating payment functionality for Swift. This app demonstrates how to integrate the Gini Pay Bank SDK. To run the example project, clone the repo and run `pod install` from the Example directory first.
-To inject your API credentials into the Example app, just add to the Example/Bank directory the `Credentials.plist` file with the following format:
+We are providing Bank and Business example apps for integrating payment functionality. Bank app demonstrates how to integrate the Gini Pay Bank SDK. Business app initiates the payment flow.
+To run the apps, clone the repo and run `pod install` from the Example directory first.
+To inject your API credentials into Business and Bank, just add to the Example/Bank and Example/Business directory the `Credentials.plist` file with the following format:
 
 <br>
 <center><img src="img/credentials_plist_format.png"/></center>
