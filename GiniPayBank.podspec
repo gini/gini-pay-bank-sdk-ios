@@ -1,12 +1,12 @@
 Pod::Spec.new do |s|
   s.name             = 'GiniPayBank'
-  s.version          = '0.0.1'
+  s.version          = '1.0.0'
   s.summary          = 'Computer Vision Library for scanning documents.'
 
   s.description      = <<-DESC
-Gini Pay provides an information extraction system for analyzing business invoices and transfers them to the iOS banking app, where the payment process will be completed.
+Gini Pay provides the instant payment solution that enables consumers to check out and seamlessly pay directly from their bank app.
 
-The Gini Pay Bank SDK for iOS provides functionality to capture documents with mobile phones, accurate line item extraction enables the user to uncheck the items they don't want to pay and automatically calculates the new amountToPay.
+The Gini Pay Bank SDK for iOS provides functionality to capture documents with mobile phones, accurate line item extraction enables the user to uncheck the items they do not want to pay and automatically calculates the new amountToPay.
                        DESC
 
   s.homepage         = 'https://www.gini.net/en/developer/'
@@ -16,7 +16,7 @@ The Gini Pay Bank SDK for iOS provides functionality to capture documents with m
   s.source           = { :git => 'https://github.com/gini/gini-pay-bank-sdk-ios.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/gini'
   s.swift_version    = '5.0'
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '10.2'
   
   s.default_subspec = 'Core'
 
@@ -24,8 +24,8 @@ The Gini Pay Bank SDK for iOS provides functionality to capture documents with m
     core.source_files = 'GiniPayBank/Classes/**/*'
     core.resources = 'GiniPayBank/Assets/*'
     core.dependency "GiniCapture/Networking"
-    core.dependency 'GiniPayApiLib/DocumentsAPI', '>= 1.0.2'
-    core.dependency 'GiniPayApiLib/Pinning', '>= 1.0.2'
+    core.dependency 'GiniPayApiLib/DocumentsAPI', '>= 1.0.3'
+    core.dependency 'GiniPayApiLib/Pinning', '>= 1.0.3'
   end
 
   s.test_spec 'Tests' do |test_spec|

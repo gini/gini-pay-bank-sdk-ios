@@ -40,8 +40,6 @@ Carthage
 
 Pods/
 
-# Docs builds
-docs/
 
 # Keys
 Example/Credentials.plist

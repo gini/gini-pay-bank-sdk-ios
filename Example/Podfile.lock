@@ -1,24 +1,30 @@
 PODS:
-  - GiniCapture/Core (1.0.1)
-  - GiniCapture/Networking (1.0.1):
+  - GiniCapture/Core (1.0.2)
+  - GiniCapture/Networking (1.0.2):
     - GiniCapture/Core
     - GiniPayApiLib/DocumentsAPI (>= 1.0.2)
-  - GiniPayApiLib/DocumentsAPI (1.0.2)
-  - GiniPayApiLib/Pinning (1.0.2):
+  - GiniPayApiLib/DocumentsAPI (1.0.7)
+  - GiniPayApiLib/Pinning (1.0.7):
     - GiniPayApiLib/DocumentsAPI
     - TrustKit (~> 1.6)
-  - GiniPayBank (0.0.1):
-    - GiniPayBank/Core (= 0.0.1)
-  - GiniPayBank/Core (0.0.1):
+  - GiniPayBank (0.0.2):
+    - GiniPayBank/Core (= 0.0.2)
+  - GiniPayBank/Core (0.0.2):
     - GiniCapture/Networking
-    - GiniPayApiLib/DocumentsAPI (>= 1.0.2)
-    - GiniPayApiLib/Pinning (>= 1.0.2)
-  - GiniPayBank/Tests (0.0.1)
+    - GiniPayApiLib/DocumentsAPI (>= 1.0.3)
+    - GiniPayApiLib/Pinning (>= 1.0.3)
+  - GiniPayBank/Tests (0.0.2)
+  - GiniPayBusiness (1.0.4):
+    - GiniPayBusiness/Core (= 1.0.4)
+  - GiniPayBusiness/Core (1.0.4):
+    - GiniPayApiLib/DocumentsAPI (>= 1.0.3)
+    - GiniPayApiLib/Pinning (>= 1.0.3)
   - TrustKit (1.6.5)
 
 DEPENDENCIES:
   - GiniPayBank (from `../`)
   - GiniPayBank/Tests (from `../`)
+  - GiniPayBusiness
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -26,17 +32,19 @@ SPEC REPOS:
   https://github.com/gini/gini-podspecs.git:
     - GiniCapture
     - GiniPayApiLib
+    - GiniPayBusiness
 
 EXTERNAL SOURCES:
   GiniPayBank:
     :path: "../"
 
 SPEC CHECKSUMS:
-  GiniCapture: 2585e8110cb6135416b3f375f50bef8bb28715d4
-  GiniPayApiLib: d3ea1aba2655c4897f69ef6a96d9d78dd3fc04df
-  GiniPayBank: 8ce99fdd313af1104348f8f2ffa1f596b53da8cb
+  GiniCapture: 2a18e6714d0073dd754a74784558fcdfc791fdd5
+  GiniPayApiLib: 2729b758c086a0801d9b9e53a9c33981ef303612
+  GiniPayBank: b992cb01c09a1dd52c134e2f88441855ab79d6ed
+  GiniPayBusiness: 41204a32fd6cee1543428b47d86c53e1b5f935b1
   TrustKit: 073855e3adecd317417bda4ac9e9ac54a2e3b9f2
 
-PODFILE CHECKSUM: 22cf75cd08b40170d49709302b7d9c02bd1599bb
+PODFILE CHECKSUM: 2e4f56711d8b1d082baa27b2f93cea182f036494
 
 COCOAPODS: 1.10.1

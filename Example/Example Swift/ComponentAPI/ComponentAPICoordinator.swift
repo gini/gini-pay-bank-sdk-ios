@@ -695,7 +695,7 @@ extension ComponentAPICoordinator {
     fileprivate func handleAnalysis(with extractionResult: ExtractionResult) {
         if extractionResult.lineItems != nil {
             DispatchQueue.main.async { [self] in
-                if GiniPayBank.shared.returnAssistantEnabled {
+                if GiniPayBankConfiguration.shared.returnAssistantEnabled {
                     do {
                         let digitalInvoice = try DigitalInvoice(extractionResult: extractionResult)
                         self.showDigitalInvoiceScreen(digitalInvoice: digitalInvoice)

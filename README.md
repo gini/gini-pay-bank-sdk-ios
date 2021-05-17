@@ -17,7 +17,7 @@ On *iPhone*, the Gini Pay Bank SDK has been designed for portrait orientation. I
 
 ## Documentation
 
-Further documentation with installation, integration or customization guides can be found in our [website](http://developer.gini.net/gini-vision-lib-ios/docs/).
+Further documentation with installation, integration or customization guides can be found in our [website](http://developer.gini.net/gini-pay-bank-sdk-ios/docs/).
 
 ## Example
 
@@ -28,13 +28,13 @@ To inject your API credentials into the Example app, just add to the Example dir
 
 ## Requirements
 
-- iOS 10.0+
+- iOS 10.2+
 - Xcode 10.2+
 
 **Note:**
 In order to have better analysis results it is highly recommended to enable only devices with 8MP camera and flash. These devices would be:
 
-* iPhones with iOS 10.0 or higher.
+* iPhones with iOS 10.2 or higher.
 * iPad Pro devices (iPad Air 2 and iPad Mini 4 have 8MP camera but no flash).
 
 ## Author
@@ -43,6 +43,6 @@ Gini GmbH, hello@gini.net
 
 ## License
 
-The Gini Pay Bank SDK for iOS is licensed under a Private License. See [the license](http://developer.gini.net/gini-vision-lib-ios/docs/license.html) for more info.
+The Gini Pay Bank SDK for iOS is licensed under a Private License. See [the license](http://developer.gini.net/gini-pay-bank-sdk-ios/docs/license.html) for more info.
 
 **Important:** Always make sure to ship all license notices and permissions with your application.
