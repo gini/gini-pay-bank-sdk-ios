@@ -17,10 +17,6 @@ class ButtonWithImage: UIButton {
         }
     }
 }
-protocol DigitalInvoiceItemsCellDelegate: class {
-    
-    func whatIsThisTapped(source: UIButton)
-}
 
 struct DigitalInvoiceItemsCellViewModel {
     
@@ -41,7 +37,6 @@ struct DigitalInvoiceItemsCellViewModel {
 
 class DigitalInvoiceItemsCell: UITableViewCell {
     
-    weak var delegate: DigitalInvoiceItemsCellDelegate?
     var returnAssistantConfiguration: ReturnAssistantConfiguration? {
         didSet {
             setup()
@@ -49,7 +44,6 @@ class DigitalInvoiceItemsCell: UITableViewCell {
     }
     
     private var itemsLabel: UILabel? = UILabel()
-    private let whatIsThisButton = ButtonWithImage()
     
     var viewModel: DigitalInvoiceItemsCellViewModel? {
         didSet {
@@ -84,37 +78,6 @@ class DigitalInvoiceItemsCell: UITableViewCell {
         
         itemsLabel?.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
         itemsLabel?.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        
-        whatIsThisButton.tintColor = returnAssistantConfiguration?.lineItemTintColor ??
-            ReturnAssistantConfiguration.shared.lineItemTintColor
-        whatIsThisButton.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(named: "infoIcon",
-                            in: Bundle(for: GiniPayBank.self),
-                            compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-        
-        whatIsThisButton.setImage(image, for: .normal)
-        
-        whatIsThisButton.setTitle(.ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisButtonTitle), for: .normal)
-        whatIsThisButton.setTitleColor(returnAssistantConfiguration?.lineItemTintColor ??
-                                                    ReturnAssistantConfiguration.shared.lineItemTintColor, for: .normal)
-        whatIsThisButton.titleLabel?.font = returnAssistantConfiguration?.digitalInvoiceItemsSectionHeaderTextFont ??
-        ReturnAssistantConfiguration.shared.digitalInvoiceItemsSectionHeaderTextFont
-        
-        whatIsThisButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 4)
-
-                
-        contentView.addSubview(whatIsThisButton)
-        
-        whatIsThisButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        whatIsThisButton.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        whatIsThisButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
-        whatIsThisButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-        
-        whatIsThisButton.addTarget(self, action: #selector(whatIsThisButtonTapped), for: .touchUpInside)
-
     }
     
-    @objc func whatIsThisButtonTapped() {
-        delegate?.whatIsThisTapped(source: whatIsThisButton)
-    }
 }

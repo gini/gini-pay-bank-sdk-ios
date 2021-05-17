@@ -9,7 +9,7 @@ import Foundation
 import GiniCapture
 import AVFoundation
 
-protocol SettingsViewControllerDelegate: class {
+protocol SettingsViewControllerDelegate: AnyObject {
     func settings(settingViewController: SettingsViewController,
                   didChangeConfiguration captureConfiguration: GiniConfiguration)
 }

@@ -8,11 +8,12 @@
 import UIKit
 import GiniPayApiLib
 
-protocol LineItemDetailsViewControllerDelegate: class {
+protocol LineItemDetailsViewControllerDelegate: AnyObject {
     
     func didSaveLineItem(lineItemDetailsViewController: LineItemDetailsViewController,
                          lineItem: DigitalInvoice.LineItem,
-                         index: Int)
+                         index: Int,
+                         shouldPopViewController: Bool)
 }
 
 class LineItemDetailsViewController: UIViewController {
@@ -147,6 +148,7 @@ class LineItemDetailsViewController: UIViewController {
         itemNameTextField.textFont = configuration.lineItemDetailsContentLabelFont
         itemNameTextField.textColor = configuration.lineItemDetailsContentLabelColor
         itemNameTextField.prefixText = nil
+        itemNameTextField.shouldAllowLetters = true
         
         stackView.addArrangedSubview(itemNameTextField)
         
@@ -235,14 +237,30 @@ class LineItemDetailsViewController: UIViewController {
         view.backgroundColor = UIColor.from(giniColor: configuration.lineItemDetailsBackgroundColor)
     }
     
-    @objc func saveButtonTapped() {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard let lineItem = lineItem, !lineItem.isUserInitiated else { return }
         
-        if let index = lineItemIndex, let lineItem = lineItemFromFields() {
-            
-            delegate?.didSaveLineItem(lineItemDetailsViewController: self,
-                                      lineItem: lineItem,
-                                      index: index)
+        if isMovingFromParent, transitionCoordinator?.isInteractive == false {
+            /*
+            Automatically save changes before user returns to main screen, so in case he
+            forgets to save it, changes are not lost
+             */
+            proceedWithSaveAction(shouldPopViewController: false)
         }
+      }
+    
+    @objc func saveButtonTapped() {
+        proceedWithSaveAction(shouldPopViewController: true)
+    }
+    
+    @objc func proceedWithSaveAction(shouldPopViewController: Bool) {
+        guard let lineItem = lineItemFromFields(), let index = lineItemIndex else { return }
+        
+        delegate?.didSaveLineItem(lineItemDetailsViewController: self,
+                                  lineItem: lineItem,
+                                  index: index, shouldPopViewController: shouldPopViewController)
+
     }
     
     @objc func checkboxButtonTapped() {
@@ -271,7 +289,6 @@ class LineItemDetailsViewController: UIViewController {
     }
     
     @objc func backgroundTapped() {
-        
         _ = itemNameTextField.resignFirstResponder()
         _ = quantityTextField.resignFirstResponder()
         _ = itemPriceTextField.resignFirstResponder()
@@ -293,6 +310,9 @@ extension LineItemDetailsViewController {
         quantityTextField.text = String(lineItem.quantity)
         itemPriceTextField.prefixText = lineItem.price.currencySymbol
         itemPriceTextField.text = lineItem.price.stringWithoutSymbol
+        
+        checkboxButton.isHidden = lineItem.isUserInitiated
+        checkboxButtonTextLabel.isHidden = lineItem.isUserInitiated
         
         switch lineItem.selectedState {
         case .selected:
@@ -321,13 +341,23 @@ extension LineItemDetailsViewController {
 extension LineItemDetailsViewController {
     
     private func lineItemFromFields() -> DigitalInvoice.LineItem? {
+        let lineItemMaximumAllowedValue = Decimal(25000)
         
-        guard var lineItem = lineItem else { return nil }
-        guard let priceValue = decimal(from: itemPriceTextField.text ?? "0") else { return nil }
+        guard var lineItem = lineItem else { return nil}
+        guard let priceValue = decimal(from: itemPriceTextField.text ?? "0") else{ return nil }
         
-        lineItem.name = itemNameTextField.text
+        var itemPriceValue = priceValue
+        
+        if itemPriceValue > lineItemMaximumAllowedValue {
+            itemPriceValue = lineItemMaximumAllowedValue
+        }
+        if let itemName = itemNameTextField.text {
+            let emptyNameCaption: String = .ginipayLocalized(resource: DigitalInvoiceStrings.noTitleArticle)
+            
+            lineItem.name = itemName.isEmpty ? emptyNameCaption : itemName
+        }
         lineItem.quantity = Int(quantityTextField.text ?? "") ?? 0
-        lineItem.price = Price(value: priceValue, currencyCode: lineItem.price.currencyCode)
+        lineItem.price = Price(value: itemPriceValue, currencyCode: lineItem.price.currencyCode)
         
         return lineItem
     }
@@ -344,7 +374,6 @@ extension LineItemDetailsViewController {
 extension LineItemDetailsViewController: GiniTextFieldDelegate {
     
     func textDidChange(_ giniTextField: GiniTextField) {
-        
         lineItem = lineItemFromFields()
     }
 }
