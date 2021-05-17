@@ -18,7 +18,7 @@ public struct DigitalInvoice {
     var lineItems: [LineItem]
     var addons: [DigitalInvoiceAddon]
     var returnReasons: [ReturnReason]?
-    var inaccurateResults = true
+    let inaccurateResults: Bool
     
     var total: Price? {
         
@@ -107,6 +107,12 @@ extension DigitalInvoice {
         }
         
         addons = []
+        
+        if let amountsAreConsistent = extractionResult.extractions.first(where: { $0.name == "amountsAreConsistent" }) {
+            inaccurateResults = amountsAreConsistent.value == "false"
+        } else {
+            inaccurateResults = true
+        }
         
         extractionResult.extractions.forEach { extraction in
             if let addon = DigitalInvoiceAddon(from: extraction) {

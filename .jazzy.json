@@ -7,7 +7,7 @@
    ],
    "author":"Gini GmbH",
    "author_url":"https://gini.net",
-   "module":"GiniPayBankSDK",
+   "module":"GiniPayBank",
    "readme":"Documentation/Sections/Documentation.md",
    "theme": "Documentation/jazzy-theme/",
    "output":"Documentation/Api",
@@ -23,24 +23,7 @@
          "children":[
            "Installation",
            "Integration",
-           "Changelog",
            "License"
-         ]
-      },
-      {
-         "name":"Guides",
-         "children":[
-           "Customization guide",
-           "Open with guide",
-           "Import PDFs and images guide",
-           "QR Code scanning guide",
-           "Event tracking guide"
-         ]
-      },
-      {
-         "name":"Migration guides",
-         "children":[
-           "Updating from GiniVision"
          ]
       },
       {
