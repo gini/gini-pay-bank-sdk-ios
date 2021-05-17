@@ -35,6 +35,13 @@ public struct DigitalInvoice {
             }
         }
         
+        let lineItemsTotalPriceDiffs = lineItems.reduce(Price(value: 0, currencyCode: firstLineItem.price.currencyCode)) { (current, lineItem) -> Price? in
+            
+            guard let current = current else { return nil }
+            
+            return try? current + lineItem.totalPriceDiff
+        }
+        
         let userAddedLineItemsTotalPrice = lineItems.reduce(Price(value: 0, currencyCode: firstLineItem.price.currencyCode)) { (current, lineItem) -> Price? in
             
             guard let current = current else { return nil }
@@ -47,8 +54,12 @@ public struct DigitalInvoice {
         }
         
         if let deselectedLineItemsTotalPrice = deselectedLineItemsTotalPrice,
-            let userAddedLineItemsTotalPrice = userAddedLineItemsTotalPrice {
-            return try? Price.max(amountToPay - deselectedLineItemsTotalPrice + userAddedLineItemsTotalPrice,
+            let userAddedLineItemsTotalPrice = userAddedLineItemsTotalPrice,
+            let lineItemsTotalPriceDiffs = lineItemsTotalPriceDiffs {
+            return try? Price.max(amountToPay
+                                    - deselectedLineItemsTotalPrice
+                                    + lineItemsTotalPriceDiffs
+                                    + userAddedLineItemsTotalPrice,
                                          Price(value: 0, currencyCode: firstLineItem.price.currencyCode))
         } else {
             return amountToPay

@@ -23,6 +23,9 @@ extension DigitalInvoice {
         var selectedState: SelectedState
         var isUserInitiated = false
         
+        private let origPrice: Price
+        private let origQuantity: Int
+        
         private enum ExtractedLineItemKey: String {
             case description, quantity, baseGross
         }
@@ -30,7 +33,9 @@ extension DigitalInvoice {
         init(name: String?, quantity: Int, price: Price, selectedState: SelectedState, isUserInitiated: Bool = false) {
             self.name = name
             self.quantity = quantity
+            self.origQuantity = quantity
             self.price = price
+            self.origPrice = price
             self.selectedState = selectedState
             self._extractions = []
             self.isUserInitiated = isUserInitiated
@@ -61,7 +66,9 @@ extension DigitalInvoice {
             self._extractions = extractions
             self.name = extractedName
             self.quantity = quantity
+            self.origQuantity = quantity
             self.price = price
+            self.origPrice = price
             self.selectedState = .selected
         }
         
@@ -108,6 +115,10 @@ extension DigitalInvoice {
         
         var totalPrice: Price {
             return price * quantity
+        }
+        
+        var totalPriceDiff: Price {
+            return (try? totalPrice - (origPrice * origQuantity)) ?? Price(value: 0, currencyCode: totalPrice.currencyCode)
         }
     }
 }
