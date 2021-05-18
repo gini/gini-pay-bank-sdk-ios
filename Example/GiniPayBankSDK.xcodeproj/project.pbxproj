@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C84B5DD264ED55100853F33 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C84B5DC264ED55100853F33 /* Credentials.plist */; };
 		353BD1027BFD8F5E4E1A93CB /* Pods_Business.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50B834F353BE94ACBFC872D0 /* Pods_Business.framework */; };
+		4C84B5DD264ED55100853F33 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C84B5DC264ED55100853F33 /* Credentials.plist */; };
 		76561AD06A9CEBCA62F7A485 /* Pods_Bank.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 440532989B71E699FDBD5739 /* Pods_Bank.framework */; };
 		8DDF7264A33AB586A8B618B0 /* Pods_Example_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 253672B503E3AB8ED839997F /* Pods_Example_Tests.framework */; };
 		C2B3643144A9232C0F90DD54 /* Pods_GiniPayBankSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8279DF74274EA3C93634F372 /* Pods_GiniPayBankSDKTests.framework */; };
@@ -107,6 +107,7 @@
 		253672B503E3AB8ED839997F /* Pods_Example_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		440532989B71E699FDBD5739 /* Pods_Bank.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bank.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C84B5DC264ED55100853F33 /* Credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Credentials.plist; sourceTree = "<group>"; };
+		4C84B5DE2653FFF000853F33 /* Example Swift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Example Swift.entitlements"; sourceTree = "<group>"; };
 		50B834F353BE94ACBFC872D0 /* Pods_Business.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Business.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56BE2254CCFAB25264CBE4B4 /* Pods-Business.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Business.debug.xcconfig"; path = "Target Support Files/Pods-Business/Pods-Business.debug.xcconfig"; sourceTree = "<group>"; };
 		5C62CC764D345C8CEECE6701 /* Pods-Bank.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bank.release.xcconfig"; path = "Target Support Files/Pods-Bank/Pods-Bank.release.xcconfig"; sourceTree = "<group>"; };
@@ -384,6 +385,7 @@
 		F490C7E325DE873900D8CA6F /* Example Swift */ = {
 			isa = PBXGroup;
 			children = (
+				4C84B5DE2653FFF000853F33 /* Example Swift.entitlements */,
 				F441DC0025E51F4B00AAB09A /* ComponentAPI */,
 				F441DC9325E53A6F00AAB09A /* Extensions */,
 				F490C7E425DE873900D8CA6F /* AppDelegate.swift */,
@@ -1291,6 +1293,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CODE_SIGN_ENTITLEMENTS = "Example Swift/Example Swift.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Example Swift/Info.plist";
@@ -1312,6 +1315,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CODE_SIGN_ENTITLEMENTS = "Example Swift/Example Swift.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Example Swift/Info.plist";
