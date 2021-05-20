@@ -39,7 +39,11 @@ public struct DigitalInvoice {
             
             guard let current = current else { return nil }
             
-            return try? current + lineItem.totalPriceDiff
+            if !lineItem.isUserInitiated {
+                return try? current + lineItem.totalPriceDiff
+            } else {
+                return current
+            }
         }
         
         let userAddedLineItemsTotalPrice = lineItems.reduce(Price(value: 0, currencyCode: firstLineItem.price.currencyCode)) { (current, lineItem) -> Price? in
