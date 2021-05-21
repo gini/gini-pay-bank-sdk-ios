@@ -9,7 +9,7 @@ import Foundation
 import GiniCapture
 import GiniPayApiLib
 
-protocol Coordinator: class {
+protocol Coordinator: AnyObject {
     var rootViewController: UIViewController { get }
 }
 

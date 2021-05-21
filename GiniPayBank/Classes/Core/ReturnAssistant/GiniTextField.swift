@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol GiniTextFieldDelegate: class {
+protocol GiniTextFieldDelegate: AnyObject {
     
     func textDidChange(_ giniTextField: GiniTextField)
 }
