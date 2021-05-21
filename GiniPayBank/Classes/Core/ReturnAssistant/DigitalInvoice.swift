@@ -18,33 +18,55 @@ public struct DigitalInvoice {
     var lineItems: [LineItem]
     var addons: [DigitalInvoiceAddon]
     var returnReasons: [ReturnReason]?
+    let inaccurateResults: Bool
+    private let amountToPay: Price
     
     var total: Price? {
         
         guard let firstLineItem = lineItems.first else { return nil }
         
-        let lineItemsTotalPrice = lineItems.reduce(Price(value: 0, currencyCode: firstLineItem.price.currencyCode)) { (current, lineItem) -> Price? in
+        let deselectedLineItemsTotalPrice = lineItems.reduce(Price(value: 0, currencyCode: firstLineItem.price.currencyCode)) { (current, lineItem) -> Price? in
             
             guard let current = current else { return nil }
             
             switch lineItem.selectedState {
-            case .selected: return try? current + lineItem.totalPrice
-            case .deselected: return current
+            case .deselected: return try? current + lineItem.totalPrice
+            case .selected: return current
             }
         }
         
-        let addonsTotalPrice = addons.reduce(Price(value: 0, currencyCode: firstLineItem.price.currencyCode)) { (current, addon) -> Price? in
+        let lineItemsTotalPriceDiffs = lineItems.reduce(Price(value: 0, currencyCode: firstLineItem.price.currencyCode)) { (current, lineItem) -> Price? in
             
             guard let current = current else { return nil }
             
-            return try? current + addon.price
+            if !lineItem.isUserInitiated {
+                return try? current + lineItem.totalPriceDiff
+            } else {
+                return current
+            }
         }
         
-        if let lineItemsPriceSum = lineItemsTotalPrice,
-            let addonsPriceSum = addonsTotalPrice {
-            return try? Price.max(lineItemsPriceSum + addonsPriceSum, Price(value: 0, currencyCode: firstLineItem.price.currencyCode))
+        let userAddedLineItemsTotalPrice = lineItems.reduce(Price(value: 0, currencyCode: firstLineItem.price.currencyCode)) { (current, lineItem) -> Price? in
+            
+            guard let current = current else { return nil }
+            
+            if lineItem.isUserInitiated {
+                return try? current + lineItem.totalPrice
+            } else {
+                return current
+            }
+        }
+        
+        if let deselectedLineItemsTotalPrice = deselectedLineItemsTotalPrice,
+            let userAddedLineItemsTotalPrice = userAddedLineItemsTotalPrice,
+            let lineItemsTotalPriceDiffs = lineItemsTotalPriceDiffs {
+            return try? Price.max(amountToPay
+                                    - deselectedLineItemsTotalPrice
+                                    + lineItemsTotalPriceDiffs
+                                    + userAddedLineItemsTotalPrice,
+                                         Price(value: 0, currencyCode: firstLineItem.price.currencyCode))
         } else {
-            return lineItemsTotalPrice
+            return amountToPay
         }
     }
 }
@@ -96,13 +118,25 @@ extension DigitalInvoice {
         
         lineItems = try extractedLineItems.map { try LineItem(extractions: $0) }
         
-        if let firstLineItem = lineItems.first {
-            for lineItem in lineItems where lineItem.price.currencyCode != firstLineItem.price.currencyCode {
-                throw DigitalInvoiceParsingException.mixedCurrenciesInOneInvoice
-            }
+        guard let firstLineItem = lineItems.first else { throw DigitalInvoiceParsingException.lineItemsMissing }
+        
+        for lineItem in lineItems where lineItem.price.currencyCode != firstLineItem.price.currencyCode {
+            throw DigitalInvoiceParsingException.mixedCurrenciesInOneInvoice
         }
         
         addons = []
+        
+        if let amountsAreConsistent = extractionResult.extractions.first(where: { $0.name == "amountsAreConsistent" }) {
+            inaccurateResults = amountsAreConsistent.value == "false"
+        } else {
+            inaccurateResults = true
+        }
+        
+        if let amountToPayExtraction = extractionResult.extractions.first(where: { $0.name == "amountToPay" }) {
+            amountToPay = Price(extractionString: amountToPayExtraction.value) ?? Price(value: 0, currencyCode: firstLineItem.price.currencyCode)
+        } else {
+            amountToPay = Price(value: 0, currencyCode: firstLineItem.price.currencyCode)
+        }
         
         extractionResult.extractions.forEach { extraction in
             if let addon = DigitalInvoiceAddon(from: extraction) {

@@ -12,8 +12,10 @@ enum DigitalInvoiceStrings: LocalizableStringResource {
     
     case screenTitle
     case noInvoicePayButtonTitle, payButtonTitle, payButtonTitleAccessibilityLabel
+    case skipButtonTitle
+    case warningViewLeftButtonTitle, warningViewRightButtonTitle
+    case warningViewTopTitle, warningViewMiddleTitle, warningViewBottomTitle
     case items, itemsAccessibilityLabel
-    case whatIsThisButtonTitle
     case whatIsThisActionSheetTitle, whatIsThisActionSheetMessage, whatIsThisActionSheetActionHelpful, whatIsThisActionSheetActionNotHelpful,
     whatIsThisActionSheetActionCancel
     case lineItemCheckmarkLabel, lineItemQuantity, lineItemEditButtonTitle, lineItemSaveButtonTitle, lineItemNameTextFieldTitle, lineItemQuantityTextFieldTitle,
@@ -21,6 +23,10 @@ enum DigitalInvoiceStrings: LocalizableStringResource {
     case checkmarkButtonDeselectAccessibilityLabel, checkmarkButtonSelectAccessibilityLabel
     case headerMessagePrimary, headerMessageSecondary
     case totalAccessibilityLabel
+    case addArticleButton
+    case noTitleArticle
+    case totalCaptionLabel
+    case totalExplanationLabel
     case footerMessage
     case addonNameDiscount, addonNameGiftCard, addonNameOtherDiscounts, addonNameOtherCharges, addonNameShipment
     
@@ -40,12 +46,12 @@ enum DigitalInvoiceStrings: LocalizableStringResource {
             return ("paybuttontitle", "Digital invoice pay button title")
         case .payButtonTitleAccessibilityLabel:
             return ("paybuttontitle.accessibilitylabel", "Digital invoice pay button accessibility label")
+        case .skipButtonTitle:
+            return("skipbuttontitle", "Digital invoice skip button title")
         case .items:
             return ("items", "Digital invoice selected and total items")
         case .itemsAccessibilityLabel:
             return ("items.accessibilitylabel", "Digital invoice selected and total items accessibility label")
-        case .whatIsThisButtonTitle:
-            return ("whatisthisbutton", "Digital invoice 'What is this?' button title")
         case .whatIsThisActionSheetTitle:
             return ("whatisthisactionsheet.title", "Digital invoice 'What is this?' action sheet title")
         case .whatIsThisActionSheetMessage:
@@ -96,6 +102,24 @@ enum DigitalInvoiceStrings: LocalizableStringResource {
             return ("addonname.othercharges", "Digital invoice other charges addon label")
         case .addonNameShipment:
             return ("addonname.shipment", "Digital invoice shipment addon label")
+        case .totalCaptionLabel:
+            return ("totalcaptionlabeltext", "Digital invoice total caption label")
+        case .totalExplanationLabel:
+            return ("totalexplanationlabeltext", "Digital invoice total explanation label")
+        case .warningViewLeftButtonTitle:
+            return ("warningleftbuttontitle", "Digital invoice warning left button label")
+        case .warningViewRightButtonTitle:
+            return ("warningrightbuttontitle", "Digital invoice warning right button label")
+        case .warningViewTopTitle:
+            return ("warningtoptitle", "Digital invoice warning top label")
+        case .warningViewMiddleTitle:
+            return ("warningmiddletext", "Digital invoice warning middle label")
+        case .warningViewBottomTitle:
+            return ("warningbottomtext", "Digital invoice warning bottom label")
+        case .addArticleButton:
+            return("total.addArticleButtonTitle", "Digital invoice add article button title")
+        case .noTitleArticle:
+            return ("lineitem.notitle", "Digital invoice article without title")
         }
     }
     
