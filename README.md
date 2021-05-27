@@ -21,12 +21,9 @@ Further documentation with installation, integration or customization guides can
 
 ## Example
 
-We are providing Bank and Business example apps for integrating payment functionality. Bank app demonstrates how to integrate the Gini Pay Bank SDK. Business app initiates the payment flow.
+We are providing the Bank and Business example apps for integrating payment functionality. The Bank app demonstrates how to integrate the Gini Pay Bank SDK. The Business app initiates the payment flow.
 To run the apps, clone the repo and run `pod install` from the Example directory first.
-To inject your API credentials into Business and Bank, just add to the Example/Bank and Example/Business directory the `Credentials.plist` file with the following format:
-
-
-<img border=1 src=credentials_plist_format.png/>
+To inject your API credentials into the Business and Bank example apps you need to fill in your credentials in `Example/Business/Credentials.plist` and `Example/Bank/Credentials.plist`, respectively.
 
 ## Requirements
 

@@ -77,7 +77,7 @@ bankSDK.resolvePaymentRequest(paymentRequesId: appDelegate.paymentRequestId,
                                  paymentInfo: paymentInfo)
 
 ```
-The method above returns the completion block with the struct `ResolvedPaymentRequest`, which includes requesterUri for redirecting back to the payment requester's app.
+The method above returns the completion block with the struct `ResolvedPaymentRequest`, which includes `requesterUri` for redirecting back to the payment requester's app.
 
 ##  Redirecting back to the payment requester app
 
