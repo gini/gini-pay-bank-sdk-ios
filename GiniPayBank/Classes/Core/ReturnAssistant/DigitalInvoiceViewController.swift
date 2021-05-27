@@ -467,7 +467,7 @@ extension DigitalInvoiceViewController: DigitalInvoiceTotalPriceCellDelegate {
     func didTapAddArticleButton() {
         guard let firstItem = invoice?.lineItems.first else { return }
         let viewController = LineItemDetailsViewController()
-        viewController.lineItem = DigitalInvoice.LineItem(name: "New Article", quantity: 1, price: Price(value: 1, currencyCode: firstItem.price.currencyCode), selectedState: .selected, isUserInitiated: true)
+        viewController.lineItem = DigitalInvoice.LineItem(name: "", quantity: 0, price: Price(value: 0, currencyCode: firstItem.price.currencyCode), selectedState: .selected, isUserInitiated: true)
         viewController.returnAssistantConfiguration = returnAssistantConfiguration
         viewController.lineItemIndex = invoice?.lineItems.count
         viewController.delegate = self
