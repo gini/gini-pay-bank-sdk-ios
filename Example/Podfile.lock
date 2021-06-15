@@ -14,17 +14,11 @@ PODS:
     - GiniPayApiLib/DocumentsAPI (>= 1.0.3)
     - GiniPayApiLib/Pinning (>= 1.0.3)
   - GiniPayBank/Tests (1.0.0)
-  - GiniPayBusiness (1.0.5):
-    - GiniPayBusiness/Core (= 1.0.5)
-  - GiniPayBusiness/Core (1.0.5):
-    - GiniPayApiLib/DocumentsAPI (>= 1.0.3)
-    - GiniPayApiLib/Pinning (>= 1.0.3)
   - TrustKit (1.6.5)
 
 DEPENDENCIES:
   - GiniPayBank (from `../`)
   - GiniPayBank/Tests (from `../`)
-  - GiniPayBusiness
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -32,7 +26,6 @@ SPEC REPOS:
   https://github.com/gini/gini-podspecs.git:
     - GiniCapture
     - GiniPayApiLib
-    - GiniPayBusiness
 
 EXTERNAL SOURCES:
   GiniPayBank:
@@ -42,9 +35,8 @@ SPEC CHECKSUMS:
   GiniCapture: b0ec93afd659bd399066a909a16c034be26149cf
   GiniPayApiLib: 5fc8b6b4fa0448e9e1e226618ea7f2d1658ff20c
   GiniPayBank: 8ba94acd833ff36fd86ee5494fa8681b1e2eb84a
-  GiniPayBusiness: 03411fc91cc6144b766c8f8eb7d26f52498eed53
   TrustKit: 073855e3adecd317417bda4ac9e9ac54a2e3b9f2
 
-PODFILE CHECKSUM: 2e4f56711d8b1d082baa27b2f93cea182f036494
+PODFILE CHECKSUM: 88dd2f15361378ffa0b4aa9ba5b6eb93b13b2783
 
 COCOAPODS: 1.10.1
