@@ -7,6 +7,7 @@
 
 import Foundation
 import GiniPayApiLib
+import GiniCapture
 
 /**
  Core class for GiniPayBank SDK.
@@ -87,5 +88,137 @@ import GiniPayApiLib
                 UIApplication.shared.open(resultUrl, options: [:], completionHandler: nil)
             }
         }
+    }
+    
+    // MARK: - Screen API without Networking - Initializers for 'UIViewController'
+    
+    /**
+     Returns a view controller which will handle the analysis process.
+     
+     - note: Screen API only.
+     
+     - parameter delegate: An instance conforming to the `GiniCaptureDelegate` protocol.
+     - parameter importedDocuments: Documents that come from a source different than `CameraViewController`.
+     There should be either images or one PDF, and they should be validated before calling this method.
+     
+     - returns: A presentable view controller.
+     */
+    @objc public class func viewController(withDelegate delegate: GiniCaptureDelegate,
+                                           importedDocuments: [GiniCaptureDocument]? = nil) -> UIViewController {
+                
+        let screenCoordinator = GiniScreenAPICoordinator(withDelegate: delegate,
+                                                         giniConfiguration: GiniPayBankConfiguration.shared.captureConfiguration())
+        
+        return screenCoordinator.start(withDocuments: importedDocuments)
+    }
+    
+    /**
+     Returns a view controller which will handle the analysis process.
+     
+     - note: Screen API only.
+     
+     - parameter delegate: An instance conforming to the `GiniCaptureDelegate` protocol.
+     - parameter importedDocuments: Documents that come from a source different than `CameraViewController`.
+     There should be either images or one PDF, and they should be validated before calling this method.
+     - parameter trackingDelegate: A delegate object to receive user events
+     
+     - returns: A presentable view controller.
+     */
+    public class func viewController(withDelegate delegate: GiniCaptureDelegate,
+                                           importedDocuments: [GiniCaptureDocument]? = nil,
+                                           trackingDelegate: GiniCaptureTrackingDelegate? = nil) -> UIViewController {
+        let screenCoordinator = GiniScreenAPICoordinator(withDelegate: delegate,
+                                                         giniConfiguration: GiniPayBankConfiguration.shared.captureConfiguration())
+        screenCoordinator.trackingDelegate = trackingDelegate
+        
+        return screenCoordinator.start(withDocuments: importedDocuments)
+    }
+    
+    /**
+     Returns a view controller which will handle the analysis process.
+
+     - note: Screen API only.
+     
+     - parameter delegate: An instance conforming to the `GiniCaptureDelegate` protocol.
+     - parameter importedDocument: Documents that come from a source different than CameraViewController.
+     There should be either images or one PDF, and they should be validated before calling this method.
+
+     - returns: A presentable view controller.
+     */
+    @objc public class func viewController(withDelegate delegate: GiniCaptureDelegate,
+                                           importedDocument: GiniCaptureDocument? = nil) -> UIViewController {
+        var documents: [GiniCaptureDocument]?
+        if let importedDocument = importedDocument {
+            documents = [importedDocument]
+        }
+        
+        return viewController(withDelegate: delegate, importedDocuments: documents)
+    }
+    
+    /**
+     Returns a view controller which will handle the analysis process.
+
+     - note: Screen API only.
+     
+     - parameter delegate: An instance conforming to the `GiniCaptureDelegate` protocol.
+     - parameter importedDocument: Documents that come from a source different than CameraViewController.
+     There should be either images or one PDF, and they should be validated before calling this method.
+     - parameter trackingDelegate: A delegate object to receive user events
+
+     - returns: A presentable view controller.
+     */
+    public class func viewController(withDelegate delegate: GiniCaptureDelegate,
+                                           importedDocument: GiniCaptureDocument? = nil,
+                                           trackingDelegate: GiniCaptureTrackingDelegate? = nil) -> UIViewController {
+        var documents: [GiniCaptureDocument]?
+        if let importedDocument = importedDocument {
+            documents = [importedDocument]
+        }
+        
+        return viewController(withDelegate: delegate, importedDocuments: documents, trackingDelegate: trackingDelegate)
+    }
+    
+    /**
+     Returns a view controller which will handle the analysis process.
+     Allows to set a custom configuration to change the look and feel of the  Gini Pay Bank SDK.
+     
+     - note: Screen API only.
+     
+     - parameter delegate:      An instance conforming to the `GiniCaptureDelegate` protocol.
+     - parameter configuration: The configuration to set.
+     - parameter importedDocument: Documents that come from a source different than CameraViewController.
+     There should be either images or one PDF, and they should be validated before calling this method.
+
+     - returns: A presentable view controller.
+     */
+    @objc public class func viewController(withDelegate delegate: GiniCaptureDelegate,
+                                           withConfiguration configuration: GiniPayBankConfiguration,
+                                           importedDocument: GiniCaptureDocument? = nil) -> UIViewController {
+        let captureConfig = GiniPayBankConfiguration.shared.captureConfiguration()
+        GiniCapture.setConfiguration(captureConfig)
+        return viewController(withDelegate: delegate, importedDocument: importedDocument)
+    }
+    
+    /**
+     Returns a view controller which will handle the analysis process.
+     Allows to set a custom configuration to change the look and feel of the Gini Pay Bank SDK.
+     
+     - note: Screen API only.
+     
+     - parameter delegate:      An instance conforming to the `GiniCaptureDelegate` protocol.
+     - parameter configuration: The configuration to set.
+     - parameter importedDocument: Documents that come from a source different than CameraViewController.
+     There should be either images or one PDF, and they should be validated before calling this method.
+     - parameter trackingDelegate: A delegate object to receive user events
+
+     - returns: A presentable view controller.
+     */
+    public class func viewController(withDelegate delegate: GiniCaptureDelegate,
+                                           withConfiguration configuration: GiniPayBankConfiguration,
+                                           importedDocument: GiniCaptureDocument? = nil,
+                                           trackingDelegate: GiniCaptureTrackingDelegate? = nil) -> UIViewController {
+        let captureConfig = GiniPayBankConfiguration.shared.captureConfiguration()
+        GiniCapture.setConfiguration(captureConfig)
+        return viewController(withDelegate: delegate, importedDocument: importedDocument, trackingDelegate: trackingDelegate)
     }
 }
