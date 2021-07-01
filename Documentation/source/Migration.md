@@ -1,9 +1,13 @@
 Migrate from Gini Vision Library to Gini Pay Bank SDK
 =======================================================
 
+## Gini Capture SDK
+
 The [Gini Capture SDK](https://github.com/gini/gini-capture-sdk-ios) provides components for capturing, reviewing and analyzing photos of invoices and remittance slips. 
 The Gini Capture SDK (`GiniCapture`) will be used in place of the Gini Vision Library (`GiniVision`). 
 The Gini Capture SDK used by the Gini Pay Bank SDK and therefore will be mentioned in the migration guide in a couple of places.
+
+## Gini Pay API Library
 
 The [Gini Pay Api Library](https://github.com/gini/gini-pay-api-lib-ios) (`GiniApiLib`) provides ways to interact with the Gini Pay API and therefore, adds the possiblity to scan documents and extract information from them and support the payment functionality.
 The Gini Pay Api Library will be used instead of the Gini iOS SDK.
@@ -47,7 +51,7 @@ let viewController = GiniVision.viewController(withClient: client,
 present(viewController, animated: true, completion:nil)
 ```
 
- It should now become:
+It should now become:
 ```swift
 let viewController = GiniPayBank.viewController(withClient: client,
                                                configuration: giniPayBankConfiguration,
@@ -79,12 +83,16 @@ present(viewController, animated: true, completion: nil)
 
 ## Component API
 
-Previously setting the configuration `GiniConfiguration` had been looked like:
-```swift
-let viewController = GiniVision.viewController(withDelegate: self,
-                                               withConfiguration: giniConfiguration)
+The Component API provides a custom `UIViewController` for each screen. For example :
 
-present(viewController, animated: true, completion: nil)
+```swift
+let giniConfiguration = GiniConfiguration()
+.
+.
+.
+let cameraScreen = CameraViewController(giniConfiguration: giniConfiguration)
+cameraScreen?.delegate = self
+present(cameraScreen, animated: true, completion: nil)
 ```
 
 Now alternately of using `GiniConfiguration` in the Gini Pay Bank SDK was introduced `GiniPayBankConfiguration`.
@@ -94,6 +102,7 @@ let giniPayBankConfiguration = GiniPayBankConfiguration()
 .
 .
 .
+let cameraScreen = CameraViewController(giniConfiguration: giniPayBankConfiguration.captureConfiguration())
 GiniCapture.setConfiguration(giniPayBankConfiguration.captureConfiguration())
 ```
 
@@ -157,7 +166,7 @@ func application(_ app: UIApplication,
         return true
 }
 ```
-## Event With
+## Event Tracking
 
 The version 5.2 of Gini Vision Library has introduces the ability to track user events. For receiving the events, you've implemented the `GiniVisionTrackingDelegate` protocol and supplied the delegate when initializing GVL. For example:
 ```swift
