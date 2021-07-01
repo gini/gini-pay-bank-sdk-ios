@@ -1,7 +1,7 @@
 Migrate from Gini Vision Library to Gini Pay Bank SDK
 =======================================================
 
-The Gini Capture SDK provides components for capturing, reviewing and analyzing photos of invoices and remittance slips. 
+The [Gini Capture SDK](https://github.com/gini/gini-capture-sdk-ios) provides components for capturing, reviewing and analyzing photos of invoices and remittance slips. 
 The Gini Capture SDK (`GiniCapture`) will be used in place of the Gini Vision Library (`GiniVision`). 
 The Gini Capture SDK used by the Gini Pay Bank SDK and therefore will be mentioned in the migration guide in a couple of places.
 
