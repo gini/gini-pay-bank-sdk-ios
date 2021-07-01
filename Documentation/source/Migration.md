@@ -61,8 +61,7 @@ present(viewController, animated: true, completion:nil)
 
 #### Only UI
 
-For using only the UI and the handling the analysis processes either was used Gini API SDK or  your own implementation of the [Gini API](https://developer.gini.net/gini-api/html/index.html). The `UIViewController` initialization was following:
-
+For using only the UI and the handling the analysis processes either was used [Gini API SDK](https://github.com/gini/gini-ios) or your own implementation of the [Gini API](https://developer.gini.net/gini-api/html/index.html). The `UIViewController` initialization was following:
 ```swift
 let viewController = GiniVision.viewController(withDelegate: self,
                                                withConfiguration: giniConfiguration)
@@ -71,7 +70,6 @@ present(viewController, animated: true, completion: nil)
 ```
 
 Now to handle all the analysis processes you should use the new [Gini Pay Api Library](https://github.com/gini/gini-pay-api-lib-ios) or your own implementation of the new [Gini Pay API](https://pay-api.gini.net/documentation/#gini-pay-api-documentation-v1-0) and just get the `UIViewController` as follows:
-
 ```swift
 let viewController = GiniPayBank.viewController(withDelegate: self,
                                                withConfiguration: giniPayBankConfiguration)
@@ -91,7 +89,6 @@ present(viewController, animated: true, completion: nil)
 
 Now alternately of using `GiniConfiguration` in the Gini Pay Bank SDK was introduced `GiniPayBankConfiguration`.
 The configuration for `GiniCapture` should be set explicitly as it's shown below:
-
 ```swift
 let giniPayBankConfiguration = GiniPayBankConfiguration()
 .
@@ -102,7 +99,7 @@ GiniCapture.setConfiguration(giniPayBankConfiguration.captureConfiguration())
 
 ## Open With
 
-In order to define that the file opened is valid (correct size, correct type and number of pages below the threshold on PDFs), it is necessary to validate it before using it. Previously you've could validate the file :
+In order to define that the file opened is valid (correct size, correct type and number of pages below the threshold on PDFs), it is necessary to validate it before using it. Previously you've could validate the file:
 ```swift
 func application(_ app: UIApplication,
                  open url: URL,
@@ -163,7 +160,6 @@ func application(_ app: UIApplication,
 ## Event With
 
 The version 5.2 of Gini Vision Library has introduces the ability to track user events. For receiving the events, you've implemented the `GiniVisionTrackingDelegate` protocol and supplied the delegate when initializing GVL. For example:
-
 ```swift
 let viewController = GiniVision.viewController(withClient: client,
                                                importedDocuments: visionDocuments,
@@ -180,7 +176,6 @@ let viewController = GiniVision.viewController(withDelegate: self,
 ```
 
 For receiving the events with the Gini Pay Bank SDK, you need to import `GiniCapture` and implement the `GiniCaptureTrackingDelegate` protocol and supply the delegate when initializing `GiniPayBank` like it's shown below:
-
 ```swift
 let viewController = GiniPayBank.viewController(withClient: client,
                                                importedDocuments: captureDocuments,
