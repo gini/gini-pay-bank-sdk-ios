@@ -23,6 +23,7 @@
          "children":[
            "Installation",
            "Integration",
+           "Migration",
            "License"
          ]
       },
