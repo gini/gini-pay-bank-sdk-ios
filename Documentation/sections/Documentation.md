@@ -19,7 +19,7 @@ Further documentation with installation, integration or customization guides can
 
 ## Example apps
 
-A banking example app demonstrates how to integrate the Gini Pay Bank SDK. 
+The banking example app demonstrates how to integrate the Gini Pay Bank SDK. 
 In order to run the app, clone the repo and run `pod install` from the Example directory first.
 To inject your API credentials into the Bank example app you need to add your credentials to `Example/Bank/Credentials.pllist`.
 
@@ -27,9 +27,10 @@ An example business app is available in the [Gini Pay Business SDK's](https://gi
 You can use the same Gini Pay API client credentials in the business example app as in your app, if not otherwise specified.
 The example business app initiates the payment flow.
 
-The Gini Pay Business SDK uses a test payment provider which will open our example banking app.
+The Gini Pay Business SDK will use a payment provider which will open your banking app via the URL scheme you will set during the integration of the Gini Pay Bank SDK.
 
-To check the redirection to the banking app please run Bank example before the business app.
+To check the redirection from the example business app please run your banking app before running the business app.
+
 ## Requirements
 
 - iOS 10.2+
