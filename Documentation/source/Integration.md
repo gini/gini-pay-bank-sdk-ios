@@ -106,7 +106,9 @@ The following is an example for the scheme ginipay-bank://
 An example business app is available in the [Gini Pay Business SDK's](https://github.com/gini/gini-pay-business-sdk-ios) repository.
 
 In order to test using our example business app you need to use development client credentials. This will make sure
-the Gini Pay Business SDK uses a test payment provider which will open our example banking app. To inject your API credentials into the Business example app you need to fill in your credentials in `Example/Business/Credentials.plist`.
+the Gini Pay Business SDK uses a test payment provider which will open our example banking app.
+
+To inject your API credentials into the banking example app you need to fill in your credentials in `Example/Bank/Credentials.plist`.
 
 #### End to end testing
 
