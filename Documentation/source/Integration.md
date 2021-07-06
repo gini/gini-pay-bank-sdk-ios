@@ -39,6 +39,7 @@ Optionally if you want to use _Certificate pinning_, provide metadata for the up
 > - The document metadata for the upload process is intended to be used for reporting.
 
 ##  GiniPayBank initialization
+
 Now that the `GiniApiLib` has been initialized, you can initialize `GiniPayBank`
 
 ```swift
@@ -89,6 +90,43 @@ If the payment request was successfully resolved you can allow the user redirect
 ```swift
 bankSDK.returnBackToBusinessAppHandler(resolvedPaymentRequest: resolvedPayment)
 ```
+## Gini Pay Scheme For Your App
+
+In order for your banking app to be available as a payment provider and support the Gini Pay Connect functionality, you need to register a URL scheme for your app known by the Gini Pay API.
+
+You should already have a scheme and host from us. Please contact us in case you don't have them.
+
+The following is an example for the scheme ginipay-bank://
+<br>
+<center><img src="img/Integration guide/BankSchemeExample.png" height="200"/></center>
+</br>
+
+## Testing
+
+An example business app is available in the [Gini Pay Business SDK's](https://github.com/gini/gini-pay-business-sdk-ios) repository.
+
+In order to test using our example business app, you need to use development client credentials. This will make sure that the Gini Pay Business SDK uses a payment provider which will open your development banking app.
+
+To inject your Gini Pay API credentials into the business example app you need to fill in your credentials in `Example/Example Swift/Credentials.plist`.
+
+You also need to replace the `ginipay-bank` URL scheme in the example business app's `LSApplicationQueriesSchemes` in the `Info.plist` with the Gini Pay URL scheme we provided for your banking app.
+
+#### End to end testing
+
+After you've set the client credentials in the example business app and installed it on your device you can start the payment flow with a document import or by taking a photo.
+
+After following the integration steps above your banking app will be launched and you'll be able to fetch the payment request, show the payment information and resolve the payment after the transaction has been confirmed. At this point, you may redirect back to the business app.
+
+With these steps completed you have verified that your app, the Gini Pay API, the Gini Pay Business SDK and the Gini Pay
+Bank SDK work together correctly.
+
+#### Testing in production
+
+The steps are the same but instead of the development client credentials, you will need to use production client credentials. This will make sure the Gini Pay Business SDK receives real payment providers including the one which opens your production banking app.
+
+For testing the flow using the example business app you will need to add your banking app's production Gini Pay URL scheme to `LSApplicationQueriesSchemes` in the example business app's `Info.plist`. Also please make sure that production client credentials are used before installing it.
+
+You can also test with a real business app. Please contact us in case you don't know which business app(s) to install for starting the payment flow.
 
 Photo payment functionality
 ============================
