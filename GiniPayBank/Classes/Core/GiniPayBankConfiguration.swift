@@ -1037,6 +1037,10 @@ public final class GiniPayBankConfiguration: NSObject {
                                                                       thin: UIFont.systemFont(ofSize: 14,
                                                                                               weight: .thin),
                                                                       isEnabled: false)
+    /**
+     Set an array of additional custom help menu items . Those items will be presented as table view cells on the help menu screen. By selecting the cell the user will be redirected to the page, which represented by viewController provided by customer during the  `HelpMenuViewController.Item` initialization.
+    */
+    public var customMenuItems: [HelpMenuViewController.Item] = []
     
     public func captureConfiguration() -> GiniConfiguration {
      let configuration = GiniConfiguration()
@@ -1154,6 +1158,7 @@ public final class GiniPayBankConfiguration: NSObject {
         
         configuration.shouldShowDragAndDropTutorial = self.shouldShowDragAndDropTutorial
         
+        configuration.customMenuItems = self.customMenuItems
         // Undocumented--Xamarin only
         configuration.closeButtonResource = self.closeButtonResource
         configuration.helpButtonResource = self.helpButtonResource
@@ -1375,6 +1380,7 @@ public final class GiniPayBankConfiguration: NSObject {
         
         giniPayBankConfiguration.shouldShowDragAndDropTutorial = configuration.shouldShowDragAndDropTutorial
         
+        giniPayBankConfiguration.customMenuItems = configuration.customMenuItems
         // Undocumented--Xamarin only
         giniPayBankConfiguration.closeButtonResource = configuration.closeButtonResource
         giniPayBankConfiguration.helpButtonResource = configuration.helpButtonResource
