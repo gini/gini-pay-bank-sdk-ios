@@ -46,6 +46,8 @@ final class AppCoordinator: Coordinator {
             }
             return CustomDocumentValidationResult.success()
         }
+        let customMenuItem = HelpMenuViewController.Item.custom("Custom menu item", CustomMenuItemViewController())
+        configuration.customMenuItems = [customMenuItem]
        return configuration
     }()
     
