@@ -15,8 +15,6 @@ The Gini Pay Bank SDK components can be customized either through the `GiniPayBa
 - [Onboarding screens](#onboarding-screens)
 - [Help screen](#help-screen)
 
-Customizable assets can be found in [the Assets repo](https://github.com/gini/gini-vision-lib-assets).
-
 ## Supporting dark mode
 
 Some background and text colors use the `GiniColor` type with which you can set colors for dark and light modes. Please make sure to set contrasting images to the background colors in your `.xcassets` for the Gini Pay Bank SDK images you override (e.g. `onboardingPage1`). The text colors should also be set in contrast to the background colors.
@@ -300,3 +298,7 @@ Some background and text colors use the `GiniColor` type with which you can set 
 ##### 3. Background
 
 - Background color &#8594; `GiniPayBankConfiguration.helpScreenBackgroundColor` using `GiniColor` with dark mode and light mode colors
+
+##### 4. Additional help menu items
+
+- Custom help menu items &#8594; `GiniPayBankConfiguration.customMenuItems` an array of `HelpMenuViewController.Item` objects

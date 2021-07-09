@@ -57,6 +57,7 @@
 		F4AD010425DFDF4500C34E15 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F4AD00FA25DFDF4400C34E15 /* Localizable.strings */; };
 		F4B78A6025E6AB4B00CBE2E4 /* testPDF.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F407A42425E580F000BC5F36 /* testPDF.pdf */; };
 		F4B78A7225E6AB9500CBE2E4 /* testPDF.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F407A42425E580F000BC5F36 /* testPDF.pdf */; };
+		F4BB7CF226984E5D003FD77E /* CustomMenuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7CF126984E5D003FD77E /* CustomMenuItemViewController.swift */; };
 		F4DF824F25EFA8ED00A8D755 /* ScreenAPICoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DF824E25EFA8ED00A8D755 /* ScreenAPICoordinator.swift */; };
 /* End PBXBuildFile section */
 
@@ -153,6 +154,7 @@
 		F4AD00F625DFDF4400C34E15 /* ComponentAPICoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentAPICoordinator.swift; sourceTree = "<group>"; };
 		F4AD00F725DFDF4400C34E15 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F4AD00FA25DFDF4400C34E15 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		F4BB7CF126984E5D003FD77E /* CustomMenuItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenuItemViewController.swift; sourceTree = "<group>"; };
 		F4DF824E25EFA8ED00A8D755 /* ScreenAPICoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenAPICoordinator.swift; sourceTree = "<group>"; };
 		FC1F7CF21DC0E2917DBA74A0 /* Pods_Bank.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bank.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -335,6 +337,7 @@
 				F441DC0025E51F4B00AAB09A /* ComponentAPI */,
 				F441DC9325E53A6F00AAB09A /* Extensions */,
 				F490C7E425DE873900D8CA6F /* AppDelegate.swift */,
+				F4BB7CF126984E5D003FD77E /* CustomMenuItemViewController.swift */,
 				F441DCA725E55D5800AAB09A /* Main.storyboard */,
 				F4AD00B525DED1A000C34E15 /* AppCoordinator.swift */,
 				F441DCC525E56BF800AAB09A /* LaunchScreen.xib */,
@@ -755,6 +758,7 @@
 				F4AD00C225DED43200C34E15 /* SelectAPIViewController.swift in Sources */,
 				F4AD00CC25DFDB4E00C34E15 /* CredentialsManager.swift in Sources */,
 				F414A56325EBB87F00D04A80 /* DocumentAnalysisHelper.swift in Sources */,
+				F4BB7CF226984E5D003FD77E /* CustomMenuItemViewController.swift in Sources */,
 				F441DC0625E51F7300AAB09A /* PartialDocument.swift in Sources */,
 				F4AD00FE25DFDF4500C34E15 /* ComponentAPIOnboardingViewController.swift in Sources */,
 				F4AD00D625DFDC8100C34E15 /* SettingsViewController.swift in Sources */,
