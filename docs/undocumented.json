@@ -72,28 +72,28 @@
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/GiniPayBankConfiguration.swift",
-      "line": 907,
+      "line": 1045,
       "symbol": "GiniPayBankConfiguration.captureConfiguration()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/GiniPayBankConfiguration.swift",
-      "line": 1034,
+      "line": 1173,
       "symbol": "GiniPayBankConfiguration.returnAssistantConfiguration()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/GiniPayBankConfiguration.swift",
-      "line": 1100,
+      "line": 1268,
       "symbol": "GiniPayBankConfiguration.updateConfiguration(withCaptureConfiguration:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/GiniPayBankNetworkingScreenApiCoordinator.swift",
-      "line": 12,
+      "line": 11,
       "symbol": "GiniPayBankNetworkingScreenApiCoordinator",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
@@ -219,232 +219,267 @@
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoice.swift",
-      "line": 54,
+      "line": 76,
       "symbol": "DigitalInvoice.numSelected",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoice.swift",
-      "line": 65,
+      "line": 87,
       "symbol": "DigitalInvoice.numTotal",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoice.swift",
-      "line": 75,
+      "line": 97,
       "symbol": "DigitalInvoice.DigitalInvoiceParsingException",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoice.swift",
-      "line": 76,
+      "line": 98,
       "symbol": "DigitalInvoice.DigitalInvoiceParsingException.lineItemsMissing",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoice.swift",
-      "line": 77,
+      "line": 99,
       "symbol": "DigitalInvoice.DigitalInvoiceParsingException.nameMissing",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoice.swift",
-      "line": 78,
+      "line": 100,
       "symbol": "DigitalInvoice.DigitalInvoiceParsingException.quantityMissing",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoice.swift",
-      "line": 79,
+      "line": 101,
       "symbol": "DigitalInvoice.DigitalInvoiceParsingException.priceMissing",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoice.swift",
-      "line": 80,
+      "line": 102,
       "symbol": "DigitalInvoice.DigitalInvoiceParsingException.articleNumberMissing",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoice.swift",
-      "line": 81,
+      "line": 103,
       "symbol": "DigitalInvoice.DigitalInvoiceParsingException.mixedCurrenciesInOneInvoice",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoice.swift",
-      "line": 82,
+      "line": 104,
       "symbol": "DigitalInvoice.DigitalInvoiceParsingException.cannotParseQuantity(string:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoice.swift",
-      "line": 83,
+      "line": 105,
       "symbol": "DigitalInvoice.DigitalInvoiceParsingException.cannotParsePrice(string:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
-      "line": 43,
+      "line": 44,
       "symbol": "DigitalInvoiceViewController.delegate",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
-      "line": 47,
+      "line": 48,
       "symbol": "DigitalInvoiceViewController.analysisDelegate",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
-      "line": 57,
+      "line": 65,
       "symbol": "DigitalInvoiceViewController.viewDidLoad()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
-      "line": 101,
+      "line": 105,
       "symbol": "DigitalInvoiceViewController.viewWillAppear(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
-      "line": 155,
+      "line": 110,
+      "symbol": "DigitalInvoiceViewController.viewDidAppear(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
+      "line": 264,
       "symbol": "DigitalInvoiceViewController.tableView(_:heightForRowAt:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
-      "line": 159,
+      "line": 268,
       "symbol": "DigitalInvoiceViewController.tableView(_:estimatedHeightForRowAt:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
-      "line": 163,
+      "line": 272,
       "symbol": "DigitalInvoiceViewController.Section",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
-      "line": 164,
-      "symbol": "DigitalInvoiceViewController.Section.header",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
-      "line": 165,
-      "symbol": "DigitalInvoiceViewController.Section.itemsHeader",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
-      "line": 166,
+      "line": 273,
       "symbol": "DigitalInvoiceViewController.Section.lineItems",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
-      "line": 167,
+      "line": 274,
       "symbol": "DigitalInvoiceViewController.Section.addons",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
-      "line": 168,
+      "line": 275,
       "symbol": "DigitalInvoiceViewController.Section.totalPrice",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
-      "line": 169,
+      "line": 276,
       "symbol": "DigitalInvoiceViewController.Section.footer",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
-      "line": 172,
+      "line": 279,
       "symbol": "DigitalInvoiceViewController.numberOfSections(in:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
-      "line": 176,
+      "line": 283,
       "symbol": "DigitalInvoiceViewController.tableView(_:numberOfRowsInSection:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
-      "line": 189,
+      "line": 294,
       "symbol": "DigitalInvoiceViewController.tableView(_:cellForRowAt:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
-      "line": 268,
-      "symbol": "DigitalInvoiceViewController.checkboxButtonTapped(cell:viewModel:)",
+      "line": 366,
+      "symbol": "DigitalInvoiceViewController.deleteTapped(cell:viewModel:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
-      "line": 290,
+      "line": 371,
+      "symbol": "DigitalInvoiceViewController.modeSwitchValueChanged(cell:viewModel:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
+      "line": 393,
       "symbol": "DigitalInvoiceViewController.editTapped(cell:viewModel:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
-      "line": 322,
-      "symbol": "DigitalInvoiceViewController.whatIsThisTapped(source:)",
+      "line": 423,
+      "symbol": "DigitalInvoiceViewController.didSaveLineItem(lineItemDetailsViewController:lineItem:index:shouldPopViewController:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
-      "line": 352,
-      "symbol": "DigitalInvoiceViewController.didSaveLineItem(lineItemDetailsViewController:lineItem:index:)",
+      "line": 441,
+      "symbol": "DigitalInvoiceViewController.didTapSkipButton()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
+      "line": 445,
+      "symbol": "DigitalInvoiceViewController.didExpandButton(expanded:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
+      "line": 461,
+      "symbol": "DigitalInvoiceViewController.didDismissViewController()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/DigitalInvoiceViewController.swift",
+      "line": 467,
+      "symbol": "DigitalInvoiceViewController.didTapAddArticleButton()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/GiniTextField.swift",
-      "line": 211,
+      "line": 213,
       "symbol": "GiniTextField.textFieldDidBeginEditing(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/GiniTextField.swift",
-      "line": 216,
+      "line": 218,
       "symbol": "GiniTextField.textFieldDidEndEditing(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/GiniTextField.swift",
+      "line": 224,
+      "symbol": "GiniTextField.textFieldShouldEndEditing(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/GiniTextField.swift",
+      "line": 229,
+      "symbol": "GiniTextField.textField(_:shouldChangeCharactersIn:replacementString:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -457,14 +492,14 @@
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/LineItem.swift",
-      "line": 115,
+      "line": 128,
       "symbol": "ReturnReason.labelInLocalLanguageOrGerman",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/LineItemDetailsViewController.swift",
-      "line": 346,
+      "line": 376,
       "symbol": "LineItemDetailsViewController.textDidChange(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -493,6 +528,13 @@
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/Price.swift",
       "line": 91,
+      "symbol": "Price.-(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/ReturnAssistant/Price.swift",
+      "line": 101,
       "symbol": "Price.max(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
