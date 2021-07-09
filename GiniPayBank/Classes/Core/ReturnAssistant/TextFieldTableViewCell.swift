@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol TextFieldTableViewCellDelegate: class {
+protocol TextFieldTableViewCellDelegate: AnyObject {
     func valueDidChange(viewModel: TextFieldTableViewCellViewModel)
 }
 

@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol GiniTextFieldDelegate: class {
+protocol GiniTextFieldDelegate: AnyObject {
     
     func textDidChange(_ giniTextField: GiniTextField)
 }
@@ -23,6 +23,8 @@ class GiniTextField: UIView {
     private let underscoreView = UIView()
     
     weak var delegate: GiniTextFieldDelegate?
+    
+    var shouldAllowLetters = false
     
     var title: String? {
         didSet {
@@ -217,5 +219,18 @@ extension GiniTextField: UITextFieldDelegate {
         
         underscoreView.backgroundColor = underscoreColor(for: false)
         delegate?.textDidChange(self)
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        guard let text = textField.text, !text.isEmpty else { return false }
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if shouldAllowLetters { return true }
+        guard CharacterSet(charactersIn: "0123456789,.").isSuperset(of: CharacterSet(charactersIn: string)) else {
+            return false
+        }
+        return true
     }
 }

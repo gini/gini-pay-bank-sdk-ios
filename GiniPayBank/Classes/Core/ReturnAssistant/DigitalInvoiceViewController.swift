@@ -11,7 +11,7 @@ import GiniCapture
 /**
  Delegate protocol for `DigitalInvoiceViewController`.
  */
-public protocol DigitalInvoiceViewControllerDelegate: class {
+public protocol DigitalInvoiceViewControllerDelegate: AnyObject {
     
     /**
      Called after the user taps the "Pay" button on the `DigitalInvoiceViewController`.
@@ -36,6 +36,7 @@ public class DigitalInvoiceViewController: UIViewController {
      */
     public var invoice: DigitalInvoice? {
         didSet {
+            toggleUIChanges()
             tableView.reloadData()
         }
     }
@@ -54,11 +55,20 @@ public class DigitalInvoiceViewController: UIViewController {
     
     private let tableView = UITableView()
     
+    private var infoView: InfoView?
+    private var tableHeaderViewHeightConstraint: NSLayoutConstraint?
+    
+    private var didShowOnboardInCurrentSession = false
+    private var didShowInfoViewInCurrentSession = false
+
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
         
         title = .ginipayLocalized(resource: DigitalInvoiceStrings.screenTitle)
 
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: prefferedImage(named: "infoIcon"), style: .plain, target: self, action: #selector(whatIsThisTapped(source:)))
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -69,12 +79,6 @@ public class DigitalInvoiceViewController: UIViewController {
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        
-        tableView.register(DigitalInvoiceHeaderCell.self,
-                           forCellReuseIdentifier: "DigitalInvoiceHeaderCell")
-        
-        tableView.register(DigitalInvoiceItemsCell.self,
-                           forCellReuseIdentifier: "DigitalInvoiceItemsCell")
         
         tableView.register(TextFieldTableViewCell.self,
                            forCellReuseIdentifier: "TextFieldTableViewCell")
@@ -94,13 +98,20 @@ public class DigitalInvoiceViewController: UIViewController {
         
         tableView.separatorStyle = .none
         
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 25, left: 0, bottom: 0, right: 0)
         tableView.backgroundColor = UIColor.from(giniColor: returnAssistantConfiguration.digitalInvoiceBackgroundColor)
     }
     
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         showDigitalInvoiceOnboarding()
+    }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !onboardingWillBeShown {
+            showFooterDemo()
+        }
     }
     
     @objc func payButtonTapped() {
@@ -131,19 +142,117 @@ public class DigitalInvoiceViewController: UIViewController {
                                                 invoice.numTotal)
     }
     
+    private func toggleUIChanges() {
+        guard let invoice = invoice else { return }
+        if !didShowInfoViewInCurrentSession,
+           invoice.inaccurateResults {
+            shouldShowInfoView()
+        }
+        let shouldEnableSkipButton = invoice.numSelected > 0
+        infoView?.enableSkipButton(shouldEnableSkipButton)
+    }
+    
+    @objc func skipButtonTapped() {
+        payButtonTapped()
+    }
+    
+    private func skipButtonTitle() -> String {
+        return .ginipayLocalized(resource: DigitalInvoiceStrings.skipButtonTitle)
+    }
+    
+    @objc func whatIsThisTapped(source: UIButton) {
+        
+        let actionSheet = UIAlertController(title: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetTitle),
+                                            message: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetMessage),
+                                            preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetActionHelpful),
+                                            style: .default,
+                                            handler: { _ in
+                                                // TODO:
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetActionNotHelpful),
+                                            style: .destructive,
+                                            handler: { _ in
+                                                // TODO:
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetActionCancel),
+                                            style: .cancel,
+                                            handler: nil))
+        
+        actionSheet.popoverPresentationController?.sourceView = source
+        
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
     fileprivate var onboardingWillBeShown: Bool {
         let key = "ginipaybank.defaults.digitalInvoiceOnboardingShowed"
         return UserDefaults.standard.object(forKey: key) == nil ? true : false
     }
     
+    fileprivate var footerDemoWillBeShown: Bool {
+        let key = "ginipaybank.defaults.digitalInvoiceFooterDemoShowed"
+        return UserDefaults.standard.object(forKey: key) == nil ? true : false
+    }
+    
     fileprivate func showDigitalInvoiceOnboarding() {
-        if onboardingWillBeShown {
+        if onboardingWillBeShown && !didShowOnboardInCurrentSession {
             let bundle = Bundle(for: type(of: self))
             let storyboard = UIStoryboard(name: "DigitalInvoiceOnboarding", bundle: bundle)
             let digitalInvoiceOnboardingViewController = storyboard.instantiateViewController(withIdentifier: "digitalInvoiceOnboardingViewController") as! DigitalInvoiceOnboardingViewController
+            digitalInvoiceOnboardingViewController.delegate = self
             digitalInvoiceOnboardingViewController.returnAssistantConfiguration = returnAssistantConfiguration
             present(digitalInvoiceOnboardingViewController, animated: true)
+            didShowOnboardInCurrentSession = true
         }
+    }
+    
+    fileprivate func showFooterDemo() {
+        if footerDemoWillBeShown {
+            UIView.animate(withDuration: 0.8) {
+                self.tableView.setContentOffset(
+                    CGPoint(x: .zero, y: self.tableView.contentSize.height - self.tableView.bounds.size.height),
+                    animated: false)
+                self.view.layoutIfNeeded()
+            } completion: { (_) in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    UIView.animate(withDuration: 0.8) {
+                        self.tableView.setContentOffset(
+                            .zero,
+                            animated: false)
+                        self.view.layoutIfNeeded()
+                    }
+                }
+            }
+            UserDefaults.standard.set(true, forKey: "ginipaybank.defaults.digitalInvoiceFooterDemoShowed")
+        }
+    }
+    
+    fileprivate func shouldShowInfoView() {
+        infoView = InfoView()
+        
+        guard let headerView = infoView else {
+            return
+        }
+        headerView.delegate = self
+        headerView.returnAssistantConfiguration = returnAssistantConfiguration
+        
+        tableView.contentInset.top = 15
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+
+        self.tableView.tableHeaderView = headerView
+        headerView.centerXAnchor.constraint(equalTo: self.tableView.centerXAnchor).isActive = true
+        headerView.widthAnchor.constraint(equalTo: self.tableView.widthAnchor).isActive = true
+        headerView.topAnchor.constraint(equalTo: self.tableView.topAnchor).isActive = true
+        tableHeaderViewHeightConstraint = headerView.heightAnchor.constraint(equalToConstant: 80)
+        tableHeaderViewHeightConstraint?.isActive = true
+
+        self.tableView.tableHeaderView?.layoutIfNeeded()
+        self.tableView.tableHeaderView = self.tableView.tableHeaderView
+        self.didExpandButton(expanded: false)
+        didShowInfoViewInCurrentSession = true
     }
     
 }
@@ -161,8 +270,6 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     enum Section: Int, CaseIterable {
-        case header
-        case itemsHeader
         case lineItems
         case addons
         case totalPrice
@@ -176,8 +283,6 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
         switch Section(rawValue: section) {
-        case .header: return 1
-        case .itemsHeader: return 1
         case .lineItems: return invoice?.lineItems.count ?? 0
         case .addons: return invoice?.addons.count ?? 0
         case .totalPrice: return 1
@@ -189,35 +294,13 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch Section(rawValue: indexPath.section) {
-        case .header:
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DigitalInvoiceHeaderCell",
-                                                     for: indexPath) as! DigitalInvoiceHeaderCell
-            
-            cell.returnAssistantConfiguration = returnAssistantConfiguration
-            
-            return cell
-            
-        case .itemsHeader:
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DigitalInvoiceItemsCell",
-                                                     for: indexPath) as! DigitalInvoiceItemsCell
-            
-            cell.returnAssistantConfiguration = returnAssistantConfiguration
-            cell.delegate = self
-            
-            if let invoice = invoice {
-                cell.viewModel = DigitalInvoiceItemsCellViewModel(invoice: invoice)
-            }
-            
-            return cell
-            
         case .lineItems:
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "DigitalLineItemTableViewCell",
                                                      for: indexPath) as! DigitalLineItemTableViewCell
-            
-            cell.viewModel = DigitalLineItemViewModel(lineItem: invoice!.lineItems[indexPath.row], returnAssistantConfiguration: returnAssistantConfiguration, index: indexPath.row)
+            if let invoice = invoice {
+                cell.viewModel = DigitalLineItemViewModel(lineItem: invoice.lineItems[indexPath.row], returnAssistantConfiguration: returnAssistantConfiguration, index: indexPath.row, invoiceNumTotal: invoice.numTotal, invoiceLineItemsCount: invoice.lineItems.count)
+            }
             
             cell.delegate = self
             
@@ -230,8 +313,15 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
             cell.returnAssistantConfiguration = returnAssistantConfiguration
             if let invoice = invoice {
                 let addon = invoice.addons[indexPath.row]
+                let shouldNullAddonPrice = invoice.numSelected == 0
+
+                if shouldNullAddonPrice {
+                    cell.addonPrice = Price(value: .zero, currencyCode: addon.price.currencyCode)
+                } else {
+                    cell.addonPrice = addon.price
+                }
+                
                 cell.addonName = addon.name
-                cell.addonPrice = addon.price
             }
             
             return cell
@@ -244,6 +334,8 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
             
             cell.totalPrice = invoice?.total
             
+            cell.delegate = self
+            
             return cell
             
         case .footer:
@@ -252,10 +344,17 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
                                                      for: indexPath) as! DigitalInvoiceFooterCell
             
             cell.returnAssistantConfiguration = returnAssistantConfiguration
+
             cell.payButton.setTitle(payButtonTitle(), for: .normal)
             cell.payButton.accessibilityLabel = payButtonAccessibilityLabel()
             cell.payButton.addTarget(self, action: #selector(payButtonTapped), for: .touchUpInside)
-
+            if let invoice = invoice {
+                let shouldEnablePayButton = invoice.numSelected > 0
+                cell.enableButtons(shouldEnablePayButton)
+                cell.shouldSetUIForInaccurateResults(invoice.inaccurateResults)
+                cell.skipButton.setTitle(skipButtonTitle(), for: .normal)
+                cell.skipButton.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
+            }
             return cell
             
         default: fatalError()
@@ -264,8 +363,12 @@ extension DigitalInvoiceViewController: UITableViewDelegate, UITableViewDataSour
 }
 
 extension DigitalInvoiceViewController: DigitalLineItemTableViewCellDelegate {
+    func deleteTapped(cell: DigitalLineItemTableViewCell, viewModel: DigitalLineItemViewModel) {
+        invoice?.lineItems.remove(at: viewModel.index)
+    }
     
-    func checkboxButtonTapped(cell: DigitalLineItemTableViewCell, viewModel: DigitalLineItemViewModel) {
+
+    func modeSwitchValueChanged(cell: DigitalLineItemTableViewCell, viewModel: DigitalLineItemViewModel) {
         
         guard let invoice = invoice else { return }
         
@@ -279,7 +382,7 @@ extension DigitalInvoiceViewController: DigitalLineItemTableViewCellDelegate {
             }
             
             presentReturnReasonActionSheet(for: viewModel.index,
-                                           source: cell.checkboxButton,
+                                           source: cell.modeSwitch,
                                            with: returnReasons)
             
         case .deselected:
@@ -308,7 +411,7 @@ extension DigitalInvoiceViewController {
             
             switch selectedState {
             case .selected:
-                break
+                self.invoice?.lineItems[index].selectedState = .selected
             case .deselected(let reason):
                 self.invoice?.lineItems[index].selectedState = .deselected(reason: reason)
             }
@@ -316,44 +419,59 @@ extension DigitalInvoiceViewController {
     }
 }
 
+extension DigitalInvoiceViewController: LineItemDetailsViewControllerDelegate {
+    func didSaveLineItem(lineItemDetailsViewController: LineItemDetailsViewController, lineItem: DigitalInvoice.LineItem, index: Int, shouldPopViewController: Bool) {
+        
+        if shouldPopViewController {
+            navigationController?.popViewController(animated: true)
+        }
+        guard let invoice = invoice else { return }
+        
+        if invoice.lineItems.indices.contains(index) {
+            self.invoice?.lineItems[index] = lineItem
+        } else {
+            self.invoice?.lineItems.append(lineItem)
+        }
 
-extension DigitalInvoiceViewController: DigitalInvoiceItemsCellDelegate {
-    
-    func whatIsThisTapped(source: UIButton) {
         
-        let actionSheet = UIAlertController(title: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetTitle),
-                                            message: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetMessage),
-                                            preferredStyle: .actionSheet)
-        
-        actionSheet.addAction(UIAlertAction(title: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetActionHelpful),
-                                            style: .default,
-                                            handler: { _ in
-                                                // TODO:
-        }))
-        
-        actionSheet.addAction(UIAlertAction(title: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetActionNotHelpful),
-                                            style: .destructive,
-                                            handler: { _ in
-                                                // TODO:
-        }))
-        
-        actionSheet.addAction(UIAlertAction(title: .ginipayLocalized(resource: DigitalInvoiceStrings.whatIsThisActionSheetActionCancel),
-                                            style: .cancel,
-                                            handler: nil))
-        
-        actionSheet.popoverPresentationController?.sourceView = source
-        
-        present(actionSheet, animated: true, completion: nil)
     }
 }
 
-extension DigitalInvoiceViewController: LineItemDetailsViewControllerDelegate {
+extension DigitalInvoiceViewController: InfoViewDelegate {
+    func didTapSkipButton() {
+        payButtonTapped()
+    }
     
-    func didSaveLineItem(lineItemDetailsViewController: LineItemDetailsViewController,
-                         lineItem: DigitalInvoice.LineItem,
-                         index: Int) {
+    func didExpandButton(expanded: Bool) {
+        guard let infoView = infoView else { return }
+        let infoViewHeight: CGFloat = expanded ? 80: 430
+        tableHeaderViewHeightConstraint?.constant = infoViewHeight
+
+        self.tableView.layoutIfNeeded()
+        infoView.animate()
+
+        UIView.animate(withDuration: 0.4) {
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
+        }
+    }
+}
+
+extension DigitalInvoiceViewController: DigitalInvoiceOnboardingViewControllerDelegate {
+    func didDismissViewController() {
+        showFooterDemo()
+    }
+}
+
+extension DigitalInvoiceViewController: DigitalInvoiceTotalPriceCellDelegate {
+    func didTapAddArticleButton() {
+        guard let firstItem = invoice?.lineItems.first else { return }
+        let viewController = LineItemDetailsViewController()
+        viewController.lineItem = DigitalInvoice.LineItem(name: "", quantity: 0, price: Price(value: 0, currencyCode: firstItem.price.currencyCode), selectedState: .selected, isUserInitiated: true)
+        viewController.returnAssistantConfiguration = returnAssistantConfiguration
+        viewController.lineItemIndex = invoice?.lineItems.count
+        viewController.delegate = self
         
-        navigationController?.popViewController(animated: true)
-        invoice?.lineItems[index] = lineItem
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol Coordinator: class {
+protocol Coordinator: AnyObject {
     
     var rootViewController: UIViewController { get }
     var childCoordinators: [Coordinator] { get set }
