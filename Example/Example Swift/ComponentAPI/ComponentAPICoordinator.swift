@@ -266,22 +266,25 @@ extension ComponentAPICoordinator {
     }
     
     fileprivate func push<T: UIViewController>(viewController: UIViewController, removing viewControllers: [T?]) {
-        var navigationStack = navigationController.viewControllers
-        let viewControllersToDelete = navigationStack.filter {
-            viewControllers
-                .lazy
-                .compactMap { $0 }
-                .contains($0)
-        }
-        
-        viewControllersToDelete.forEach { viewControllerToDelete in
-            if let index = navigationStack.firstIndex(of: viewControllerToDelete) {
-                navigationStack.remove(at: index)
+        DispatchQueue.main.async { () -> Void in
+            var navigationStack = self.navigationController.viewControllers
+            let viewControllersToDelete = navigationStack.filter {
+                viewControllers
+                    .lazy
+                    .compactMap { $0 }
+                    .contains($0)
             }
-        }
+            
+            viewControllersToDelete.forEach { viewControllerToDelete in
+                if let index = navigationStack.firstIndex(of: viewControllerToDelete) {
+                    navigationStack.remove(at: index)
+                }
+            }
 
-        navigationStack.append(viewController)
-        navigationController.setViewControllers(navigationStack, animated: true)
+            navigationStack.append(viewController)
+            self.navigationController.setViewControllers(navigationStack, animated: true)
+         }
+
     }
 
     fileprivate func refreshMultipageReview(with pages: [GiniCapturePage]) {
