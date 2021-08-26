@@ -107,10 +107,11 @@ final class ComponentAPICoordinator: NSObject, Coordinator, DigitalInvoiceViewCo
                 } else {
                     showReviewScreen()
                 }
-
                 pages.forEach { process(captured: $0) }
             } else {
-                showAnalysisScreen()
+                if ((pages.first?.document.isImported) != nil) {
+                    showAnalysisScreen()
+                }
             }
         }
     }
@@ -181,6 +182,9 @@ extension ComponentAPICoordinator {
             } else {
                 uploadAndStartAnalysis(for: page)
             }
+        } else {
+            //call only if pdf was imported
+            uploadAndStartAnalysis(for: page)
         }
         
         addCloseButtonIfNeeded(onViewController: analysisScreen!)
@@ -234,8 +238,9 @@ extension ComponentAPICoordinator {
                                                       target: self,
                                                       action: #selector(closeComponentAPIFromResults))
         }
-
-        push(viewController: digitalInvoiceViewController, removing: [reviewScreen, analysisScreen])
+        if !(navigationController.viewControllers.first is DigitalInvoiceViewController){
+            push(viewController: digitalInvoiceViewController, removing: [reviewScreen, analysisScreen])
+        }
     }
 
     fileprivate func showNextScreenAfterPicking() {
@@ -266,22 +271,25 @@ extension ComponentAPICoordinator {
     }
     
     fileprivate func push<T: UIViewController>(viewController: UIViewController, removing viewControllers: [T?]) {
-        var navigationStack = navigationController.viewControllers
-        let viewControllersToDelete = navigationStack.filter {
-            viewControllers
-                .lazy
-                .compactMap { $0 }
-                .contains($0)
-        }
-        
-        viewControllersToDelete.forEach { viewControllerToDelete in
-            if let index = navigationStack.firstIndex(of: viewControllerToDelete) {
-                navigationStack.remove(at: index)
+        DispatchQueue.main.async { () -> Void in
+            var navigationStack = self.navigationController.viewControllers
+            let viewControllersToDelete = navigationStack.filter {
+                viewControllers
+                    .lazy
+                    .compactMap { $0 }
+                    .contains($0)
             }
-        }
+            
+            viewControllersToDelete.forEach { viewControllerToDelete in
+                if let index = navigationStack.firstIndex(of: viewControllerToDelete) {
+                    navigationStack.remove(at: index)
+                }
+            }
 
-        navigationStack.append(viewController)
-        navigationController.setViewControllers(navigationStack, animated: true)
+            navigationStack.append(viewController)
+            self.navigationController.setViewControllers(navigationStack, animated: true)
+         }
+
     }
 
     fileprivate func refreshMultipageReview(with pages: [GiniCapturePage]) {
@@ -693,9 +701,9 @@ extension ComponentAPICoordinator {
 
 extension ComponentAPICoordinator {
     fileprivate func handleAnalysis(with extractionResult: ExtractionResult) {
-        if extractionResult.lineItems != nil {
+        if extractionResult.extractions.count > 0 {
             DispatchQueue.main.async { [self] in
-                if GiniPayBankConfiguration.shared.returnAssistantEnabled {
+                if GiniPayBankConfiguration.shared.returnAssistantEnabled && extractionResult.lineItems != nil {
                     do {
                         let digitalInvoice = try DigitalInvoice(extractionResult: extractionResult)
                         self.showDigitalInvoiceScreen(digitalInvoice: digitalInvoice)
@@ -707,7 +715,9 @@ extension ComponentAPICoordinator {
                 }
             }
         } else {
-            showNoResultsScreen()
+            DispatchQueue.main.async {
+                self.showNoResultsScreen()
+            }
         }
     }
 }
