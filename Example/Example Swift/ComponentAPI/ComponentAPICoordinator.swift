@@ -107,7 +107,6 @@ final class ComponentAPICoordinator: NSObject, Coordinator, DigitalInvoiceViewCo
                 } else {
                     showReviewScreen()
                 }
-
                 pages.forEach { process(captured: $0) }
             } else {
                 showAnalysisScreen()
@@ -181,6 +180,8 @@ extension ComponentAPICoordinator {
             } else {
                 uploadAndStartAnalysis(for: page)
             }
+        } else {
+            showAnalysisScreen()
         }
         
         addCloseButtonIfNeeded(onViewController: analysisScreen!)
