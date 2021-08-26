@@ -109,7 +109,9 @@ final class ComponentAPICoordinator: NSObject, Coordinator, DigitalInvoiceViewCo
                 }
                 pages.forEach { process(captured: $0) }
             } else {
-                showAnalysisScreen()
+                if ((pages.first?.document.isImported) != nil) {
+                    showAnalysisScreen()
+                }
             }
         }
     }
@@ -181,7 +183,8 @@ extension ComponentAPICoordinator {
                 uploadAndStartAnalysis(for: page)
             }
         } else {
-            showAnalysisScreen()
+            //call only if pdf was imported
+            uploadAndStartAnalysis(for: page)
         }
         
         addCloseButtonIfNeeded(onViewController: analysisScreen!)
@@ -235,8 +238,9 @@ extension ComponentAPICoordinator {
                                                       target: self,
                                                       action: #selector(closeComponentAPIFromResults))
         }
-
-        push(viewController: digitalInvoiceViewController, removing: [reviewScreen, analysisScreen])
+        if !(navigationController.viewControllers.first is DigitalInvoiceViewController){
+            push(viewController: digitalInvoiceViewController, removing: [reviewScreen, analysisScreen])
+        }
     }
 
     fileprivate func showNextScreenAfterPicking() {
