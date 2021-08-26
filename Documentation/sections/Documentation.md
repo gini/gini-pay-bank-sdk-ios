@@ -19,6 +19,21 @@ Further documentation with installation, integration or customization guides can
 
 ## Example apps
 
+### Capture feature
+
+You can find implementation example of the capture feature under 'Example Swift' target. The example illustrates two integration options. A Screen API that is easy to implement and a more complex, but also more flexible Component API. Both APIs can access the complete functionality of the SDK.
+
+**Note: iOS 10**
+Irrespective of the option you choose if you want to support iOS 10 you need to specify the NSCameraUsageDescription key in your Info.plist file. This key is mandatory for all apps since iOS 10 when using the Camera framework.
+
+**Note: iOS 14**
+Starting in iOS 14, PhotoKit further enhances user privacy controls with the addition of the limited Photos library, which lets users select specific assets and resources to share with an app. Add an entry to your Info.plist file with the appropriate key. If your app only adds to the library, use the NSPhotoLibraryAddUsageDescription key. For all other cases, use NSPhotoLibraryUsageDescription.
+
+In order to run the app, clone the repo and run `pod install` from the Example directory first.
+To inject your API credentials into the Bank example app you need to add your credentials to `Example/Example Swift/Credentials.pllist`.
+
+### Payment feature
+
 The banking example app demonstrates how to integrate the Gini Pay Bank SDK. 
 In order to run the app, clone the repo and run `pod install` from the Example directory first.
 To inject your API credentials into the Bank example app you need to add your credentials to `Example/Bank/Credentials.pllist`.
