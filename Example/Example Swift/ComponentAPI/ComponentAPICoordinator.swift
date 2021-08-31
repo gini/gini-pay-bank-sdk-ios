@@ -47,18 +47,31 @@ final class ComponentAPICoordinator: NSObject, Coordinator, DigitalInvoiceViewCo
         navBarViewController.navigationBar.barTintColor = self.giniColor
         navBarViewController.navigationBar.tintColor = .white
         navBarViewController.view.backgroundColor = .black
-        
+        navBarViewController.applyStyle(withConfiguration: giniPayBankConfiguration.captureConfiguration())
         return navBarViewController
     }()
     
     fileprivate lazy var componentAPITabBarController: UITabBarController = {
         let tabBarViewController = UITabBarController()
-        tabBarViewController.tabBar.barTintColor = self.giniColor
-        tabBarViewController.tabBar.tintColor = .white
+        if #available(iOS 15.0, *) {
+            let appearance = UITabBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = self.giniColor
+
+            appearance.stackedLayoutAppearance.normal.iconColor = UIColor.white.withAlphaComponent(0.6)
+            appearance.stackedLayoutAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.6)]
+            appearance.stackedLayoutAppearance.selected.iconColor = .white
+            appearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+
+            tabBarViewController.tabBar.standardAppearance = appearance
+            tabBarViewController.tabBar.scrollEdgeAppearance = tabBarViewController.tabBar.standardAppearance
+        } else {
+            tabBarViewController.tabBar.barTintColor = self.giniColor
+            tabBarViewController.tabBar.tintColor = .white
+            tabBarViewController.tabBar.unselectedItemTintColor = UIColor.white.withAlphaComponent(0.6)
+        }
         tabBarViewController.view.backgroundColor = .black
-        
-        tabBarViewController.tabBar.unselectedItemTintColor = UIColor.white.withAlphaComponent(0.6)
-        
+
         return tabBarViewController
     }()
     
@@ -196,6 +209,7 @@ extension ComponentAPICoordinator {
         resultsScreen = storyboard.instantiateViewController(withIdentifier: "resultScreen")
             as? ResultTableViewController
         resultsScreen?.result = extractions
+        navigationController.applyStyle(withConfiguration: giniPayBankConfiguration.captureConfiguration())
         resultsScreen?.navigationItem
             .rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("close",
                                                                            comment: "close button text"),
