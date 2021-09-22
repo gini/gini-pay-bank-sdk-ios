@@ -188,6 +188,7 @@ present(viewController, animated: true, completion:nil)
 
 > ⚠️  **Important**
 > - The document metadata for the upload process is intended to be used for reporting.
+> - Starting from Gini Pay Bank SDK 1.0.3 certification pinning requires iOS 12.
 
 #### Only UI
 
