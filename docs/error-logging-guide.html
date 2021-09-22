@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>QR Code scanning guide  Reference</title>
+    <title>Error logging guide  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset="utf-8">
@@ -15,7 +15,7 @@
   <body>
 
 
-    <a title="QR Code scanning guide  Reference"></a>
+    <a title="Error logging guide  Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="index.html">GiniPayBank Reference</a>
       <img class="carat" src="img/carat.png" />
-      QR Code scanning guide  Reference
+      Error logging guide  Reference
     </p>
 
     <div class="content-wrapper">
@@ -192,49 +192,22 @@
         <section class="section">
           <div class="section-content">
             
-            <h1 id='qr-code-scanning' class='heading'>QR Code Scanning</h1>
+            <h1 id='error-logging' class='heading'>Error Logging</h1>
 
-<p>Some invoices have a QR code that allows the user to get the payment data just by scanning it from the camera screen. If the QR code has a valid format (see <a href="#supported-qr-codes">supported QR codes</a>), a popup appears pointing out that a QR code has been detected and allowing the user to use it.
-<center><img src="img/qr_code_popup.jpg" border="1"/></center></p>
-<h2 id='enable-qr-code-scanning' class='heading'>Enable QR code scanning</h2>
+<p>The Gini Pay Bank SDK logs errors to the Gini Pay API when the default networking implementation is used (see the UI with Networking (Recommended) section in Integration guide). We log only non-sensitive information like response status codes, headers and error messsages.</p>
 
-<p>The QR code scanning feature is disabled by default, so in case that you what to use it you just need to enable it in the <code><a href="Classes/GiniPayBankConfiguration.html">GiniPayBankConfiguration</a></code>, like so:</p>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">giniPayBankConfiguration</span> <span class="o">=</span> <span class="kt">GiniPayBankConfiguration</span><span class="p">()</span>
-<span class="o">...</span>
-<span class="o">...</span>
-<span class="o">...</span>     
-<span class="n">giniPayBankConfiguration</span><span class="o">.</span><span class="n">qrCodeScanningEnabled</span> <span class="o">=</span> <span class="kc">true</span>
+<p>You can disable the default error logging by passing false to <code>GiniPayBankConfiguration().giniErrorLoggerIsOn</code>.</p>
+
+<p>If you would like to get informed of error logging events you need to set <code>GiniPayBankConfiguration().customGiniErrorLoggerDelegate</code> which confirms to <code>GiniCaptureErrorLoggerDelegate</code>:</p>
+<pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">CustomErrorLogger</span><span class="p">:</span> <span class="kt">GiniCaptureErrorLoggerDelegate</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">handleErrorLog</span><span class="p">(</span><span class="nv">error</span><span class="p">:</span> <span class="kt">ErrorLog</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//TODO</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">configuration</span> <span class="o">=</span> <span class="kt">GiniPayBankConfiguration</span><span class="p">()</span>
+<span class="n">configuration</span><span class="o">.</span><span class="n">customGiniErrorLoggerDelegate</span> <span class="o">=</span> <span class="kt">CustomErrorLogger</span><span class="p">()</span>
 </code></pre>
-<h2 id='handle-and-process-the-payment-data' class='heading'>Handle and process the Payment Data</h2>
-
-<p>Once the QR code has been detected and the user has tapped the button to use it, the payment data is returned and ready to be analyzed in the API. In order to handle the Payment Data from the QR code, on one hand if you are using the <em>Screen API</em> the <code>GiniQRCodeDocument</code> is received in the delegate method <code>GiniCaptureDelegate.didCapture(document:)</code>, where it must be sent to the API as though it was an image or a pdf.
-On the other hand if you are using the <em>Component API</em>, you will get the <code>GiniQRCodeDocument</code> in the <code>CameraScreenSuccessBlock</code>, where it also must be sent to the API as if it was an image or a pdf.</p>
-<h2 id='customization' class='heading'>Customization</h2>
-
-<p>It is possible to customize the text label, button and background colors with these parameters:</p>
-
-<ul>
-<li><code><a href="Classes/GiniPayBankConfiguration.html#/c:@M@GiniPayBank@objc(cs)GiniPayBankConfiguration(py)qrCodePopupBackgroundColor">GiniPayBankConfiguration.qrCodePopupBackgroundColor</a></code></li>
-<li><code><a href="Classes/GiniPayBankConfiguration.html#/c:@M@GiniPayBank@objc(cs)GiniPayBankConfiguration(py)qrCodePopupButtonColor">GiniPayBankConfiguration.qrCodePopupButtonColor</a></code></li>
-<li><code><a href="Classes/GiniPayBankConfiguration.html#/c:@M@GiniPayBank@objc(cs)GiniPayBankConfiguration(py)qrCodePopupTextColor">GiniPayBankConfiguration.qrCodePopupTextColor</a></code></li>
-</ul>
-
-<p>Additionally the text from both label and button can be customized through the following parameters in your <code>Localizable.strings</code> file:</p>
-
-<ul>
-<li><em>ginicapture.camera.qrCodeDetectedPopup.buttonTitle</em></li>
-<li><em>ginicapture.camera.qrCodeDetectedPopup.message</em></li>
-</ul>
-<h2 id='supported-qr-codes' class='heading'>Supported QR codes</h2>
-
-<p>The supported QR codes are:</p>
-
-<ul>
-<li><a href="http://www.bezahlcode.de">BezahlCode</a></li>
-<li><a href="https://www.europeanpaymentscouncil.eu/document-library/guidance-documents/quick-response-code-guidelines-enable-data-capture-initiation">EPC069-12</a></li>
-<li><a href="https://www.stuzza.at/de/zahlungsverkehr/qr-code.html">Stuzza (AT)</a></li>
-<li><a href="https://www.girocode.de/rechnungsempfaenger/">GiroCode (DE)</a></li>
-</ul>
 
           </div>
         </section>
