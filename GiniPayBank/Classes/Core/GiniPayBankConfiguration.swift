@@ -1042,6 +1042,16 @@ public final class GiniPayBankConfiguration: NSObject {
     */
     public var customMenuItems: [HelpMenuViewController.Item] = []
     
+    /**
+     Sets if the default error logging implementation is on
+     */
+    public var giniErrorLoggerIsOn: Bool = true
+    
+    /**
+     Should sets if the custom error logging is implemented
+     */
+    public var customGiniErrorLoggerDelegate : GiniCaptureErrorLoggerDelegate?
+    
     public func captureConfiguration() -> GiniConfiguration {
      let configuration = GiniConfiguration()
         
@@ -1159,6 +1169,10 @@ public final class GiniPayBankConfiguration: NSObject {
         configuration.shouldShowDragAndDropTutorial = self.shouldShowDragAndDropTutorial
         
         configuration.customMenuItems = self.customMenuItems
+        
+        configuration.giniErrorLoggerIsOn = self.giniErrorLoggerIsOn
+        configuration.customGiniErrorLoggerDelegate = self.customGiniErrorLoggerDelegate
+        
         // Undocumented--Xamarin only
         configuration.closeButtonResource = self.closeButtonResource
         configuration.helpButtonResource = self.helpButtonResource
@@ -1381,6 +1395,10 @@ public final class GiniPayBankConfiguration: NSObject {
         giniPayBankConfiguration.shouldShowDragAndDropTutorial = configuration.shouldShowDragAndDropTutorial
         
         giniPayBankConfiguration.customMenuItems = configuration.customMenuItems
+        
+        giniPayBankConfiguration.giniErrorLoggerIsOn = configuration.giniErrorLoggerIsOn
+        giniPayBankConfiguration.customGiniErrorLoggerDelegate = configuration.customGiniErrorLoggerDelegate
+        
         // Undocumented--Xamarin only
         giniPayBankConfiguration.closeButtonResource = configuration.closeButtonResource
         giniPayBankConfiguration.helpButtonResource = configuration.helpButtonResource
