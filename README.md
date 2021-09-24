@@ -1,7 +1,9 @@
-![Gini Pay Bank SDK for iOS](./GiniPayBank_Logo.png?raw=true)
+
+<p align="center">
+<img src="./GiniPayBank_Logo.png" width="250">
+</p>
 
 # Gini Pay Bank SDK for iOS
-
 [![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)]()
 [![Devices](https://img.shields.io/badge/devices-iPhone%20%7C%20iPad-blue.svg)]()
 [![Swift version](https://img.shields.io/badge/swift-5.0-orange.svg)]()
