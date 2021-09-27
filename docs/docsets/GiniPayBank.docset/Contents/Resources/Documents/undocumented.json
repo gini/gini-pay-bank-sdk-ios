@@ -72,21 +72,21 @@
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/GiniPayBankConfiguration.swift",
-      "line": 1045,
+      "line": 1055,
       "symbol": "GiniPayBankConfiguration.captureConfiguration()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/GiniPayBankConfiguration.swift",
-      "line": 1173,
+      "line": 1187,
       "symbol": "GiniPayBankConfiguration.returnAssistantConfiguration()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/mobilecd/.jenkins/workspace/ini_gini-pay-bank-sdk-ios_master/GiniPayBank/Classes/Core/GiniPayBankConfiguration.swift",
-      "line": 1268,
+      "line": 1282,
       "symbol": "GiniPayBankConfiguration.updateConfiguration(withCaptureConfiguration:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
