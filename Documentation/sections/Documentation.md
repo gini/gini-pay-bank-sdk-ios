@@ -26,7 +26,7 @@ By integrating this SDK into your application you can allow your users to easily
 
 ## Documentation
 
-Further documentation with installation, integration or customization guides can be found in our [website](http://developer.gini.net/gini-pay-bank-sdk-ios/docs/).
+Further documentation with installation, integration or customization guides can be found in our [website](https://developer.gini.net/gini-pay-bank-sdk-ios/docs/).
 
 ## Example apps
 
@@ -74,6 +74,6 @@ Gini GmbH, hello@gini.net
 
 ## License
 
-The Gini Pay Bank SDK for iOS is licensed under a Private License. See [the license](http://developer.gini.net/gini-pay-bank-sdk-ios/docs/license.html) for more info.
+The Gini Pay Bank SDK for iOS is licensed under a Private License. See [the license](https://developer.gini.net/gini-pay-bank-sdk-ios/docs/license.html) for more info.
 
 **Important:** Always make sure to ship all license notices and permissions with your application.
