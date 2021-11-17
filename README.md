@@ -12,7 +12,7 @@
  ----------------------
 
  The Gini Pay Bank SDK for iOS was replaced by the new
- [Gini Bank SDK](https://github.com/gini/bank-sdk-ios/.
+ [Gini Bank SDK](https://github.com/gini/bank-sdk-ios/).
 
  This SDK won't be developed further and we kindly ask you to switch to the new Gini Bank SDK. Migration entails only a
  few steps which you can find in this 
