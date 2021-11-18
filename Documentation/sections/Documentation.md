@@ -8,6 +8,17 @@
 [![Devices](https://img.shields.io/badge/devices-iPhone%20%7C%20iPad-blue.svg)]()
 [![Swift version](https://img.shields.io/badge/swift-5.0-orange.svg)]()
 
+**Deprecation Notice**
+ ----------------------
+
+ The Gini Pay Bank SDK for iOS was replaced by the new
+ [Gini Bank SDK](https://github.com/gini/bank-sdk-ios/).
+
+ This SDK won't be developed further and we kindly ask you to switch to the new Gini Bank SDK. Migration entails only a
+ few steps which you can find in this 
+ [migration guide](https://developer.gini.net/gini-mobile-ios/GiniBankSDK/migration-from-gini-pay-bank-sdk.html).
+
+ ## Introduction
 
 The Gini Pay Bank SDK provides components for uploading, reviewing and analyzing photos of invoices and remittance slips.
 
@@ -15,7 +26,7 @@ By integrating this SDK into your application you can allow your users to easily
 
 ## Documentation
 
-Further documentation with installation, integration or customization guides can be found in our [website](http://developer.gini.net/gini-pay-bank-sdk-ios/docs/).
+Further documentation with installation, integration or customization guides can be found in our [website](https://developer.gini.net/gini-pay-bank-sdk-ios/docs/).
 
 ## Example apps
 
@@ -63,6 +74,6 @@ Gini GmbH, hello@gini.net
 
 ## License
 
-The Gini Pay Bank SDK for iOS is licensed under a Private License. See [the license](http://developer.gini.net/gini-pay-bank-sdk-ios/docs/license.html) for more info.
+The Gini Pay Bank SDK for iOS is licensed under a Private License. See [the license](https://developer.gini.net/gini-pay-bank-sdk-ios/docs/license.html) for more info.
 
 **Important:** Always make sure to ship all license notices and permissions with your application.
